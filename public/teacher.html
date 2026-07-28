@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>👩‍🏫 Öğretmen Paneli — Örüntü Motoru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="sarmal">
+    <div class="serit">
+      <span class="rozet">🧩 Örüntü Motoru — Öğretmen</span>
+      <span class="rozet" id="durum-rozeti">Bekliyor</span>
+      <span class="rozet" id="ilerleme-rozeti">—</span>
+      <span class="sayac-kutu" id="sayac">⏱ —</span>
+      <form method="POST" action="/teacher/cikis" style="margin:0">
+        <button class="sade" type="submit">Çıkış</button>
+      </form>
+    </div>
+
+    <!-- Tur ayarları -->
+    <div class="kart">
+      <h2>🎛️ Tur Ayarları</h2>
+      <div class="ayar-satiri">
+        <label>Grup
+          <select id="grup">
+            <option value="e">e grubu (görsel ağırlıklı)</option>
+            <option value="i">i grubu (sayısal ağırlıklı)</option>
+          </select>
+        </label>
+        <label>Seviye
+          <select id="seviye">
+            <option value="1">Seviye 1 — kolay</option>
+            <option value="2">Seviye 2 — orta</option>
+            <option value="3">Seviye 3 — zor (30 sn süreli)</option>
+          </select>
+        </label>
+        <label>Mod
+          <select id="mod">
+            <option value="surdur">➡️ Sürdür</option>
+            <option value="eksik">🕳️ Eksiği Bul</option>
+            <option value="kural">🔍 Kuralı Yakala</option>
+          </select>
+        </label>
+      </div>
+      <!-- Akış kontrolleri: renkler işleve göre (yeşil=başla/devam, kehribar=duraklat, teal=atla/bitir) -->
+      <div class="dugme-satiri">
+        <button class="basla" id="baslat">▶️ Turu Başlat</button>
+        <button class="duraklat" id="duraklat">⏸️ Duraklat</button>
+        <button class="basla" id="devam">▶️ Devam Et</button>
+        <button class="notr" id="atla">⏭️ Soruyu Atla</button>
+        <button class="bitir" id="kapat">✅ Turu Bitir</button>
+      </div>
+      <!-- Yönetim kontrolleri: kehribar=geri al (uyarı), kırmızı=sıfırla (tehlike) -->
+      <div class="dugme-satiri">
+        <button class="uyari" id="geri-al">↩️ Son Turun Puanını Geri Al</button>
+        <button class="tehlike" id="sifirla">🔄 Skorları Sıfırla</button>
+      </div>
+      <p class="ipucu" id="panel-bildirim"></p>
+      <p class="kisayol-notu">Kısayollar: <kbd>B</kbd> başlat · <kbd>Boşluk</kbd> duraklat/devam ·
+        <kbd>A</kbd> atla · <kbd>K</kbd> turu bitir</p>
+    </div>
+
+    <div class="panel-izgara">
+      <!-- Mevcut soru -->
+      <div class="kart">
+        <h2>👀 Ekrandaki Soru</h2>
+        <div class="dizi" id="onizleme-dizi"><span class="ipucu">Henüz tur başlamadı.</span></div>
+        <p class="ipucu" id="onizleme-cevap"></p>
+      </div>
+
+      <!-- Öğrenciler -->
+      <div class="kart">
+        <h2>👥 Öğrenciler (<span id="ogrenci-sayisi">0</span>)</h2>
+        <p class="ipucu" id="cevap-durumu">—</p>
+        <p class="ipucu">✏️ ile ismi, 🔢 ile puanı düzenleyebilirsin.</p>
+        <ul class="skor-liste duzenlenebilir" id="skor-liste"></ul>
+      </div>
+    </div>
+
+    <!-- Tasarım galerisi -->
+    <div class="kart">
+      <div class="kart-baslik">
+        <h2>🎨 Öğrenci Tasarımları Galerisi</h2>
+        <button class="sade" id="galeri-gorunurluk" aria-pressed="false">🙈 Öğrencilere kapalı</button>
+      </div>
+      <p class="ipucu">Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce bir tur başlatmış olmalısın.
+        Galeriyi öğrencilere açarsan tasarımlar onların ekranında da görünür.</p>
+      <div class="galeri" id="galeri"><span class="ipucu">Henüz tasarım gönderilmedi.</span></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/rozet.js"></script>
+  <script src="/teacher.js"></script>
+</body>
+</html>

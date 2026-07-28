@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>🧩 Örüntü Motoru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="konfeti"></div>
+
+  <!-- 1) Giriş ekranı -->
+  <section id="ekran-giris" class="giris-zemin" style="min-height:100vh">
+    <div class="kart giris-kart">
+      <h1>🧩 Örüntü Motoru</h1>
+      <p class="ipucu">Örüntüyü çöz, sınıfın en hızlısı ol!</p>
+      <input type="text" id="isim-girdisi" placeholder="Adın ne?" maxlength="20" autocomplete="off">
+      <p id="giris-hata" class="hata gizli"></p>
+      <button class="tam" id="katil-dugmesi">Oyuna Katıl 🚀</button>
+    </div>
+  </section>
+
+  <!-- 2) Oyun ekranı -->
+  <section id="ekran-oyun" class="sarmal gizli">
+    <div class="serit">
+      <span class="rozet" id="oyuncu-adi">—</span>
+      <span class="rozet" id="puanim">0 puan</span>
+      <span id="soru-sirasi">—</span>
+      <span class="sayac-kutu gizli" id="sayac">⏱ —</span>
+      <button class="sade" id="ses-dugmesi" aria-pressed="true" title="Sesleri aç/kapat">🔊 Ses açık</button>
+    </div>
+
+    <!-- Bekleme -->
+    <div class="kart" id="bekleme-karti">
+      <h2>⏳ Öğretmeni bekliyoruz…</h2>
+      <p class="ipucu">Öğretmen turu başlattığında örüntü burada belirecek. Hazır ol! ✨</p>
+    </div>
+
+    <!-- Soru -->
+    <div class="kart gizli" id="soru-karti">
+      <h2 id="mod-basligi">Örüntüyü Sürdür</h2>
+      <p class="ipucu" id="mod-aciklamasi"></p>
+      <div class="dizi" id="dizi"></div>
+      <div class="secenekler" id="secenekler"></div>
+      <div id="geri-bildirim"></div>
+    </div>
+
+    <!-- Kendi örüntünü kur (mini mod) — tek odak için varsayılan olarak kapalı -->
+    <div class="kart" id="tasarim-karti">
+      <button class="katlanir-baslik" id="tasarim-ac" aria-expanded="false" aria-controls="tasarim-govde">
+        <span>🎨 Kendi Örüntünü Kur</span>
+        <span class="ok" id="tasarim-ok">Aç ▾</span>
+      </button>
+      <div id="tasarim-govde" class="gizli">
+      <p class="ipucu">6 hücreyi doldur, öğretmenin sınıfa göndermesi için gönder!</p>
+      <div class="tasarim-izgara" id="tasarim-izgara"></div>
+      <div class="palet" id="palet"></div>
+      <div class="dugme-satiri">
+        <button class="ikincil" id="tasarim-temizle">Temizle</button>
+        <button id="tasarim-gonder">Öğretmene Gönder 📨</button>
+      </div>
+      <p id="tasarim-bildirim" class="ipucu"></p>
+      </div>
+    </div>
+
+    <!-- Sınıf tasarımları galerisi — yalnızca öğretmen açınca görünür -->
+    <div class="kart gizli" id="ogrenci-galeri-karti">
+      <h2>🖼️ Sınıfın Tasarımları</h2>
+      <p class="ipucu">Arkadaşlarının kurduğu örüntüler. Bu galeriyi öğretmen açtı.</p>
+      <div class="galeri" id="ogrenci-galeri"></div>
+    </div>
+
+    <!-- Skor tablosu -->
+    <div class="kart">
+      <h2>🏆 Skor Tablosu</h2>
+      <ul class="skor-liste" id="skor-liste"></ul>
+    </div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/rozet.js"></script>
+  <script src="/efekt.js"></script>
+  <script src="/tasarim.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
