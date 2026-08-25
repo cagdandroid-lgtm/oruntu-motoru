@@ -238,6 +238,11 @@ function skorlariCiz(skorlar) {
 }
 
 soket.on('durum', (durum) => {
+  // Öğretmen "Kendi Örüntünü Kur" bölümünü kapattıysa kart tamamen gizlenir
+  const tasarimAcik = durum.tasarimAcik !== false;
+  gorunur($('tasarim-karti'), tasarimAcik);
+  if (!tasarimAcik) tasarimPaneli(false);
+
   if (durum.durum === 'bekliyor' || durum.durum === 'bitti') {
     gorunur($('soru-karti'), false);
     gorunur($('bekleme-karti'), true);

@@ -55,6 +55,12 @@ $('galeri-gorunurluk').addEventListener('click', () =>
   gonder('ogretmen:galeriGorunurluk', { acik: !galeriAcik })
 );
 
+// "Kendi Örüntünü Kur" bölümünü öğrenci ekranında aç/kapat
+let tasarimAcik = true;
+$('tasarim-gorunurluk').addEventListener('click', () =>
+  gonder('ogretmen:tasarimGorunurluk', { acik: !tasarimAcik })
+);
+
 // Klavye kısayolları
 document.addEventListener('keydown', (e) => {
   if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
@@ -84,8 +90,13 @@ soket.on('panel:durum', (veri) => {
 
   galeriAcik = !!veri.galeriAcik;
   const gdugme = $('galeri-gorunurluk');
-  gdugme.textContent = galeriAcik ? '👁️ Öğrencilere açık' : '🙈 Öğrencilere kapalı';
+  gdugme.textContent = galeriAcik ? '👁️ Galeri açık' : '🙈 Galeri kapalı';
   gdugme.setAttribute('aria-pressed', String(galeriAcik));
+
+  tasarimAcik = veri.tasarimAcik !== false;
+  const tdugme = $('tasarim-gorunurluk');
+  tdugme.textContent = tasarimAcik ? '✏️ Tasarım bölümü açık' : '🚫 Tasarım bölümü kapalı';
+  tdugme.setAttribute('aria-pressed', String(tasarimAcik));
 
   sayaciCiz(veri.kalanSure);
   skorlariCiz(veri.oyuncular);

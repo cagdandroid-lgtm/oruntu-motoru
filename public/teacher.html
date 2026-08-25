@@ -85,10 +85,14 @@
     <div class="kart">
       <div class="kart-baslik">
         <h2>🎨 Öğrenci Tasarımları Galerisi</h2>
-        <button class="sade" id="galeri-gorunurluk" aria-pressed="false">🙈 Öğrencilere kapalı</button>
+        <div class="baslik-dugmeler">
+          <button class="sade" id="tasarim-gorunurluk" aria-pressed="true">✏️ Tasarım bölümü açık</button>
+          <button class="sade" id="galeri-gorunurluk" aria-pressed="false">🙈 Galeri kapalı</button>
+        </div>
       </div>
-      <p class="ipucu">Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce bir tur başlatmış olmalısın.
-        Galeriyi öğrencilere açarsan tasarımlar onların ekranında da görünür.</p>
+      <p class="ipucu"><b>Tasarım bölümü:</b> öğrencinin ekranındaki “Kendi Örüntünü Kur” kartını açar/kapatır.
+        <b>Galeri:</b> gönderilen tasarımların öğrenci ekranında görünmesini açar/kapatır.</p>
+      <p class="ipucu">Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce bir tur başlatmış olmalısın.</p>
       <div class="galeri" id="galeri"><span class="ipucu">Henüz tasarım gönderilmedi.</span></div>
     </div>
   </div>

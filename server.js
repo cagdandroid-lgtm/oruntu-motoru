@@ -28,6 +28,7 @@ const tasarimlar = [];
 let tasarimSayaci = 0;
 const GALERI_SINIRI = 60;
 let galeriAcik = false; // öğrenci galerisi yalnızca öğretmen açınca görünür
+let tasarimAcik = true; // "Kendi Örüntünü Kur" kartı öğrenci ekranında görünsün mü
 
 // ---------------- Öğretmen kimlik doğrulama ----------------
 
@@ -105,6 +106,7 @@ function durumOzeti() {
     cevaplayan: oyun.cevaplar.size,
     bagliSayisi: oyun.bagliSayisi,
     galeriAcik,
+    tasarimAcik,
   };
 }
 
@@ -200,6 +202,10 @@ io.on('connection', (soket) => {
   soket.on('tasarim:gonder', (veri, geriCagir) => {
     const oyuncu = oyun.oyuncuBul(soket.id);
     if (!oyuncu) return geriCagir && geriCagir({ hata: 'Önce oyuna katılmalısın.' });
+    // Öğretmen bölümü kapattıysa sunucu da tasarım kabul etmez
+    if (!tasarimAcik) {
+      return geriCagir && geriCagir({ hata: 'Tasarım bölümü şu anda kapalı.' });
+    }
 
     const hucreler = Array.isArray(veri && veri.hucreler) ? veri.hucreler : [];
     const temiz = hucreler.slice(0, 6).map((h) => String(h).slice(0, 8));
@@ -264,6 +270,14 @@ io.on('connection', (soket) => {
     console.log(`[galeri] öğrenci galerisi ${galeriAcik ? 'AÇILDI' : 'KAPATILDI'}`);
     herkeseDurum();
     return { tamam: true, galeriAcik };
+  });
+
+  // "Kendi Örüntünü Kur" bölümünü öğrenci ekranında aç/kapat
+  ogretmenOlayi('ogretmen:tasarimGorunurluk', (veri) => {
+    tasarimAcik = !!(veri && veri.acik);
+    console.log(`[tasarım] öğrenci tasarım bölümü ${tasarimAcik ? 'AÇILDI' : 'KAPATILDI'}`);
+    herkeseDurum();
+    return { tamam: true, tasarimAcik };
   });
 
   // Son turun puanlarını geri al

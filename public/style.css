@@ -392,6 +392,7 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   margin-bottom: 6px;
 }
 .kart-baslik h2 { margin: 0; }
+.baslik-dugmeler { display: flex; gap: 8px; flex-wrap: wrap; }
 
 /* ---------- Galeri (öğretmen) ---------- */
 

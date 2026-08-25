@@ -87,10 +87,23 @@ yeni soru gelince tek odak için otomatik kapanır):
 
 > Tasarım gönderebilmek için bir turun başlamış olması gerekir.
 
+### İki ayrı görünürlük anahtarı
+
+Öğretmen panelinde galeri kartının başlığında **iki ayrı** düğme vardır; ikisi
+farklı şeyi kontrol eder:
+
+| Düğme | Neyi kontrol eder | Varsayılan |
+|---|---|---|
+| ✏️ / 🚫 **Tasarım bölümü** | Öğrenci ekranındaki “🎨 Kendi Örüntünü Kur” kartı | Açık |
+| 👁️ / 🙈 **Galeri** | Öğrenci ekranındaki “🖼️ Sınıfın Tasarımları” kartı | Kapalı |
+
+Tasarım bölümü kapatıldığında kart öğrenci ekranından anında kaybolur ve sunucu
+o sırada gelen `tasarim:gonder` isteklerini de reddeder (kontrol yalnız arayüzde değil).
+
 ### Galeriyi öğrencilere açma
 
 Galeri varsayılan olarak yalnızca öğretmende görünür. Öğretmen panelindeki
-**👁️ / 🙈 görünürlük** düğmesiyle galeri tüm sınıfa açılabilir; açıkken tasarımlar
+**👁️ / 🙈 galeri** düğmesiyle galeri tüm sınıfa açılabilir; açıkken tasarımlar
 öğrenci ekranında salt-görüntü "🖼️ Sınıfın Tasarımları" kartında belirir
 (yeni tasarımlar anında yansır). Düğme tekrar tıklanınca öğrencilerden gizlenir.
 
@@ -142,7 +155,7 @@ Skor tablosundaki her satırda **✏️** ile ismi, **🔢** ile puanı değişt
 server.js              Express + Socket.io, öğretmen kimlik doğrulama, olay yönlendirme
 lib/oyun.js            Oyun durumu, tur akışı, cevap doğrulama, puanlama
 lib/oruntu.js          İçerik yükleme, filtreleme, istemciye güvenli paketleme
-data/patterns.json     Tüm örüntü içeriği (228 kayıt)
+data/patterns.json     Tüm örüntü içeriği (246 kayıt)
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi
 public/tasarim.js      "Kendi Örüntünü Kur" mini modu
@@ -152,7 +165,6 @@ public/style.css       Palet, göz konforu kuralları, mobil/tablet uyumu
 public/teacher.html    Öğretmen paneli (doğrudan erişim engellidir)
 public/teacher.js      Öğretmen istemcisi
 ```
-
 ---
 
 ## 🎨 Palet ve göz konforu
