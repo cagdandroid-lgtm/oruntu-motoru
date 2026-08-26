@@ -457,3 +457,146 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   .secenekler { grid-template-columns: 1fr; }
   .tasarim-izgara { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ---------- Ölçme ve raporlar (yalnız öğretmen paneli) ---------- */
+
+.alt-baslik {
+  font-size: 1.02rem;
+  margin: 18px 0 6px;
+  color: var(--cam);
+}
+.alt-baslik .ipucu-satir { font-weight: 400; color: var(--murekkep-soluk); font-size: 0.95rem; }
+
+/* Ders sonu "raporu indir" hatırlatması — renk + ikon + metin birlikte */
+.hatirlatma {
+  background: var(--kehribar-sis);
+  color: var(--kehribar);
+  border-left: 5px solid var(--kehribar);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 4px 0 8px;
+  font-size: 1rem;
+}
+
+/* Dosya seçme düğmesi — görünüm olarak diğer düğmelerle aynı */
+.dosya-sec {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 130px;
+  min-height: var(--dokunma);
+  padding: 12px 22px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--kart);
+  background: var(--cam-acik);
+  border-radius: var(--yuvarlak);
+  cursor: pointer;
+  text-align: center;
+}
+.dosya-sec:hover { background: #2F6C67; }
+.dosya-sec input { display: none; }
+
+.eslesme { margin: 14px 0 4px; }
+.eslesme summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 4px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.kod-liste { list-style: none; margin: 6px 0 0; padding: 0; }
+.kod-liste li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--cizgi);
+  font-size: 1rem;
+}
+.kod-liste .kod, .kod-rozeti {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  background: var(--cam-sis);
+  color: var(--cam);
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.kod-liste .ad { flex: 1; }
+
+/* Öğrenci Raporu penceresi */
+.rapor-pencere {
+  width: min(680px, 94vw);
+  border: 0;
+  border-radius: var(--yuvarlak);
+  padding: 22px;
+  background: var(--kart);
+  color: var(--murekkep);
+  box-shadow: var(--golge-yuksek);
+}
+.rapor-pencere::backdrop { background: rgba(36, 51, 59, 0.5); }
+.rapor-ust { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.rapor-ust h2 { margin: 0; }
+
+.rapor-kutular { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0; }
+.rapor-kutu {
+  background: var(--kagit);
+  border: 1px solid var(--cizgi);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.rapor-kutu .sayi { display: block; font-size: 1.35rem; font-weight: 700; color: var(--cam); }
+.rapor-kutu .ad { font-size: 0.92rem; color: var(--murekkep-soluk); }
+
+.degisim-satiri {
+  background: var(--kehribar-sis);
+  border-left: 5px solid var(--kehribar);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+.rapor-dokum { width: 100%; border-collapse: collapse; font-size: 1rem; }
+.rapor-dokum th {
+  text-align: left;
+  color: var(--murekkep-soluk);
+  font-size: 0.92rem;
+  border-bottom: 2px solid var(--cizgi);
+  padding: 6px 4px;
+}
+.rapor-dokum td { border-bottom: 1px solid var(--kagit-koyu); padding: 7px 4px; }
+.rapor-dokum .say { text-align: center; white-space: nowrap; }
+.rapor-dokum .oran { width: 42%; white-space: nowrap; }
+
+/* Başarı çubuğu — bilgi ayrıca yüzde metniyle de verilir */
+.cubuk {
+  display: inline-block;
+  width: 55%;
+  height: 10px;
+  background: var(--kagit-koyu);
+  border-radius: 5px;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.cubuk .dolu { display: block; height: 100%; background: var(--cam-acik); }
+
+.chc-satir { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px; }
+.chc-etiket {
+  background: var(--cam-sis);
+  color: var(--cam);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .rapor-kutular { grid-template-columns: repeat(2, 1fr); }
+}

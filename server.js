@@ -8,6 +8,7 @@ const { Server } = require('socket.io');
 
 const icerik = require('./lib/oruntu');
 const { Oyun } = require('./lib/oyun');
+const raporRotalari = require('./lib/rapor-rotalari');
 
 // Öğretmen paneli şifresi.
 // Yerelde (env değişkeni yokken) YEREL_SIFRE geçerlidir.
@@ -92,6 +93,9 @@ app.post('/teacher/cikis', (istek, yanit) => {
   yanit.redirect('/teacher');
 });
 
+// Ölçme rotaları: CSV dışa aktarım, karne, tüm karneler, önceki oturum
+raporRotalari.rotalariKur(app, { oyun, yetkiliMi });
+
 // ---------------- Socket.io ----------------
 
 const ogretmenMi = (soket) => cerezOku(soket.request).admin_auth === 'true';
@@ -116,10 +120,18 @@ function galeriYayinla() {
 }
 
 function panelYayinla() {
+  // Öğretmen paneline takma adlar ve ölçüm özeti de gider (öğrenciye ASLA gitmez).
   io.to('ogretmenler').emit('panel:durum', {
     ...durumOzeti(),
-    oyuncular: oyun.skorTablosu(),
+    oyuncular: oyun.panelTablosu(),
     galeri: tasarimlar,
+    olcum: {
+      kayitSayisi: oyun.olcme.sayi,
+      sonDisaAktarim: oyun.olcme.sonDisaAktarim,
+      onceki: oyun.olcme.oncekiOturum
+        ? { kaynak: oyun.olcme.oncekiOturum.kaynak, ogrenciSayisi: oyun.olcme.oncekiOturum.ogrenciler.size }
+        : null,
+    },
   });
 }
 
@@ -296,6 +308,21 @@ io.on('connection', (soket) => {
   ogretmenOlayi('ogretmen:puanDegistir', (veri) =>
     oyun.puanAyarla(veri && veri.anahtar, veri && veri.puan)
   );
+
+  // Öğrenci Raporu ekranı (panelde öğrenciye tıklanınca)
+  ogretmenOlayi('ogretmen:rapor', (veri) => {
+    const oyuncu = oyun.oyuncular.get(String((veri && veri.anahtar) || ''));
+    if (!oyuncu) return { hata: 'Öğrenci bulunamadı.' };
+    return { tamam: true, rapor: oyun.olcme.rapor(oyuncu) };
+  });
+
+  // Oturum ölçüm kayıtlarını sil (yeni ders/sınıf için)
+  ogretmenOlayi('ogretmen:olcumTemizle', () => {
+    const sayi = oyun.olcme.sayi;
+    oyun.olcme.temizle();
+    console.log(`[veri] ölçüm kayıtları temizlendi (${sayi} kayıt silindi)`);
+    return { tamam: true, silinen: sayi };
+  });
 
   soket.on('disconnect', () => {
     const oyuncu = oyun.ayrildi(soket.id);

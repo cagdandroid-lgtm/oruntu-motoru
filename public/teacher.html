@@ -76,8 +76,49 @@
       <div class="kart">
         <h2>👥 Öğrenciler (<span id="ogrenci-sayisi">0</span>)</h2>
         <p class="ipucu" id="cevap-durumu">—</p>
-        <p class="ipucu">✏️ ile ismi, 🔢 ile puanı düzenleyebilirsin.</p>
+        <p class="ipucu">📊 rapor · ✏️ isim · 🔢 puan. Kod rozeti (E-01) kayıtlarda kullanılan takma addır.</p>
         <ul class="skor-liste duzenlenebilir" id="skor-liste"></ul>
+      </div>
+    </div>
+
+    <!-- Ölçme ve raporlar -->
+    <div class="kart" id="olcme-karti">
+      <div class="kart-baslik">
+        <h2>📊 Ölçme ve Raporlar</h2>
+        <span class="rozet" id="kayit-rozeti">0 kayıt</span>
+      </div>
+
+      <p class="hatirlatma gizli" id="veri-hatirlatma">
+        ⚠️ <b>Dersi bitirmeden raporu indir!</b> Kayıtlar yalnızca sunucu belleğinde tutulur;
+        sunucu yeniden başlarsa (Render'da her uyku sonrası) bu oturumun verisi kaybolur.
+      </p>
+
+      <h3 class="alt-baslik">CSV dışa aktarım <span class="ipucu-satir">— oturumdaki tüm öğrenciler tek dosyada</span></h3>
+      <div class="dugme-satiri">
+        <button class="notr" id="csv-kodlu">🔬 CSV indir — kodlu (araştırma)</button>
+        <button class="notr" id="csv-isimli">👪 CSV indir — isimli (veli raporu)</button>
+      </div>
+
+      <h3 class="alt-baslik">Karneler <span class="ipucu-satir">— A4, yazdır veya PDF olarak kaydet</span></h3>
+      <div class="dugme-satiri">
+        <button class="notr" id="tum-karneler">🖨️ Tüm Karneleri İndir</button>
+        <label class="dosya-sec">
+          📂 Önceki oturum CSV'si yükle
+          <input type="file" id="onceki-csv" accept=".csv,text/csv">
+        </label>
+        <button class="sade gizli" id="onceki-sil">✖️ Karşılaştırmayı kaldır</button>
+      </div>
+      <p class="ipucu" id="onceki-durum">
+        Önceki oturumun CSV'sini yüklersen karnede “geçen oturuma göre değişim” satırı görünür.
+      </p>
+
+      <details class="eslesme">
+        <summary>🪪 İsim ↔ kod eşlemesi (yalnız bu panelde görünür)</summary>
+        <ul class="kod-liste" id="kod-liste"></ul>
+      </details>
+
+      <div class="dugme-satiri">
+        <button class="tehlike" id="olcum-temizle">🗑️ Ölçüm Kayıtlarını Sil</button>
       </div>
     </div>
 
@@ -97,8 +138,21 @@
     </div>
   </div>
 
+  <!-- Öğrenci Raporu ekranı -->
+  <dialog id="rapor-pencere" class="rapor-pencere">
+    <div class="rapor-ust">
+      <h2 id="rapor-baslik">Öğrenci Raporu</h2>
+      <button class="sade" id="rapor-kapat" aria-label="Raporu kapat">✖️ Kapat</button>
+    </div>
+    <div id="rapor-govde"></div>
+    <div class="dugme-satiri">
+      <button class="notr" id="rapor-karne">🖨️ Yazdırılabilir Karne (A4)</button>
+    </div>
+  </dialog>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="/rozet.js"></script>
   <script src="/teacher.js"></script>
+  <script src="/rapor.js"></script>
 </body>
 </html>

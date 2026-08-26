@@ -155,6 +155,10 @@ Skor tablosundaki her satırda **✏️** ile ismi, **🔢** ile puanı değişt
 server.js              Express + Socket.io, öğretmen kimlik doğrulama, olay yönlendirme
 lib/oyun.js            Oyun durumu, tur akışı, cevap doğrulama, puanlama
 lib/oruntu.js          İçerik yükleme, filtreleme, istemciye güvenli paketleme
+lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
+lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
+lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
+lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
 data/patterns.json     Tüm örüntü içeriği (246 kayıt)
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi
@@ -164,6 +168,7 @@ public/rozet.js        Ortak durum göstergeleri (ikon + metin)
 public/style.css       Palet, göz konforu kuralları, mobil/tablet uyumu
 public/teacher.html    Öğretmen paneli (doğrudan erişim engellidir)
 public/teacher.js      Öğretmen istemcisi
+public/rapor.js        Ölçme kartı, öğrenci raporu penceresi, karne indirmeleri
 ```
 ---
 
@@ -255,6 +260,103 @@ sunucuyu yeniden başlatmak yeterlidir. Dikkat edilecekler:
 
 ---
 
+## 📊 Ölçme ve veri standardı
+
+Her cevap/görev için sunucu, **UYCEP Logic oyunlarının tamamında birebir aynı**
+şemayla bir olay kaydı tutar. Sütun adları asla değiştirilmez — oyunlar arası
+birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
+
+### Olay kaydı şeması
+
+| # | Sütun | Örnek | Açıklama |
+|---|---|---|---|
+| 1 | `zaman` | `2026-08-26T08:57:45.982Z` | Kaydın oluşma anı (ISO 8601, UTC) |
+| 2 | `oyun` | `oruntu-motoru` | Oyun kimliği — dosyalar birleştirilince ayırt eder |
+| 3 | `set_veya_paket` | `e-1-surdur` | Bu oyunda soru havuzu: `<grup>-<seviye>-<mod>` |
+| 4 | `grup` | `e` | İçerik grubu (`e` / `i` / `c` / `p`) |
+| 5 | `ogrenci_kod` | `E-07` | **Takma ad** — kayıtlarda isim asla geçmez |
+| 6 | `gorev_id` | `e1-010` | `patterns.json` içindeki soru kimliği |
+| 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`) |
+| 8 | `chc` | `Gq\|Gf` | CHC alanları, `\|` ile ayrılmış |
+| 9 | `zorluk` | `e-1` | Katman kodu: `<grup>-<seviye>` |
+| 10 | `sonuc` | `dogru` | `dogru` / `yanlis` / `atlandi` |
+| 11 | `sure_sn` | `6.42` | Sorunun açılışından cevaba kadar (duraklatılan süre düşülür) |
+| 12 | `deneme` | `1` | Bu oyunda tek cevap hakkı vardır; cevapsızda `0` |
+| 13 | `ipucu_kullanildi` | `hayir` | Bu oyunda ipucu mekaniği yok; daima `hayir` |
+
+Notlar:
+
+- **`atlandi`**: tur kapanırken bağlı olduğu hâlde cevap vermemiş her öğrenci için
+  bir kayıt yazılır — katılmama da veridir.
+- **`chc`**: soru JSON'unda `chc` alanı varsa o kullanılır, yoksa örüntü türünden
+  türetilir (`lib/olcme.js` → `CHC_ESLEME`). Seviye 3 süreli olduğu için `Gs` eklenir.
+- **Soru iptali**: öğretmen “Son Turun Puanını Geri Al” dediğinde o turun kayıtları
+  silinmez, *geçersiz* işaretlenir ve CSV/rapor/karnelerin dışında bırakılır.
+
+### Takma ad (pseudonym)
+
+Öğrenci ilk katıldığında sırayla bir kod alır: `E-01`, `E-02`, … (harf = grup).
+Kod oturum boyunca sabittir — öğrenci ismini değiştirse veya bağlantısı kopup
+geri dönse bile aynı kalır. **İsim ↔ kod eşlemesi yalnızca öğretmen panelinde**
+görünür (öğrenci listesindeki kod rozeti ve “🪪 İsim ↔ kod eşlemesi” bölümü);
+öğrenci ekranına giden hiçbir pakette kod bulunmaz.
+
+### CSV dışa aktarım
+
+Panelin **📊 Ölçme ve Raporlar** kartından tek tık. Dosya her zaman oturumdaki
+**tüm öğrencileri tek dosyada** içerir.
+
+| Düğme | İçerik | Kullanım |
+|---|---|---|
+| 🔬 **CSV indir — kodlu** | Yalnız 13 standart sütun | Araştırma / akademik analiz |
+| 👪 **CSV indir — isimli** | 13 standart sütun + sona `ogrenci_ad` | Veli raporu, sınıf takibi |
+
+- Dosya adı standardı: `<oyun>_<grup>_<tarih>.csv` → `oruntu-motoru_e_2026-08-26.csv`
+  (kayıtlar birden çok gruba yayılmışsa grup yerine `karma` yazılır).
+- Kodlama UTF-8 + BOM, ayraç `,` — Excel'de de pandas'ta da doğrudan açılır.
+
+> ⚠️ **Veri yalnızca bellekte tutulur.** Render diski kalıcı değildir; sunucu
+> yeniden başlarsa oturum verisi kaybolur. Bu yüzden panelde kayıt biriktiği anda
+> “Dersi bitirmeden raporu indir!” hatırlatması belirir, oyun bitince öne çıkar ve
+> indirilmemiş veri varken panel sekmesi kapatılmak istenirse tarayıcı uyarı verir.
+
+### Öğrenci Raporu
+
+Öğrenci listesindeki **📊** düğmesi tek ekranlık raporu açar: genel doğruluk
+yüzdesi, kategori bazlı doğruluk dökümü, ortalama süre, en uzun seri, ulaşılan
+kademe ve CHC dağılımı.
+
+**Geçen oturuma göre değişim:** “📂 Önceki oturum CSV'si yükle” ile eski bir CSV
+yüklenirse rapor ve karnede karşılaştırma satırı belirir. Eşleştirme, isimli
+CSV'de `ogrenci_ad`, kodlu CSV'de `ogrenci_kod` üzerinden yapılır.
+
+### Karneler (A4, yazdır/PDF)
+
+| Düğme | Çıktı |
+|---|---|
+| Rapor penceresi → 🖨️ **Yazdırılabilir Karne** | Tek öğrenci, tek A4 sayfa |
+| Ölçme kartı → 🖨️ **Tüm Karneleri İndir** | Sınıfın tamamı, **öğrenci başına bir A4 sayfa**, tek belge |
+
+Karne veli diline uygundur (eğitim jargonu yok): kimlik satırı, dört özet kutusu,
+örüntü türlerine göre başarı tablosu, öğretmen notu ve “evde birlikte
+yapabilirsiniz” önerileri. Açılan sayfadaki **🖨️ Yazdır** düğmesiyle yazdırılır
+veya “Hedef: PDF olarak kaydet” seçilerek PDF üretilir. Veli toplantısı öncesi
+tüm evrak tek tıkla hazırdır.
+
+### Veri rotaları (hepsi öğretmen çerezi ister, yetkisizde 403)
+
+```
+GET  /teacher/veri/csv?ad=kodlu|isimli   CSV indir
+GET  /teacher/veri/karne?anahtar=<key>   Tek öğrenci karnesi
+GET  /teacher/veri/karneler              Tüm sınıfın karneleri (tek belge)
+POST /teacher/veri/onceki                Önceki oturum CSV'si yükle {csv, dosya}
+POST /teacher/veri/onceki-sil            Karşılaştırmayı kaldır
+```
+
+**Öğrenci ekranında bu verilerin hiçbiri görünmez**; zorluk gizliliği aynen sürer.
+
+---
+
 ## 🔒 Güvenlik notları
 
 - Cevap doğrulaması **daima sunucuda** yapılır; istemciye cevap sızmaz.
@@ -262,8 +364,13 @@ sunucuyu yeniden başlatmak yeterlidir. Dikkat edilecekler:
 - Aynı turda ikinci cevap kabul edilmez; duraklatılmışken cevap alınmaz.
 - `teacher.html` ve `teacher.js` çerezsiz istekte `/teacher` giriş sayfasına yönlendirilir.
 - Öğretmen soket olayları her çağrıda çerezle yeniden doğrulanır; yetkisiz istek loglanır.
+- `/teacher/veri/*` rotaları (CSV, karne, önceki oturum) çerezsiz istekte 403 döner.
+- Öğrenci kodu, ölçüm kayıtları ve raporlar yalnız `panel:durum` ile öğretmen odasına gider;
+  öğrencilere yayınlanan `skorlar` ve `tur:basladi` paketlerinde bulunmaz.
 
 ## 📋 Olay günlüğü
 
 Sunucu konsoluna yazılanlar: katılım, ayrılma, tur başlangıcı, her cevap (doğru/yanlış + puan),
 tur kapanışı ve sebebi, tasarım gönderimi, öğretmen girişi ve yetkisiz istekler.
+Ölçme tarafında ayrıca: öğrenciye atanan takma ad, CSV indirme (kodlu/isimli + kayıt sayısı),
+karne üretimi, önceki oturum yüklemesi ve soru iptalinde geçersiz sayılan kayıt sayısı.

@@ -41,7 +41,11 @@ $('geri-al').addEventListener('click', () => {
   if (confirm('Son turda dağıtılan puanlar geri alınacak. Emin misin?')) {
     soket.emit('ogretmen:puaniGeriAl', {}, (yanit) => {
       if (yanit && yanit.hata) bildir('⚠️ ' + yanit.hata);
-      else if (yanit) bildir(`↩️ ${yanit.oyuncuSayisi} öğrenciden toplam ${yanit.geriAlinan} puan geri alındı.`);
+      else if (yanit)
+        bildir(
+          `↩️ ${yanit.oyuncuSayisi} öğrenciden toplam ${yanit.geriAlinan} puan geri alındı` +
+            (yanit.iptalEdilenKayit ? ` · ${yanit.iptalEdilenKayit} ölçüm kaydı analiz dışı bırakıldı.` : '.')
+        );
     });
   }
 });
@@ -101,6 +105,8 @@ soket.on('panel:durum', (veri) => {
   sayaciCiz(veri.kalanSure);
   skorlariCiz(veri.oyuncular);
   galeriyiCiz(veri.galeri);
+  // Ölçme kartı ve isim↔kod eşlemesi (public/rapor.js)
+  if (window.olcumGuncelle) window.olcumGuncelle(veri.olcum, veri.oyuncular);
 });
 
 soket.on('sayac', sayaciCiz);
@@ -155,14 +161,17 @@ function skorlariCiz(oyuncular) {
     madde.innerHTML =
       `<span class="sira">${madalya}</span>` +
       `<span class="isim"></span>` +
+      `<span class="kod-rozeti" title="Kayıtlarda kullanılan takma ad">${o.kod || '—'}</span>` +
       durumRozeti(o) +
       `<span class="puan">${o.skor} <span class="sr-only">puan</span></span>` +
       `<span class="duzen">
+         <button class="mini" title="Öğrenci raporu" aria-label="Öğrenci raporu">📊</button>
          <button class="mini" title="İsmi değiştir" aria-label="İsmi değiştir">✏️</button>
          <button class="mini" title="Puanı değiştir" aria-label="Puanı değiştir">🔢</button>
        </span>`;
     madde.querySelector('.isim').textContent = o.isim;
-    const [isimDugme, puanDugme] = madde.querySelectorAll('.duzen .mini');
+    const [raporDugme, isimDugme, puanDugme] = madde.querySelectorAll('.duzen .mini');
+    raporDugme.addEventListener('click', () => window.raporGoster && window.raporGoster(o.anahtar));
     isimDugme.addEventListener('click', () => isimDuzenle(o));
     puanDugme.addEventListener('click', () => puanDuzenle(o));
     liste.appendChild(madde);
