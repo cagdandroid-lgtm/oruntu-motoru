@@ -600,3 +600,259 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
 @media (max-width: 720px) {
   .rapor-kutular { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ---------- Öğrenci lobisi (sınıf oturumu modeli) ---------- */
+
+.lobi {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 40px;
+  overflow: hidden;
+}
+
+/* Ortam animasyonu tuvali — yalnız lobide, metnin ARKASINDA */
+.ambiyans {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lobi-icerik { position: relative; z-index: 1; width: 100%; max-width: 880px; text-align: center; }
+.lobi-icerik h1 { font-size: 2rem; margin-bottom: 8px; }
+.lobi-alt { color: var(--murekkep-soluk); font-size: 1.1rem; margin: 0 0 26px; }
+
+.lobi-maskot { font-size: 4.2rem; animation: maskot-sallan 3.4s ease-in-out infinite; }
+@keyframes maskot-sallan {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-10px) rotate(4deg); }
+}
+
+/* Sayaçsız "bekliyoruz" göstergesi */
+.nokta-sirasi { display: flex; gap: 10px; justify-content: center; margin-top: 6px; }
+.nokta-sirasi span {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--cam-acik);
+  animation: nokta-nefes 1.4s ease-in-out infinite;
+}
+.nokta-sirasi span:nth-child(2) { animation-delay: 0.2s; }
+.nokta-sirasi span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes nokta-nefes {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%      { opacity: 1;   transform: scale(1.15); }
+}
+
+/* Baş harfli avatar balonlu büyük isim kartları */
+.isim-kartlari {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.isim-kart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px 16px;
+  min-height: 150px;
+  background: var(--kart);
+  color: var(--murekkep);
+  border: 2px solid var(--cizgi);
+  border-radius: 20px;
+  box-shadow: var(--golge);
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  animation: kart-belir 0.35s ease both;
+}
+@keyframes kart-belir {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+.isim-kart:hover:not(:disabled) {
+  background: var(--cam-sis);
+  border-color: var(--cam-acik);
+  box-shadow: var(--golge-yuksek);
+  transform: translateY(-3px);
+}
+.isim-kart .avatar {
+  width: 68px; height: 68px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--cam);
+  color: var(--kart);
+  font-size: 1.9rem;
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+}
+.isim-kart .kart-isim { line-height: 1.25; }
+
+/* Seçilmiş isim: soluk + kilitli (bilgi yalnız renkle verilmez, rozet de var) */
+.isim-kart.oyunda {
+  opacity: 0.55;
+  background: var(--kagit-koyu);
+  border-style: dashed;
+  cursor: not-allowed;
+}
+.isim-kart.oyunda:hover { transform: none; box-shadow: var(--golge); background: var(--kagit-koyu); }
+.isim-kart.oyunda .avatar { background: var(--murekkep-soluk); }
+
+.oyunda-rozeti, .misafir-rozeti {
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.oyunda-rozeti { background: var(--kagit); color: var(--murekkep-soluk); border: 1px solid var(--cizgi); }
+.misafir-rozeti { background: var(--kehribar-sis); color: var(--kehribar); }
+
+@media (max-width: 480px) {
+  .isim-kartlari { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .isim-kart { min-height: 128px; padding: 16px 8px 12px; font-size: 1.05rem; }
+  .isim-kart .avatar { width: 54px; height: 54px; font-size: 1.5rem; }
+  .lobi-icerik h1 { font-size: 1.6rem; }
+}
+
+/* Hareket duyarlılığı: animasyonlar durur, düzen aynı kalır */
+@media (prefers-reduced-motion: reduce) {
+  .lobi-maskot, .nokta-sirasi span, .isim-kart { animation: none; }
+  .isim-kart:hover:not(:disabled) { transform: none; }
+}
+
+/* ---------- Öğretmen paneli: akordeon bölümler ---------- */
+
+.bolum {
+  background: var(--kart);
+  border-radius: var(--yuvarlak);
+  box-shadow: var(--golge);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.bolum > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  min-height: var(--dokunma);
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  background: var(--kart);
+}
+.bolum > summary::-webkit-details-marker { display: none; }
+.bolum > summary:hover { background: var(--cam-sis); }
+.bolum > summary:focus-visible { outline: 3px solid var(--kehribar); outline-offset: -3px; }
+
+/* Açık/kapalı bilgisi renkle değil, ok işaretiyle verilir */
+.bolum > summary::after {
+  content: 'Aç ▾';
+  color: var(--murekkep-soluk);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-left: auto;
+}
+.bolum[open] > summary::after { content: 'Kapat ▴'; }
+
+.bolum-ad { font-size: 1.15rem; }
+.bolum-ipucu { color: var(--murekkep-soluk); font-size: 0.95rem; font-weight: 400; }
+.bolum-govde { padding: 4px 20px 20px; border-top: 1px solid var(--cizgi); }
+.bolum-govde > .alt-baslik:first-child { margin-top: 14px; }
+
+.serit .rozet.vurgulu { background: var(--dogru-sis); color: var(--dogru); font-weight: 700; }
+
+/* ---------- Grup (oturum) kartları ---------- */
+
+.grup-kartlari {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.grup-kart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 14px 16px;
+  text-align: left;
+  background: var(--kagit);
+  color: var(--murekkep);
+  border: 2px solid var(--cizgi);
+  border-radius: 12px;
+  font-weight: 500;
+}
+.grup-kart b { font-size: 1.08rem; }
+.grup-kart .ipucu { margin: 0; font-size: 0.92rem; }
+.grup-kart:hover:not(:disabled) { background: var(--cam-sis); border-color: var(--cam-acik); }
+/* Seçim yalnız renkle değil, kalın çerçeve + onay işaretiyle belirtilir */
+.grup-kart.secili { border-color: var(--cam); border-width: 3px; background: var(--cam-sis); }
+.grup-kart.secili b::before { content: '✓ '; }
+.acik-rozeti {
+  margin-top: 4px;
+  background: var(--dogru-sis);
+  color: var(--dogru);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Öğrenci listesi yönetimi ---------- */
+
+.liste-filtre {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 8px 0 14px;
+}
+.liste-filtre input, .liste-filtre select { margin-bottom: 0; }
+
+.ogrenci-liste { list-style: none; margin: 0 0 8px; padding: 0; max-height: 460px; overflow-y: auto; }
+.ogrenci-satiri {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--cizgi);
+}
+.ogrenci-satiri .kod {
+  background: var(--cam-sis);
+  color: var(--cam);
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.ogrenci-satiri .ad { flex: 1; min-width: 120px; font-weight: 500; }
+.ogrenci-satiri.pasif .ad { color: var(--murekkep-soluk); text-decoration: line-through; }
+.grup-rozeti {
+  background: var(--kagit-koyu);
+  color: var(--murekkep);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.88rem;
+}
+
+.satir-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.satir-form input { flex: 2; min-width: 180px; margin-bottom: 0; }
+.satir-form select { flex: 1; min-width: 130px; margin-bottom: 0; }
+.satir-form button { flex: 0 0 auto; }
+
+@media (max-width: 720px) {
+  .panel-izgara { grid-template-columns: 1fr; }
+  .bolum-govde { padding: 4px 14px 18px; }
+  .bolum > summary { padding: 14px; }
+}

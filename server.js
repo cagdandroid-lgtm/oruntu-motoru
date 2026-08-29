@@ -9,6 +9,8 @@ const { Server } = require('socket.io');
 const icerik = require('./lib/oruntu');
 const { Oyun } = require('./lib/oyun');
 const raporRotalari = require('./lib/rapor-rotalari');
+const liste = require('./lib/liste');
+const ogretmenOlaylari = require('./lib/ogretmen-olaylari');
 
 // Öğretmen paneli şifresi.
 // Yerelde (env değişkeni yokken) YEREL_SIFRE geçerlidir.
@@ -22,14 +24,18 @@ const sunucu = http.createServer(app);
 const io = new Server(sunucu);
 
 icerik.yukle();
+liste.yukle();
 const oyun = new Oyun();
 
 // Öğrenci tasarımları galerisi
 const tasarimlar = [];
 let tasarimSayaci = 0;
 const GALERI_SINIRI = 60;
-let galeriAcik = false; // öğrenci galerisi yalnızca öğretmen açınca görünür
-let tasarimAcik = true; // "Kendi Örüntünü Kur" kartı öğrenci ekranında görünsün mü
+// Görünürlük anahtarları — öğretmen olayları modülüyle paylaşılır
+const galeri = {
+  acik: false,      // öğrenci galerisi yalnızca öğretmen açınca görünür
+  tasarimAcik: true, // "Kendi Örüntünü Kur" kartı öğrenci ekranında görünsün mü
+};
 
 // ---------------- Öğretmen kimlik doğrulama ----------------
 
@@ -103,20 +109,25 @@ const ogretmenMi = (soket) => cerezOku(soket.request).admin_auth === 'true';
 function durumOzeti() {
   return {
     durum: oyun.durum,
-    ayar: oyun.ayar,
+    oturumAcik: oyun.oturum.acik,
     sira: oyun.soruIndeksi + 1,
     toplam: oyun.havuz.length,
     kalanSure: oyun.kalanSure,
     cevaplayan: oyun.cevaplar.size,
     bagliSayisi: oyun.bagliSayisi,
-    galeriAcik,
-    tasarimAcik,
+    galeriAcik: galeri.acik,
+    tasarimAcik: galeri.tasarimAcik,
   };
+}
+
+// Giriş ekranı: oturum kapalıyken boş paket, açıkken YALNIZ aktif grubun kartları
+function girisYayinla() {
+  io.emit('giris', oyun.girisPaketi());
 }
 
 // Öğrenci galerisi: yalnızca öğretmen açtığında içerik yayınlanır
 function galeriYayinla() {
-  io.emit('galeri', { acik: galeriAcik, tasarimlar: galeriAcik ? tasarimlar : [] });
+  io.emit('galeri', { acik: galeri.acik, tasarimlar: galeri.acik ? tasarimlar : [] });
 }
 
 function panelYayinla() {
@@ -125,6 +136,13 @@ function panelYayinla() {
     ...durumOzeti(),
     oyuncular: oyun.panelTablosu(),
     galeri: tasarimlar,
+    ayar: oyun.ayar, // zorluk/mod bilgisi YALNIZ panele gider
+    oturum: oyun.oturum,
+    // Grup özeti: aktif öğrenci sayısı + o grup için içerik var mı
+    gruplar: liste.grupOzeti().map((g) => ({
+      ...g,
+      soruSayisi: icerik.tumu().filter((o) => o.grup === g.grup).length,
+    })),
     olcum: {
       kayitSayisi: oyun.olcme.sayi,
       sonDisaAktarim: oyun.olcme.sonDisaAktarim,
@@ -138,6 +156,7 @@ function panelYayinla() {
 function herkeseDurum() {
   io.emit('durum', durumOzeti());
   io.emit('skorlar', oyun.skorTablosu());
+  girisYayinla();
   galeriYayinla();
   panelYayinla();
 }
@@ -179,12 +198,17 @@ io.on('connection', (soket) => {
     soket.join('ogretmenler');
     console.log('[soket] öğretmen paneli bağlandı');
     panelYayinla();
+  } else {
+    // Öğrenci: oturum kapalıysa bekleme ekranı, açıksa kendi grubunun kartları
+    soket.emit('giris', oyun.girisPaketi());
+    soket.emit('durum', durumOzeti());
   }
 
   // ---- Öğrenci olayları ----
 
+  // Öğrenci isim YAZMAZ; listedeki kendi kartına dokunur (sınıf oturumu modeli)
   soket.on('katil', (veri, geriCagir) => {
-    const { hata, oyuncu } = oyun.katil(veri && veri.isim, soket.id);
+    const { hata, oyuncu } = oyun.katil(veri || {}, soket.id);
     if (hata) return geriCagir && geriCagir({ hata });
 
     soket.data.oyuncuAnahtari = oyuncu.anahtar;
@@ -192,6 +216,7 @@ io.on('connection', (soket) => {
       geriCagir({
         tamam: true,
         isim: oyuncu.isim,
+        jeton: oyuncu.jeton, // aynı tarayıcı kilitli kartına geri dönebilsin
         skor: oyuncu.skor,
         durum: durumOzeti(),
       });
@@ -215,7 +240,7 @@ io.on('connection', (soket) => {
     const oyuncu = oyun.oyuncuBul(soket.id);
     if (!oyuncu) return geriCagir && geriCagir({ hata: 'Önce oyuna katılmalısın.' });
     // Öğretmen bölümü kapattıysa sunucu da tasarım kabul etmez
-    if (!tasarimAcik) {
+    if (!galeri.tasarimAcik) {
       return geriCagir && geriCagir({ hata: 'Tasarım bölümü şu anda kapalı.' });
     }
 
@@ -237,91 +262,13 @@ io.on('connection', (soket) => {
     console.log(`[tasarım] ${oyuncu.isim} bir örüntü tasarladı (#${tasarim.id})`);
     geriCagir && geriCagir({ tamam: true });
     panelYayinla();
-    if (galeriAcik) galeriYayinla(); // galeri açıksa yeni tasarım öğrencilere de yansısın
+    if (galeri.acik) galeriYayinla(); // galeri açıksa yeni tasarım öğrencilere de yansısın
   });
 
-  // ---- Öğretmen olayları (yalnızca yetkili soketler) ----
-
-  const ogretmenOlayi = (ad, isleyici) =>
-    soket.on(ad, (veri, geriCagir) => {
-      if (!ogretmenMi(soket)) {
-        console.log(`[güvenlik] yetkisiz öğretmen olayı reddedildi: ${ad}`);
-        return geriCagir && geriCagir({ hata: 'Yetkisiz işlem.' });
-      }
-      const sonuc = isleyici(veri) || { tamam: true };
-      geriCagir && geriCagir(sonuc);
-      panelYayinla();
-    });
-
-  ogretmenOlayi('ogretmen:baslat', (veri) => oyun.baslat(veri || {}));
-  ogretmenOlayi('ogretmen:duraklat', () => oyun.duraklat());
-  ogretmenOlayi('ogretmen:devam', () => oyun.devam());
-  ogretmenOlayi('ogretmen:sifirla', () => oyun.sifirla());
-  ogretmenOlayi('ogretmen:atla', () => oyun.atla());
-  ogretmenOlayi('ogretmen:turuKapat', () => oyun.turuKapat('öğretmen-kapattı'));
-
-  ogretmenOlayi('ogretmen:tasarimGonder', (veri) => {
-    const tasarim = tasarimlar.find((t) => t.id === Number(veri && veri.id));
-    if (!tasarim) return { hata: 'Tasarım bulunamadı.' };
-    if (!oyun.havuz.length) return { hata: 'Önce bir tur başlat.' };
-    console.log(`[tasarım] ${tasarim.isim} tasarımı sınıfa gönderildi`);
-    oyun.ozelSoru(icerik.tasarimdanSoru(tasarim));
-    return { tamam: true };
-  });
-
-  ogretmenOlayi('ogretmen:tasarimSil', (veri) => {
-    const i = tasarimlar.findIndex((t) => t.id === Number(veri && veri.id));
-    if (i >= 0) tasarimlar.splice(i, 1);
-    if (galeriAcik) galeriYayinla();
-    return { tamam: true };
-  });
-
-  // Öğrenci galerisini öğrencilere aç/kapat
-  ogretmenOlayi('ogretmen:galeriGorunurluk', (veri) => {
-    galeriAcik = !!(veri && veri.acik);
-    console.log(`[galeri] öğrenci galerisi ${galeriAcik ? 'AÇILDI' : 'KAPATILDI'}`);
-    herkeseDurum();
-    return { tamam: true, galeriAcik };
-  });
-
-  // "Kendi Örüntünü Kur" bölümünü öğrenci ekranında aç/kapat
-  ogretmenOlayi('ogretmen:tasarimGorunurluk', (veri) => {
-    tasarimAcik = !!(veri && veri.acik);
-    console.log(`[tasarım] öğrenci tasarım bölümü ${tasarimAcik ? 'AÇILDI' : 'KAPATILDI'}`);
-    herkeseDurum();
-    return { tamam: true, tasarimAcik };
-  });
-
-  // Son turun puanlarını geri al
-  ogretmenOlayi('ogretmen:puaniGeriAl', () => oyun.turPuaniniGeriAl());
-
-  // Öğrenci ismini değiştir (bağlıysa öğrenciye de bildir)
-  ogretmenOlayi('ogretmen:isimDegistir', (veri) => {
-    const sonuc = oyun.isimDegistir(veri && veri.anahtar, veri && veri.yeniIsim);
-    if (sonuc.tamam && sonuc.oyuncu.socketId) {
-      io.to(sonuc.oyuncu.socketId).emit('senin:isim', { isim: sonuc.oyuncu.isim });
-    }
-    return sonuc.tamam ? { tamam: true } : { hata: sonuc.hata };
-  });
-
-  // Öğrenci puanını değiştir
-  ogretmenOlayi('ogretmen:puanDegistir', (veri) =>
-    oyun.puanAyarla(veri && veri.anahtar, veri && veri.puan)
-  );
-
-  // Öğrenci Raporu ekranı (panelde öğrenciye tıklanınca)
-  ogretmenOlayi('ogretmen:rapor', (veri) => {
-    const oyuncu = oyun.oyuncular.get(String((veri && veri.anahtar) || ''));
-    if (!oyuncu) return { hata: 'Öğrenci bulunamadı.' };
-    return { tamam: true, rapor: oyun.olcme.rapor(oyuncu) };
-  });
-
-  // Oturum ölçüm kayıtlarını sil (yeni ders/sınıf için)
-  ogretmenOlayi('ogretmen:olcumTemizle', () => {
-    const sayi = oyun.olcme.sayi;
-    oyun.olcme.temizle();
-    console.log(`[veri] ölçüm kayıtları temizlendi (${sayi} kayıt silindi)`);
-    return { tamam: true, silinen: sayi };
+  // Öğretmen olayları (yalnızca yetkili soketler) — lib/ogretmen-olaylari.js
+  ogretmenOlaylari.bagla({
+    soket, io, oyun, ogretmenMi, tasarimlar, galeri,
+    girisYayinla, panelYayinla, galeriYayinla, herkeseDurum, icerik,
   });
 
   soket.on('disconnect', () => {

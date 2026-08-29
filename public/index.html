@@ -12,14 +12,24 @@
 <body>
   <div id="konfeti"></div>
 
-  <!-- 1) Giriş ekranı -->
-  <section id="ekran-giris" class="giris-zemin" style="min-height:100vh">
-    <div class="kart giris-kart">
-      <h1>🧩 Örüntü Motoru</h1>
-      <p class="ipucu">Örüntüyü çöz, sınıfın en hızlısı ol!</p>
-      <input type="text" id="isim-girdisi" placeholder="Adın ne?" maxlength="20" autocomplete="off">
-      <p id="giris-hata" class="hata gizli"></p>
-      <button class="tam" id="katil-dugmesi">Oyuna Katıl 🚀</button>
+  <!-- 1) Giriş — SINIF OTURUMU MODELİ: öğrenci isim yazmaz, kendi kartına dokunur -->
+  <section id="ekran-giris" class="lobi">
+    <canvas id="ambiyans" class="ambiyans" aria-hidden="true"></canvas>
+
+    <!-- 1a) Öğretmen henüz seçim yapmadı: sayaçsız bekleme ekranı -->
+    <div class="lobi-icerik" id="bekleme-lobi">
+      <div class="lobi-maskot" aria-hidden="true">🧩</div>
+      <h1>Öğretmenini bekle</h1>
+      <p class="lobi-alt">Öğretmenin oyunu birazdan açacak.<br>Bu ekran kendiliğinden değişecek — hiçbir şeye dokunma. ✨</p>
+      <div class="nokta-sirasi" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- 1b) Öğretmen seçimi yaptı: AKTİF grubun isim kartları -->
+    <div class="lobi-icerik gizli" id="kart-lobi">
+      <h1>Adına dokun 👇</h1>
+      <p class="lobi-alt">Kendi adını bul ve dokun; oyuna öyle giriyorsun.</p>
+      <p id="giris-hata" class="hata gizli" role="alert"></p>
+      <div class="isim-kartlari" id="isim-kartlari"></div>
     </div>
   </section>
 
@@ -83,6 +93,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/rozet.js"></script>
   <script src="/efekt.js"></script>
+  <script src="/ambiyans.js"></script>
   <script src="/tasarim.js"></script>
   <script src="/app.js"></script>
 </body>

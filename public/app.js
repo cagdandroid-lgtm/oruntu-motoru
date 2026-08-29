@@ -9,42 +9,113 @@ const MOD_METNI = {
 };
 
 let benimIsim = '';
+let benimKod = localStorage.getItem('oruntu_kod') || '';
+let jeton = localStorage.getItem('oruntu_jeton') || '';
 let mevcutSoru = null;
 let cevapVerdim = false;
+let oyundaMiyim = false;
 
 const $ = (id) => document.getElementById(id);
 const gorunur = (el, evet) => el.classList.toggle('gizli', !evet);
 
-// ---------------- Giriş ----------------
+// ---------------- Giriş: sınıf oturumu modeli ----------------
+// Öğrenci isim YAZMAZ ve grup SEÇMEZ. Öğretmen seçim yapana kadar
+// ortam animasyonlu bekleme ekranı görünür; seçim yapıldığı an bu ekran
+// kendiliğinden AKTİF grubun isim kartlarına döner (yenileme gerekmez).
 
-function katil() {
-  const isim = $('isim-girdisi').value.trim();
-  if (!isim) {
-    $('giris-hata').textContent = 'Lütfen adını yaz.';
-    gorunur($('giris-hata'), true);
+Ambiyans.baslat('ambiyans');
+
+function girisHatasi(mesaj) {
+  const kutu = $('giris-hata');
+  kutu.textContent = mesaj;
+  gorunur(kutu, true);
+  clearTimeout(girisHatasi._z);
+  girisHatasi._z = setTimeout(() => gorunur(kutu, false), 5000);
+}
+
+// Baş harfli avatar balonu için ilk harf (Türkçe uyumlu)
+const basHarf = (isim) => (isim || '?').trim().charAt(0).toLocaleUpperCase('tr');
+
+function kartlariCiz(kartlar) {
+  const alan = $('isim-kartlari');
+  alan.innerHTML = '';
+  if (!kartlar.length) {
+    alan.innerHTML = '<p class="lobi-alt">Bu grupta aktif öğrenci yok. Öğretmenine söyle.</p>';
     return;
   }
-  soket.emit('katil', { isim }, (yanit) => {
-    if (yanit && yanit.hata) {
-      $('giris-hata').textContent = yanit.hata;
-      gorunur($('giris-hata'), true);
-      return;
-    }
-    benimIsim = yanit.isim;
-    localStorage.setItem('oruntu_isim', benimIsim);
-    $('oyuncu-adi').textContent = '👤 ' + benimIsim;
-    $('puanim').textContent = yanit.skor + ' puan';
-    gorunur($('ekran-giris'), false);
-    gorunur($('ekran-oyun'), true);
-    Tasarim.baslat(soket);
+  kartlar.forEach((k, i) => {
+    const kart = document.createElement('button');
+    kart.className = 'isim-kart' + (k.oyunda ? ' oyunda' : '');
+    kart.style.animationDelay = Math.min(i * 0.04, 0.6) + 's';
+    kart.innerHTML =
+      `<span class="avatar" aria-hidden="true">${kacan(basHarf(k.isim))}</span>` +
+      `<span class="kart-isim"></span>` +
+      (k.oyunda ? '<span class="oyunda-rozeti">🎮 oyunda</span>' : '') +
+      (k.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '');
+    kart.querySelector('.kart-isim').textContent = k.isim;
+    kart.addEventListener('click', () => katil(k.kod));
+    alan.appendChild(kart);
   });
 }
 
-$('katil-dugmesi').addEventListener('click', katil);
-$('isim-girdisi').addEventListener('keydown', (e) => { if (e.key === 'Enter') katil(); });
+function katil(kod) {
+  soket.emit('katil', { kod, jeton }, (yanit) => {
+    if (yanit && yanit.hata) return girisHatasi('⚠️ ' + yanit.hata);
+    oyunaGir(kod, yanit);
+    Efekt.katilimSesi();
+  });
+}
 
-const kayitliIsim = localStorage.getItem('oruntu_isim');
-if (kayitliIsim) $('isim-girdisi').value = kayitliIsim;
+function oyunaGir(kod, yanit) {
+  benimIsim = yanit.isim;
+  benimKod = kod;
+  jeton = yanit.jeton;
+  oyundaMiyim = true;
+  localStorage.setItem('oruntu_kod', kod);
+  localStorage.setItem('oruntu_jeton', jeton);
+
+  $('oyuncu-adi').textContent = '👤 ' + benimIsim;
+  $('puanim').textContent = yanit.skor + ' puan';
+  Ambiyans.durdur(); // soru/oyun ekranında arka plan animasyonu YOKTUR
+  gorunur($('ekran-giris'), false);
+  gorunur($('ekran-oyun'), true);
+  Tasarim.baslat(soket);
+}
+
+function girisEkraninaDon() {
+  oyundaMiyim = false;
+  gorunur($('ekran-oyun'), false);
+  gorunur($('ekran-giris'), true);
+  Ambiyans.baslat('ambiyans');
+}
+
+// Oturum durumu değiştikçe giriş ekranı kendiliğinden güncellenir.
+// Kartlar yalnız paket GERÇEKTEN değişince yeniden çizilir; yoksa her sunucu
+// yayınında DOM yenilenir ve öğrencinin dokunuşu boşa düşebilir.
+let sonGirisPaketi = '';
+soket.on('giris', (paket) => {
+  const imza = JSON.stringify(paket);
+  if (imza === sonGirisPaketi) return;
+  sonGirisPaketi = imza;
+
+  gorunur($('bekleme-lobi'), !paket.acik);
+  gorunur($('kart-lobi'), paket.acik);
+  if (paket.acik) kartlariCiz(paket.kartlar);
+});
+
+// Öğretmen serbest bıraktı ya da oturum grubu değişti: giriş ekranına dönülür
+soket.on('cikarildin', (veri) => {
+  benimIsim = '';
+  benimKod = '';
+  localStorage.removeItem('oruntu_kod');
+  localStorage.removeItem('oruntu_jeton');
+  girisEkraninaDon();
+  girisHatasi(
+    veri && veri.sebep === 'grup'
+      ? 'Öğretmen başka bir gruba geçti. 👋'
+      : 'Öğretmen seni listeye geri aldı. İstersen adına yeniden dokun. 🙂'
+  );
+});
 
 // ---------------- Ses açma/kapama (tercih hatırlanır) ----------------
 
@@ -238,6 +309,9 @@ function skorlariCiz(skorlar) {
 }
 
 soket.on('durum', (durum) => {
+  // Öğretmen oturumu kapattıysa öğrenci bekleme ekranına döner
+  if (durum.oturumAcik === false && oyundaMiyim) return girisEkraninaDon();
+
   // Öğretmen "Kendi Örüntünü Kur" bölümünü kapattıysa kart tamamen gizlenir
   const tasarimAcik = durum.tasarimAcik !== false;
   gorunur($('tasarim-karti'), tasarimAcik);
@@ -276,7 +350,6 @@ soket.on('galeri', ({ acik, tasarimlar }) => {
 // Öğretmen ismimi değiştirdiyse yerel adı güncelle
 soket.on('senin:isim', ({ isim }) => {
   benimIsim = isim;
-  localStorage.setItem('oruntu_isim', isim);
   $('oyuncu-adi').textContent = '👤 ' + isim;
 });
 
@@ -289,6 +362,9 @@ soket.on('oyun:bitti', () => {
 });
 
 soket.on('connect', () => {
-  // Bağlantı koptuysa aynı isimle otomatik geri dön
-  if (benimIsim) soket.emit('katil', { isim: benimIsim }, () => {});
+  // Bağlantı koptuysa aynı KODLA otomatik geri dön (kilitli kartı jeton açar)
+  if (!benimKod) return;
+  soket.emit('katil', { kod: benimKod, jeton }, (yanit) => {
+    if (yanit && yanit.tamam) oyunaGir(benimKod, yanit);
+  });
 });

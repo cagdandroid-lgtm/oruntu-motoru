@@ -13,6 +13,7 @@
   <div class="sarmal">
     <div class="serit">
       <span class="rozet">🧩 Örüntü Motoru — Öğretmen</span>
+      <span class="rozet" id="oturum-rozeti">Oturum kapalı</span>
       <span class="rozet" id="durum-rozeti">Bekliyor</span>
       <span class="rozet" id="ilerleme-rozeti">—</span>
       <span class="sayac-kutu" id="sayac">⏱ —</span>
@@ -21,121 +22,194 @@
       </form>
     </div>
 
-    <!-- Tur ayarları -->
-    <div class="kart">
-      <h2>🎛️ Tur Ayarları</h2>
-      <div class="ayar-satiri">
-        <label>Grup
-          <select id="grup">
-            <option value="e">e grubu (görsel ağırlıklı)</option>
-            <option value="i">i grubu (sayısal ağırlıklı)</option>
-          </select>
-        </label>
-        <label>Seviye
-          <select id="seviye">
-            <option value="1">Seviye 1 — kolay</option>
-            <option value="2">Seviye 2 — orta</option>
-            <option value="3">Seviye 3 — zor (30 sn süreli)</option>
-          </select>
-        </label>
-        <label>Mod
-          <select id="mod">
-            <option value="surdur">➡️ Sürdür</option>
-            <option value="eksik">🕳️ Eksiği Bul</option>
-            <option value="kural">🔍 Kuralı Yakala</option>
-          </select>
-        </label>
-      </div>
-      <!-- Akış kontrolleri: renkler işleve göre (yeşil=başla/devam, kehribar=duraklat, teal=atla/bitir) -->
-      <div class="dugme-satiri">
-        <button class="basla" id="baslat">▶️ Turu Başlat</button>
-        <button class="duraklat" id="duraklat">⏸️ Duraklat</button>
-        <button class="basla" id="devam">▶️ Devam Et</button>
-        <button class="notr" id="atla">⏭️ Soruyu Atla</button>
-        <button class="bitir" id="kapat">✅ Turu Bitir</button>
-      </div>
-      <!-- Yönetim kontrolleri: kehribar=geri al (uyarı), kırmızı=sıfırla (tehlike) -->
-      <div class="dugme-satiri">
-        <button class="uyari" id="geri-al">↩️ Son Turun Puanını Geri Al</button>
-        <button class="tehlike" id="sifirla">🔄 Skorları Sıfırla</button>
-      </div>
-      <p class="ipucu" id="panel-bildirim"></p>
-      <p class="kisayol-notu">Kısayollar: <kbd>B</kbd> başlat · <kbd>Boşluk</kbd> duraklat/devam ·
-        <kbd>A</kbd> atla · <kbd>K</kbd> turu bitir</p>
-    </div>
+    <p class="ipucu" id="panel-bildirim" role="status"></p>
 
-    <div class="panel-izgara">
-      <!-- Mevcut soru -->
-      <div class="kart">
-        <h2>👀 Ekrandaki Soru</h2>
-        <div class="dizi" id="onizleme-dizi"><span class="ipucu">Henüz tur başlamadı.</span></div>
-        <p class="ipucu" id="onizleme-cevap"></p>
+    <!-- ===== 1) Oturum ve etkinlik — VARSAYILAN AÇIK ===== -->
+    <details class="bolum" id="bolum-oturum" open>
+      <summary><span class="bolum-ad">🎛️ Oturum ve Etkinlik</span><span class="bolum-ipucu" id="oturum-ozet">grup seç ve oturumu aç</span></summary>
+      <div class="bolum-govde">
+
+        <h3 class="alt-baslik">1. Grubu seç <span class="ipucu-satir">— öğrenci ekranı bu gruba göre açılır</span></h3>
+        <div class="grup-kartlari" id="grup-kartlari"></div>
+        <div class="dugme-satiri">
+          <button class="basla" id="oturum-ac">🚪 Oturumu Aç</button>
+          <button class="uyari" id="oturum-kapat">🔒 Oturumu Kapat</button>
+        </div>
+        <p class="ipucu" id="oturum-durumu">Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.</p>
+
+        <h3 class="alt-baslik">2. Etkinliği başlat <span class="ipucu-satir">— seviye ve mod yalnız sende görünür</span></h3>
+        <div class="ayar-satiri">
+          <label>Seviye
+            <select id="seviye">
+              <option value="1">Seviye 1 — kolay</option>
+              <option value="2">Seviye 2 — orta</option>
+              <option value="3">Seviye 3 — zor (30 sn süreli)</option>
+            </select>
+          </label>
+          <label>Mod
+            <select id="mod">
+              <option value="surdur">➡️ Sürdür</option>
+              <option value="eksik">🕳️ Eksiği Bul</option>
+              <option value="kural">🔍 Kuralı Yakala</option>
+            </select>
+          </label>
+        </div>
+        <!-- Akış kontrolleri: yeşil=başlat/devam, kehribar=duraklat, teal=atla, koyu=bitir -->
+        <div class="dugme-satiri">
+          <button class="basla" id="baslat">▶️ Turu Başlat</button>
+          <button class="duraklat" id="duraklat">⏸️ Duraklat</button>
+          <button class="basla" id="devam">▶️ Devam Et</button>
+          <button class="notr" id="atla">⏭️ Soruyu Atla</button>
+          <button class="bitir" id="kapat">✅ Turu Bitir</button>
+        </div>
+        <div class="dugme-satiri">
+          <button class="uyari" id="geri-al">↩️ Soruyu İptal Et (puanı geri al)</button>
+        </div>
+        <p class="kisayol-notu">Kısayollar: <kbd>B</kbd> başlat · <kbd>Boşluk</kbd> duraklat/devam ·
+          <kbd>A</kbd> atla · <kbd>K</kbd> turu bitir</p>
       </div>
+    </details>
 
-      <!-- Öğrenciler -->
-      <div class="kart">
-        <h2>👥 Öğrenciler (<span id="ogrenci-sayisi">0</span>)</h2>
-        <p class="ipucu" id="cevap-durumu">—</p>
-        <p class="ipucu">📊 rapor · ✏️ isim · 🔢 puan. Kod rozeti (E-01) kayıtlarda kullanılan takma addır.</p>
-        <ul class="skor-liste duzenlenebilir" id="skor-liste"></ul>
+    <!-- ===== 2) Canlı durum — VARSAYILAN AÇIK ===== -->
+    <details class="bolum" id="bolum-canli" open>
+      <summary><span class="bolum-ad">📡 Canlı Durum</span><span class="bolum-ipucu" id="canli-ozet">—</span></summary>
+      <div class="bolum-govde panel-izgara">
+        <div>
+          <h3 class="alt-baslik">👀 Ekrandaki soru</h3>
+          <div class="dizi" id="onizleme-dizi"><span class="ipucu">Henüz tur başlamadı.</span></div>
+          <p class="ipucu" id="onizleme-cevap"></p>
+        </div>
+        <div>
+          <h3 class="alt-baslik">👥 Sahnedeki öğrenciler (<span id="ogrenci-sayisi">0</span>)</h3>
+          <p class="ipucu" id="cevap-durumu">—</p>
+          <p class="ipucu">📊 rapor · ✏️ isim · 🔢 puan · 🔓 ismi serbest bırak.
+            Kod rozeti (E-01) kayıtlarda kullanılan takma addır.</p>
+          <ul class="skor-liste duzenlenebilir" id="skor-liste"></ul>
+        </div>
       </div>
-    </div>
+    </details>
 
-    <!-- Ölçme ve raporlar -->
-    <div class="kart" id="olcme-karti">
-      <div class="kart-baslik">
-        <h2>📊 Ölçme ve Raporlar</h2>
-        <span class="rozet" id="kayit-rozeti">0 kayıt</span>
-      </div>
-
-      <p class="hatirlatma gizli" id="veri-hatirlatma">
-        ⚠️ <b>Dersi bitirmeden raporu indir!</b> Kayıtlar yalnızca sunucu belleğinde tutulur;
-        sunucu yeniden başlarsa (Render'da her uyku sonrası) bu oturumun verisi kaybolur.
-      </p>
-
-      <h3 class="alt-baslik">CSV dışa aktarım <span class="ipucu-satir">— oturumdaki tüm öğrenciler tek dosyada</span></h3>
-      <div class="dugme-satiri">
-        <button class="notr" id="csv-kodlu">🔬 CSV indir — kodlu (araştırma)</button>
-        <button class="notr" id="csv-isimli">👪 CSV indir — isimli (veli raporu)</button>
-      </div>
-
-      <h3 class="alt-baslik">Karneler <span class="ipucu-satir">— A4, yazdır veya PDF olarak kaydet</span></h3>
-      <div class="dugme-satiri">
-        <button class="notr" id="tum-karneler">🖨️ Tüm Karneleri İndir</button>
-        <label class="dosya-sec">
-          📂 Önceki oturum CSV'si yükle
-          <input type="file" id="onceki-csv" accept=".csv,text/csv">
-        </label>
-        <button class="sade gizli" id="onceki-sil">✖️ Karşılaştırmayı kaldır</button>
-      </div>
-      <p class="ipucu" id="onceki-durum">
-        Önceki oturumun CSV'sini yüklersen karnede “geçen oturuma göre değişim” satırı görünür.
-      </p>
-
-      <details class="eslesme">
-        <summary>🪪 İsim ↔ kod eşlemesi (yalnız bu panelde görünür)</summary>
-        <ul class="kod-liste" id="kod-liste"></ul>
-      </details>
-
-      <div class="dugme-satiri">
-        <button class="tehlike" id="olcum-temizle">🗑️ Ölçüm Kayıtlarını Sil</button>
-      </div>
-    </div>
-
-    <!-- Tasarım galerisi -->
-    <div class="kart">
-      <div class="kart-baslik">
-        <h2>🎨 Öğrenci Tasarımları Galerisi</h2>
-        <div class="baslik-dugmeler">
+    <!-- ===== 3) Tasarım galerisi — VARSAYILAN KAPALI ===== -->
+    <details class="bolum">
+      <summary><span class="bolum-ad">🎨 Öğrenci Tasarımları</span><span class="bolum-ipucu" id="galeri-ozet">—</span></summary>
+      <div class="bolum-govde">
+        <div class="dugme-satiri">
           <button class="sade" id="tasarim-gorunurluk" aria-pressed="true">✏️ Tasarım bölümü açık</button>
           <button class="sade" id="galeri-gorunurluk" aria-pressed="false">🙈 Galeri kapalı</button>
         </div>
+        <p class="ipucu"><b>Tasarım bölümü:</b> öğrencinin ekranındaki “Kendi Örüntünü Kur” kartını açar/kapatır.
+          <b>Galeri:</b> gönderilen tasarımların öğrenci ekranında görünmesini açar/kapatır.
+          Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce tur başlatmış olmalısın.</p>
+        <div class="galeri" id="galeri"><span class="ipucu">Henüz tasarım gönderilmedi.</span></div>
       </div>
-      <p class="ipucu"><b>Tasarım bölümü:</b> öğrencinin ekranındaki “Kendi Örüntünü Kur” kartını açar/kapatır.
-        <b>Galeri:</b> gönderilen tasarımların öğrenci ekranında görünmesini açar/kapatır.</p>
-      <p class="ipucu">Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce bir tur başlatmış olmalısın.</p>
-      <div class="galeri" id="galeri"><span class="ipucu">Henüz tasarım gönderilmedi.</span></div>
-    </div>
+    </details>
+
+    <!-- ===== 4) Ölçme ve raporlar — VARSAYILAN KAPALI ===== -->
+    <details class="bolum" id="olcme-karti">
+      <summary><span class="bolum-ad">📊 Ölçme ve Raporlar</span><span class="bolum-ipucu" id="kayit-rozeti">0 kayıt</span></summary>
+      <div class="bolum-govde">
+        <p class="hatirlatma gizli" id="veri-hatirlatma">
+          ⚠️ <b>Dersi bitirmeden raporu indir!</b> Kayıtlar yalnızca sunucu belleğinde tutulur;
+          sunucu yeniden başlarsa (Render'da her uyku sonrası) bu oturumun verisi kaybolur.
+        </p>
+
+        <h3 class="alt-baslik">CSV dışa aktarım <span class="ipucu-satir">— oturumdaki tüm öğrenciler tek dosyada</span></h3>
+        <div class="dugme-satiri">
+          <button class="notr" id="csv-kodlu">🔬 CSV indir — kodlu (araştırma)</button>
+          <button class="notr" id="csv-isimli">👪 CSV indir — isimli (veli raporu)</button>
+        </div>
+
+        <h3 class="alt-baslik">Karneler <span class="ipucu-satir">— A4, yazdır veya PDF olarak kaydet</span></h3>
+        <div class="dugme-satiri">
+          <button class="notr" id="tum-karneler">🖨️ Tüm Karneleri İndir</button>
+          <label class="dosya-sec">
+            📂 Önceki oturum CSV'si yükle
+            <input type="file" id="onceki-csv" accept=".csv,text/csv">
+          </label>
+          <button class="sade gizli" id="onceki-sil">✖️ Karşılaştırmayı kaldır</button>
+        </div>
+        <p class="ipucu" id="onceki-durum">
+          Önceki oturumun CSV'sini yüklersen karnede “geçen oturuma göre değişim” satırı görünür.
+        </p>
+
+        <details class="eslesme">
+          <summary>🪪 İsim ↔ kod eşlemesi (yalnız bu panelde görünür)</summary>
+          <ul class="kod-liste" id="kod-liste"></ul>
+        </details>
+      </div>
+    </details>
+
+    <!-- ===== 5) Ayarlar — VARSAYILAN KAPALI ===== -->
+    <details class="bolum">
+      <summary><span class="bolum-ad">⚙️ Ayarlar</span><span class="bolum-ipucu">yıkıcı işlemler</span></summary>
+      <div class="bolum-govde">
+        <h3 class="alt-baslik">Dikkatli ol <span class="ipucu-satir">— bu işlemler geri alınamaz</span></h3>
+        <div class="dugme-satiri">
+          <button class="tehlike" id="sifirla">🔄 Skorları Sıfırla</button>
+          <button class="tehlike" id="olcum-temizle">🗑️ Ölçüm Kayıtlarını Sil</button>
+        </div>
+        <p class="ipucu">“Skorları Sıfırla” ölçüm kayıtlarını <b>silmez</b>; veri ancak ikinci düğmeyle silinir.
+          Silmeden önce CSV indirdiğinden emin ol.</p>
+      </div>
+    </details>
+
+    <!-- ===== 6) Öğrenci listesi — EN SONDA, VARSAYILAN KAPALI ===== -->
+    <details class="bolum" id="bolum-liste">
+      <summary><span class="bolum-ad">👥 Öğrenci Listesi</span><span class="bolum-ipucu" id="liste-ozet">ogrenciler.json</span></summary>
+      <div class="bolum-govde">
+        <p class="ipucu">Değişiklikler <b>bu oturumda anında</b> geçerlidir. Kalıcı olması için
+          “⬇️ Listeyi İndir” ile güncel <code>ogrenciler.json</code>'u alıp depoya koy ve push'la.
+          Kodlar dönem boyunca sabittir — grup değişse bile kod değişmez.</p>
+
+        <div class="liste-filtre">
+          <label>Grup
+            <select id="liste-grup">
+              <option value="hepsi">Hepsi</option>
+              <option value="p">p grubu</option>
+              <option value="e">e grubu</option>
+              <option value="i">i grubu</option>
+              <option value="c">c grubu</option>
+            </select>
+          </label>
+          <label>Durum
+            <select id="liste-durum">
+              <option value="hepsi">Hepsi</option>
+              <option value="aktif">Yalnız aktif</option>
+              <option value="pasif">Yalnız pasif</option>
+            </select>
+          </label>
+          <label>İsim ara
+            <input type="text" id="liste-arama" placeholder="İsim veya kod…" autocomplete="off">
+          </label>
+        </div>
+
+        <ul class="ogrenci-liste" id="ogrenci-liste"></ul>
+
+        <h3 class="alt-baslik">Yeni öğrenci ekle <span class="ipucu-satir">— kalıcı listeye yazılır</span></h3>
+        <div class="satir-form">
+          <input type="text" id="yeni-isim" placeholder="Öğrencinin adı" maxlength="40" autocomplete="off">
+          <select id="yeni-grup">
+            <option value="p">p grubu</option>
+            <option value="e">e grubu</option>
+            <option value="i">i grubu</option>
+            <option value="c">c grubu</option>
+          </select>
+          <button class="notr" id="yeni-ekle">➕ Ekle</button>
+        </div>
+
+        <h3 class="alt-baslik">Misafir ekle <span class="ipucu-satir">— yalnız bu oturum, M-01 / M-02 … kodu alır</span></h3>
+        <div class="satir-form">
+          <input type="text" id="misafir-isim" placeholder="Misafirin adı" maxlength="40" autocomplete="off">
+          <button class="notr" id="misafir-ekle">✨ Misafir Ekle</button>
+        </div>
+        <p class="ipucu">Misafir, açık oturumun grubuna eklenir ve o grubun isim kartlarında görünür.
+          Kayıtları CSV'de <code>misafir=evet</code> ile işaretlenir ve <code>ogrenciler.json</code>'a yazılmaz.</p>
+
+        <div class="dugme-satiri">
+          <button class="notr" id="liste-indir">⬇️ Listeyi İndir (ogrenciler.json)</button>
+        </div>
+      </div>
+    </details>
   </div>
 
   <!-- Öğrenci Raporu ekranı -->
@@ -154,5 +228,6 @@
   <script src="/rozet.js"></script>
   <script src="/teacher.js"></script>
   <script src="/rapor.js"></script>
+  <script src="/liste.js"></script>
 </body>
 </html>

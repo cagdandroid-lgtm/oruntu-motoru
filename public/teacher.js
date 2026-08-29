@@ -26,9 +26,43 @@ function gonder(olay, veri) {
 
 // ---------------- Kontroller ----------------
 
+// Oturum: grup seçimi öğrenci giriş ekranını belirler (öğrenci grup seçmez)
+let secilenGrup = null;
+let acikOturum = { acik: false, grup: null };
+
+function grupKartlariCiz(gruplar) {
+  const alan = $('grup-kartlari');
+  alan.innerHTML = '';
+  for (const g of gruplar) {
+    const kart = document.createElement('button');
+    const aktifMi = secilenGrup === g.grup;
+    kart.className = 'grup-kart' + (aktifMi ? ' secili' : '') + (acikOturum.grup === g.grup ? ' acik' : '');
+    kart.setAttribute('aria-pressed', String(aktifMi));
+    kart.innerHTML =
+      `<b>${kacan(g.ad)}</b>` +
+      `<span class="ipucu">${g.aktif} aktif öğrenci</span>` +
+      `<span class="ipucu">${g.soruSayisi ? g.soruSayisi + ' soru' : '⚠️ içerik yok'}</span>` +
+      (acikOturum.grup === g.grup ? '<span class="acik-rozeti">🚪 oturum açık</span>' : '');
+    kart.addEventListener('click', () => {
+      secilenGrup = g.grup;
+      grupKartlariCiz(gruplar);
+    });
+    alan.appendChild(kart);
+  }
+}
+
+$('oturum-ac').addEventListener('click', () => {
+  if (!secilenGrup) return bildir('⚠️ Önce bir grup kartına dokun.');
+  gonder('ogretmen:oturumAc', { grup: secilenGrup });
+});
+$('oturum-kapat').addEventListener('click', () => {
+  if (confirm('Oturum kapatılacak; öğrenci ekranları bekleme moduna dönecek. Emin misin?')) {
+    gonder('ogretmen:oturumKapat');
+  }
+});
+
 $('baslat').addEventListener('click', () =>
   gonder('ogretmen:baslat', {
-    grup: $('grup').value,
     seviye: Number($('seviye').value),
     mod: $('mod').value,
   })
@@ -38,7 +72,7 @@ $('devam').addEventListener('click', () => gonder('ogretmen:devam'));
 $('atla').addEventListener('click', () => gonder('ogretmen:atla'));
 $('kapat').addEventListener('click', () => gonder('ogretmen:turuKapat'));
 $('geri-al').addEventListener('click', () => {
-  if (confirm('Son turda dağıtılan puanlar geri alınacak. Emin misin?')) {
+  if (confirm('Bu sorudan dağıtılan puanlar herkesten geri alınacak ve kayıtları analiz dışı bırakılacak. Emin misin?')) {
     soket.emit('ogretmen:puaniGeriAl', {}, (yanit) => {
       if (yanit && yanit.hata) bildir('⚠️ ' + yanit.hata);
       else if (yanit)
@@ -50,7 +84,8 @@ $('geri-al').addEventListener('click', () => {
   }
 });
 $('sifirla').addEventListener('click', () => {
-  if (confirm('Tüm skorlar sıfırlanacak. Emin misin?')) gonder('ogretmen:sifirla');
+  if (confirm('Tüm skorlar sıfırlanacak (ölçüm kayıtları silinmez). Emin misin?'))
+    gonder('ogretmen:sifirla');
 });
 
 // Öğrenci galerisini öğrencilere aç/kapat
@@ -90,7 +125,24 @@ soket.on('panel:durum', (veri) => {
   $('cevap-durumu').textContent =
     veri.durum === 'oynaniyor'
       ? `${veri.cevaplayan}/${veri.bagliSayisi} öğrenci cevapladı`
-      : `${veri.bagliSayisi} öğrenci bağlı`;
+      : `${veri.bagliSayisi} öğrenci sahnede`;
+
+  // Oturum durumu
+  acikOturum = veri.oturum || { acik: false, grup: null };
+  if (!secilenGrup) secilenGrup = acikOturum.grup;
+  grupKartlariCiz(veri.gruplar || []);
+
+  const oturumRozeti = $('oturum-rozeti');
+  oturumRozeti.textContent = acikOturum.acik ? `🚪 ${acikOturum.grup} oturumu açık` : '🔒 Oturum kapalı';
+  oturumRozeti.classList.toggle('vurgulu', acikOturum.acik);
+  $('oturum-ozet').textContent = acikOturum.acik
+    ? `${acikOturum.grup} grubu · seviye ${veri.ayar.seviye}`
+    : 'grup seç ve oturumu aç';
+  $('oturum-durumu').textContent = acikOturum.acik
+    ? `✅ Öğrenci ekranlarında ${acikOturum.grup} grubunun isim kartları görünüyor.`
+    : 'Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.';
+  $('canli-ozet').textContent = `${veri.bagliSayisi} sahnede · ${veri.oyuncular.length} kayıtlı`;
+  $('galeri-ozet').textContent = `${(veri.galeri || []).length} tasarım`;
 
   galeriAcik = !!veri.galeriAcik;
   const gdugme = $('galeri-gorunurluk');
@@ -147,6 +199,12 @@ function puanDuzenle(o) {
   gonder('ogretmen:puanDegistir', { anahtar: o.anahtar, puan: yeni });
 }
 
+// İsmi serbest bırak: kart yeniden seçilebilir olur, puan ve kayıtlar korunur
+function serbestBirak(o) {
+  if (!confirm(`"${o.isim}" ismi serbest bırakılsın mı?\n\nÖğrenci giriş ekranına döner; puanı ve kayıtları korunur, aynı isme yeniden dokununca kaldığı yerden devam eder.`)) return;
+  gonder('ogretmen:serbestBirak', { kod: o.kod });
+}
+
 function skorlariCiz(oyuncular) {
   const liste = $('skor-liste');
   liste.innerHTML = '';
@@ -162,18 +220,21 @@ function skorlariCiz(oyuncular) {
       `<span class="sira">${madalya}</span>` +
       `<span class="isim"></span>` +
       `<span class="kod-rozeti" title="Kayıtlarda kullanılan takma ad">${o.kod || '—'}</span>` +
+      (o.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '') +
       durumRozeti(o) +
       `<span class="puan">${o.skor} <span class="sr-only">puan</span></span>` +
       `<span class="duzen">
          <button class="mini" title="Öğrenci raporu" aria-label="Öğrenci raporu">📊</button>
          <button class="mini" title="İsmi değiştir" aria-label="İsmi değiştir">✏️</button>
          <button class="mini" title="Puanı değiştir" aria-label="Puanı değiştir">🔢</button>
+         <button class="mini" title="İsmi serbest bırak" aria-label="İsmi serbest bırak">🔓</button>
        </span>`;
     madde.querySelector('.isim').textContent = o.isim;
-    const [raporDugme, isimDugme, puanDugme] = madde.querySelectorAll('.duzen .mini');
+    const [raporDugme, isimDugme, puanDugme, serbestDugme] = madde.querySelectorAll('.duzen .mini');
     raporDugme.addEventListener('click', () => window.raporGoster && window.raporGoster(o.anahtar));
     isimDugme.addEventListener('click', () => isimDuzenle(o));
     puanDugme.addEventListener('click', () => puanDuzenle(o));
+    serbestDugme.addEventListener('click', () => serbestBirak(o));
     liste.appendChild(madde);
   });
 }

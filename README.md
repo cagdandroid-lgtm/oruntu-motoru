@@ -40,9 +40,39 @@ ADMIN_PASSWORD=hayfan777 npm start
 
 ---
 
+## 👋 Öğrenci girişi — sınıf oturumu modeli
+
+Öğrenci `/` adresinde **isim YAZMAZ ve grup SEÇMEZ.** Oturumun grubunu öğretmen belirler.
+
+1. **Öğretmen henüz seçim yapmadı:** Öğrenci ekranında ortam animasyonlu, **sayaçsız**
+   bir bekleme ekranı durur — “Öğretmenini bekle”. Hiçbir isim, hiçbir grup gösterilmez.
+2. **Öğretmen panelden grubu seçip “🚪 Oturumu Aç” der:** Bekleyen tüm ekranlar
+   **kendiliğinden** (yenileme gerekmeden) o grubun isim kartlarına döner —
+   `data/ogrenciler.json`'daki **yalnız o grubun aktif öğrencileri**, baş harfli
+   avatar balonlu büyük kartlar hâlinde.
+3. **Öğrenci kendi adına dokunur.** Seçilen kart soluklaşır, kilitlenir ve diğer
+   ekranlarda **“🎮 oyunda”** rozetiyle görünür.
+4. Öğretmen panelden **🔓** ile ismi serbest bırakabilir; kart yeniden seçilebilir olur
+   (puan ve ölçüm kayıtları korunur — aynı isme yeniden dokunan kaldığı yerden devam eder).
+
+Gizlilik kuralları:
+
+- Öğrenci ekranına **hiçbir aşamada** başka grupların isimleri ya da sayısı gitmez;
+  sunucu yalnız aktif grubun kartlarını yayınlar.
+- **Kayıtlarda öğrencinin adı değil, listedeki kalıcı KODU** (`E-07`) tutulur.
+- Başka gruptan bir öğrenci girmeye çalışırsa sunucu reddeder (oturum TEK gruba aittir).
+- Kilitli bir karta yalnız **kendi tarayıcısı** geri dönebilir (oturum jetonu); böylece
+  bağlantısı kopan öğrenci kendiliğinden yerine döner, başkası onun adına giremez.
+
+Dersler hibrittir: sınıftaki ve uzaktan (Zoom/Jitsi) katılan öğrenciler aynı bağlantıyı
+kullanır; oyun ikisi arasında hiçbir ayrım yapmaz.
+
+---
+
 ## Oyun akışı
 
-1. Öğretmen panelden **grup** (e / i), **seviye** (1–3) ve **mod** seçip *Turu Başlat*'a basar.
+1. Öğretmen panelden **grubu** seçip oturumu açar, sonra **seviye** (1–3) ve **mod**
+   seçip *Turu Başlat*'a basar. (Grup oturumdan gelir; seviye ve mod öğrenciye gösterilmez.)
 2. Öğrenci ekranında örüntü dizisi belirir; gizli hücre kesikli kehribar çerçeveli `?` olarak durur.
 3. Öğrenci 4 seçenekten birine dokunur **veya** seçeneği gizli hücreye sürükler.
 4. **Herkes cevaplayınca** ya da **süre bitince** tur kapanır.
@@ -70,8 +100,10 @@ Doğru cevap **100 puan** + hız bonusu (ilk beş doğru cevaba sırasıyla +50,
 
 ### Bağlantı kopması
 
-Öğrencinin skoru sunucuda **isme göre** saklanır. Aynı isimle geri dönen öğrenci
-kaldığı yerden devam eder (büyük/küçük harf farkı önemsizdir: `Ada` = `ada`).
+Öğrencinin skoru sunucuda **kalıcı koduna göre** saklanır (`E-07`). Tarayıcıda tutulan
+oturum jetonuyla otomatik yeniden bağlanılır: sayfa yenilense, sekme kapansa ya da
+tablet uykuya geçse bile öğrenci kaldığı yerden devam eder. Adı panelden değiştirilse
+bile kodu — dolayısıyla skoru ve geçmiş kayıtları — değişmez.
 
 ---
 
@@ -109,6 +141,77 @@ Galeri varsayılan olarak yalnızca öğretmende görünür. Öğretmen panelind
 
 ---
 
+## 👩‍🏫 Öğretmen paneli düzeni
+
+Panel açılır-kapanır bölümlerden (akordeon) oluşur. Üst kısım hep sade kalır:
+
+| Bölüm | Varsayılan | İçerik |
+|---|---|---|
+| 🎛️ **Oturum ve Etkinlik** | **AÇIK** | Grup kartları, Oturumu Aç/Kapat, seviye + mod, akış düğmeleri |
+| 📡 **Canlı Durum** | **AÇIK** | Ekrandaki soru + doğru cevap, sahnedeki öğrenciler, canlı skor |
+| 🎨 Öğrenci Tasarımları | Kapalı | Galeri ve görünürlük anahtarları |
+| 📊 Ölçme ve Raporlar | Kapalı | CSV, karneler, isim↔kod eşlemesi |
+| ⚙️ Ayarlar | Kapalı | Skorları sıfırla, ölçüm kayıtlarını sil (yıkıcı işlemler) |
+| 👥 **Öğrenci Listesi** | Kapalı, **en sonda** | `ogrenciler.json` yönetimi |
+
+### Grup kartları
+
+Her grup kartında **aktif öğrenci sayısı** ve o grup için **kaç soru** olduğu yazar
+(içeriği olmayan grup `⚠️ içerik yok` uyarısı verir). Seçim renkle değil, kalın çerçeve
+ve `✓` işaretiyle belirtilir. Açık oturumun kartında `🚪 oturum açık` rozeti durur.
+
+---
+
+## 👥 Öğrenci Listesi yönetimi
+
+`data/ogrenciler.json` panelin en alt bölümünden yönetilir.
+
+- **Süzgeçler:** grup (p / e / i / c / hepsi), durum (aktif / pasif / hepsi) ve
+  **isim arama kutusu** (isim veya kod içinde arar, tüm gruplarda).
+- **Satır işlemleri:** ✏️ ismi düzenle · 🔀 grubunu değiştir · ⏸️/▶️ pasifleştir/aktifleştir.
+  Pasif öğrenci giriş ekranındaki kartlarda **görünmez** ama listeden silinmez.
+- **Kod hiçbir işlemde değişmez** — grup değişse bile. Araştırma verisinin sürekliliği buna bağlıdır.
+- **➕ Yeni öğrenci:** gruptaki ilk boş kodu otomatik alır (`E-11` gibi).
+- **⬇️ Listeyi İndir:** güncel `ogrenciler.json`'u indirir. Değişiklikler o oturumda
+  anında geçerlidir; **kalıcı olması için** indirilen dosyayı depoya koyup push etmelisin
+  (Render diski kalıcı değildir).
+
+### `data/ogrenciler.json` şeması
+
+Bu dosya **tüm UYCEP Logic oyun depolarında aynıdır**; dönem başında bir kez
+oluşturulur, kodlar bir daha değiştirilmez. Depolar **private** tutulur.
+
+```json
+{
+  "_aciklama": "…",
+  "guncelleme": "2026-08-29",
+  "ogrenciler": [
+    { "kod": "E-07", "isim": "Zeynep D.", "grup": "e", "aktif": true }
+  ]
+}
+```
+
+| Alan | Tip | Açıklama |
+|---|---|---|
+| `kod` | string | Kalıcı takma ad — `<GRUP HARFİ>-<sıra>`. **Asla değiştirilmez.** |
+| `isim` | string | Öğrencinin giriş kartında göreceği ad |
+| `grup` | `"p"` / `"e"` / `"i"` / `"c"` | Çalışma grubu |
+| `aktif` | boolean | `false` ise giriş kartlarında görünmez. Ayrılan öğrenci **silinmez**, pasifleştirilir |
+
+Demografik bilgi (doğum tarihi, iletişim vb.) bu dosyaya **asla** yazılmaz;
+öğretmenin çevrimdışı dosyasında kodla eşlenir.
+
+### ✨ Misafir öğrenci
+
+Listede olmayan bir çocuk derse katılırsa panelden **anlık misafir** eklenir:
+
+- `M-01`, `M-02` … kodunu alır ve **açık oturumun grubuna** eklenir; o grubun isim
+  kartlarında `✨ misafir` rozetiyle görünür.
+- Kayıtları CSV'de `misafir=evet` ile işaretlenir (araştırma setini süzmek için).
+- `ogrenciler.json`'a **yazılmaz** — yalnız o oturum yaşar; 🗑️ ile çıkarılabilir.
+
+---
+
 ## ⌨️ Öğretmen kısayolları
 
 | Tuş | İşlev |
@@ -130,20 +233,23 @@ düğmede ikon + etiket vardır):
 | ⏸️ Duraklat | Kehribar | "bekle" — dikkat |
 | ⏭️ Soruyu Atla | Teal | nötr ilerlet |
 | ✅ Turu Bitir | Koyu teal | birincil eylem |
-| ↩️ Son Turun Puanını Geri Al | Kehribar çizgi | geri döndür |
-| 🔄 Skorları Sıfırla | Kırmızı | yıkıcı |
+| ↩️ Soruyu İptal Et | Kehribar çizgi | geri döndür |
+| 🚪 Oturumu Aç | Yeşil | "geç" — öğrenci ekranlarını aç |
+| 🔒 Oturumu Kapat | Kehribar | dikkat — ekranlar beklemeye döner |
+| 🔄 Skorları Sıfırla · 🗑️ Ölçüm Kayıtlarını Sil | Kırmızı | yıkıcı (Ayarlar bölümünde, onay sorulur) |
 
 ### Puanları geri alma
 
-Soru hatalı/tartışmalı çıkarsa öğretmen **↩️ Son Turun Puanını Geri Al** ile
+Soru hatalı/tartışmalı çıkarsa öğretmen **↩️ Soruyu İptal Et** ile
 o turda dağıtılan puanları geri çeker: her öğrencinin skorundan o turda kazandığı
 puan düşülür, doğru sayısı azaltılır. Aynı tur iki kez geri alınamaz (çifte geri alma
 engellidir). Tur hâlâ oynanıyorsa aktif turun, kapanmışsa son kapanan turun puanları geri alınır.
 
 ### Öğrenci ismi ve puanını düzenleme
 
-Skor tablosundaki her satırda **✏️** ile ismi, **🔢** ile puanı değiştirebilirsin.
-İsim değişince bağlı öğrencinin ekranı da güncellenir ve puanı korunur.
+Skor tablosundaki her satırda: **📊** öğrenci raporu · **✏️** isim · **🔢** puan ·
+**🔓** ismi serbest bırak. İsim değişikliği **kalıcı listeye** yazılır (kod değişmez) ve
+bağlı öğrencinin ekranına anında yansır.
 
 Öğrenci durumları: ✅ Cevapladı · ⏳ Düşünüyor · 🔌 Kopuk
 
@@ -156,12 +262,15 @@ server.js              Express + Socket.io, öğretmen kimlik doğrulama, olay y
 lib/oyun.js            Oyun durumu, tur akışı, cevap doğrulama, puanlama
 lib/oruntu.js          İçerik yükleme, filtreleme, istemciye güvenli paketleme
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
+lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
 lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
 lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
 data/patterns.json     Tüm örüntü içeriği (246 kayıt)
+data/ogrenciler.json   Kalıcı isim ↔ kod listesi (TÜM UYCEP oyunlarında aynı dosya)
 public/index.html      Öğrenci ekranı
-public/app.js          Öğrenci istemcisi
+public/app.js          Öğrenci istemcisi (lobi, isim kartları, oyun)
+public/ambiyans.js     Lobi ortam animasyonu (canvas partikülleri)
 public/tasarim.js      "Kendi Örüntünü Kur" mini modu
 public/efekt.js        Konfeti + opsiyonel sesler
 public/rozet.js        Ortak durum göstergeleri (ikon + metin)
@@ -169,6 +278,7 @@ public/style.css       Palet, göz konforu kuralları, mobil/tablet uyumu
 public/teacher.html    Öğretmen paneli (doğrudan erişim engellidir)
 public/teacher.js      Öğretmen istemcisi
 public/rapor.js        Ölçme kartı, öğrenci raporu penceresi, karne indirmeleri
+public/liste.js        Öğrenci Listesi yönetim ekranı (süzgeç, arama, misafir)
 ```
 ---
 
@@ -283,6 +393,7 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 | 11 | `sure_sn` | `6.42` | Sorunun açılışından cevaba kadar (duraklatılan süre düşülür) |
 | 12 | `deneme` | `1` | Bu oyunda tek cevap hakkı vardır; cevapsızda `0` |
 | 13 | `ipucu_kullanildi` | `hayir` | Bu oyunda ipucu mekaniği yok; daima `hayir` |
+| + | `misafir` | `hayir` | Standart şemanın **sonuna** eklenir: `evet` olan satırlar araştırma setinden süzülür |
 
 Notlar:
 
@@ -295,11 +406,14 @@ Notlar:
 
 ### Takma ad (pseudonym)
 
-Öğrenci ilk katıldığında sırayla bir kod alır: `E-01`, `E-02`, … (harf = grup).
-Kod oturum boyunca sabittir — öğrenci ismini değiştirse veya bağlantısı kopup
-geri dönse bile aynı kalır. **İsim ↔ kod eşlemesi yalnızca öğretmen panelinde**
-görünür (öğrenci listesindeki kod rozeti ve “🪪 İsim ↔ kod eşlemesi” bölümü);
-öğrenci ekranına giden hiçbir pakette kod bulunmaz.
+Kodlar **`data/ogrenciler.json`'daki kalıcı ana listeden** gelir — oyunun ürettiği
+geçici numaralar değildir. Aynı öğrenci her hafta, her UYCEP oyununda **aynı kodu**
+alır (`E-07`); ismi değişse, grubu değişse, bağlantısı kopsa bile kod sabit kalır.
+Misafirler oturumluk `M-01`, `M-02` … kodu alır.
+
+**İsim ↔ kod eşlemesi yalnızca öğretmen panelinde** görünür (öğrenci listesindeki kod
+rozeti ve “🪪 İsim ↔ kod eşlemesi” bölümü); öğrenci ekranına giden hiçbir pakette —
+giriş kartlarında da, skor tablosunda da — kod bulunmaz.
 
 ### CSV dışa aktarım
 
@@ -308,8 +422,8 @@ Panelin **📊 Ölçme ve Raporlar** kartından tek tık. Dosya her zaman oturum
 
 | Düğme | İçerik | Kullanım |
 |---|---|---|
-| 🔬 **CSV indir — kodlu** | Yalnız 13 standart sütun | Araştırma / akademik analiz |
-| 👪 **CSV indir — isimli** | 13 standart sütun + sona `ogrenci_ad` | Veli raporu, sınıf takibi |
+| 🔬 **CSV indir — kodlu** | 13 standart sütun + `misafir` | Araştırma / akademik analiz |
+| 👪 **CSV indir — isimli** | 13 standart sütun + `misafir` + `ogrenci_ad` | Veli raporu, sınıf takibi |
 
 - Dosya adı standardı: `<oyun>_<grup>_<tarih>.csv` → `oruntu-motoru_e_2026-08-26.csv`
   (kayıtlar birden çok gruba yayılmışsa grup yerine `karma` yazılır).
@@ -351,6 +465,7 @@ GET  /teacher/veri/karne?anahtar=<key>   Tek öğrenci karnesi
 GET  /teacher/veri/karneler              Tüm sınıfın karneleri (tek belge)
 POST /teacher/veri/onceki                Önceki oturum CSV'si yükle {csv, dosya}
 POST /teacher/veri/onceki-sil            Karşılaştırmayı kaldır
+GET  /teacher/veri/liste.json            Güncel ogrenciler.json (Listeyi İndir)
 ```
 
 **Öğrenci ekranında bu verilerin hiçbiri görünmez**; zorluk gizliliği aynen sürer.
@@ -366,11 +481,18 @@ POST /teacher/veri/onceki-sil            Karşılaştırmayı kaldır
 - Öğretmen soket olayları her çağrıda çerezle yeniden doğrulanır; yetkisiz istek loglanır.
 - `/teacher/veri/*` rotaları (CSV, karne, önceki oturum) çerezsiz istekte 403 döner.
 - Öğrenci kodu, ölçüm kayıtları ve raporlar yalnız `panel:durum` ile öğretmen odasına gider;
-  öğrencilere yayınlanan `skorlar` ve `tur:basladi` paketlerinde bulunmaz.
+  öğrencilere yayınlanan `giris`, `skorlar` ve `tur:basladi` paketlerinde bulunmaz.
+- `giris` paketi **yalnız aktif grubun** kartlarını taşır; başka grupların isimleri ya da
+  sayısı öğrenci istemcisine hiç ulaşmaz (gizleme istemcide değil, **sunucuda** yapılır).
+- Katılım sunucuda üç kez doğrulanır: kod listede var mı, aktif mi, **oturumun grubuna ait mi**.
+- Kilitli bir isme yalnız o tarayıcının oturum jetonuyla dönülebilir; jetonsuz istek reddedilir.
+  Öğretmen ismi serbest bıraktığında jeton yenilenir, eski sekme kendiliğinden geri giremez.
 
 ## 📋 Olay günlüğü
 
 Sunucu konsoluna yazılanlar: katılım, ayrılma, tur başlangıcı, her cevap (doğru/yanlış + puan),
 tur kapanışı ve sebebi, tasarım gönderimi, öğretmen girişi ve yetkisiz istekler.
-Ölçme tarafında ayrıca: öğrenciye atanan takma ad, CSV indirme (kodlu/isimli + kayıt sayısı),
+Oturum tarafında ayrıca: oturum açma/kapatma ve grup değişimi, kilitli isim denemesi (⛔),
+farklı gruptan giriş denemesi (⚠), serbest bırakma, liste ve misafir değişiklikleri.
+Ölçme tarafında: CSV indirme (kodlu/isimli + kayıt sayısı),
 karne üretimi, önceki oturum yüklemesi ve soru iptalinde geçersiz sayılan kayıt sayısı.

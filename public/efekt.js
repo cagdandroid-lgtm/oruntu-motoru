@@ -47,6 +47,8 @@ const Efekt = (() => {
     dogruSesi: () => { ton(660, 0.14); setTimeout(() => ton(880, 0.22), 130); },
     yanlisSesi: () => ton(200, 0.25, 'triangle'),
     tikSesi: () => ton(520, 0.06),
+    // Katılım "pop" sesi — öğrenci kendi kartına dokunup oyuna girdiğinde
+    katilimSesi: () => { ton(440, 0.09); setTimeout(() => ton(700, 0.13), 80); },
     sesiDegistir: (acik) => { sesAcik = acik; },
     sesAcikMi: () => sesAcik,
   };
