@@ -261,12 +261,15 @@ bağlı öğrencinin ekranına anında yansır.
 server.js              Express + Socket.io, öğretmen kimlik doğrulama, olay yönlendirme
 lib/oyun.js            Oyun durumu, tur akışı, cevap doğrulama, puanlama
 lib/oruntu.js          İçerik yükleme, filtreleme, istemciye güvenli paketleme
+araclar/i-icerik.js    "i" grubu taban dizileri (42 dizi, kural + doğrulama parametresi)
+araclar/i-uret.js      "i" kayıtlarını üretip patterns.json'a yazar
+araclar/i-dogrula.js   "i" içeriğini matematiksel olarak denetler
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
 lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
 lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
 lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
-data/patterns.json     Tüm örüntü içeriği (246 kayıt)
+data/patterns.json     Tüm örüntü içeriği (240 kayıt: e 114 + i 126)
 data/ogrenciler.json   Kalıcı isim ↔ kod listesi (TÜM UYCEP oyunlarında aynı dosya)
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi (lobi, isim kartları, oyun)
@@ -329,14 +332,15 @@ JSON yorum desteklemediği için şema burada belgelenmiştir.
     {
       "id": "e1-001",              // benzersiz kimlik: <grup><seviye>-<sıra>
       "grup": "e",                 // "e" | "i" | "c" | "p" — öğretmen panelinden seçilir
-      "tur": "sekil-renk",         // "sekil-renk" | "sayi" | "buyuyen" | "ayna"
+      "tur": "sekil-renk",         // "sekil-renk" | "sayi" | "buyuyen" | "ayna" | "ic-ice" | "harf"
       "seviye": 1,                 // 1 | 2 | 3
       "mod": "surdur",             // "surdur" | "eksik" | "kural"
       "dizi": ["🔺","🟦","🔺","🟦","🔺","🟦","🔺","🟦"],
       "gizliIndeks": 7,            // gizlenecek hücrenin indeksi; "kural" modunda -1
       "secenekler": ["🔺","🟦","⭐","🌸"],  // 4 seçenek; "kural" modunda kural metinleri
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Üçgen ve kare sırayla geliyor."
+      "aciklama": "Üçgen ve kare sırayla geliyor.",
+      "chc": ["Gf","Gv"]           // isteğe bağlı; yoksa türden türetilir (lib/olcme.js)
     }
   ]
 }
@@ -352,12 +356,84 @@ JSON yorum desteklemediği için şema burada belgelenmiştir.
 
 ### İçerik dağılımı
 
-| Grup | Seviye 1 | Seviye 2 | Seviye 3 | Ağırlık |
-|---|---|---|---|---|
-| **e** | 36 | 39 | 39 | Görsel (emoji şekil-renk, büyüyen desen, ayna) |
-| **i** | 36 | 39 | 39 | Sayısal (aritmetik, çift-tek, üçgensel, Fibonacci, 2 katı) |
+| Grup | Seviye 1 | Seviye 2 | Seviye 3 | Toplam | Ağırlık |
+|---|---|---|---|---|---|
+| **e** | 36 | 39 | 39 | 114 | Görsel — emoji şekil-renk, büyüyen desen, ayna |
+| **i** | 42 | 42 | 42 | 126 | **Sayısal** — katlama, değişen fark, iç içe dizi, kare sayı, harf |
 
-Her grup/seviye kombinasyonu her modda **12–13 soru** içerir (toplam 228).
+Toplam **240** soru. Her grup × seviye × mod kombinasyonu en az **12** soru içerir
+(e: 12–13, i: 14).
+
+---
+
+## 🔢 "i" grubu katmanı (3.–4. sınıf)
+
+`i`, `e`'nin bittiği yerden başlar ve **belirgin biçimde zordur**: `e` seviye 3'te
+en büyük sayı 64 iken `i` seviye 1'de 243, seviye 3'te 972'dir. Üç mod da (Sürdür,
+Eksiği Bul, Kuralı Yakala) `i` için tam olarak çalışır.
+
+### Örüntü aileleri
+
+| Aile | Örnek | Kural etiketi |
+|---|---|---|
+| Değişen farklı dizi | `1, 2, 4, 7, 11, 16` | `fark artıyor` |
+| İkiye katlama | `3, 6, 12, 24, 48, 96` | `×2` |
+| Üçe katlama | `2, 6, 18, 54, 162, 486` | `×3` |
+| İki dizi iç içe | `10, 1, 9, 2, 8, 3, 7, 4` | `iki dizi iç içe` |
+| Kare sayılar | `1, 4, 9, 16, 25, 36` | `kare sayılar` |
+| Harf örüntüsü | `A, C, E, G, I, K` | `harfler ikişer` |
+| Aritmetik dizi | `9, 18, 27, 36, 45` | `+9` · `-13` |
+| Ayna (simetri) | `3, 7, 11, 15, 11, 7, 3` | `ayna (simetrik)` |
+
+**Bu ailelerin her biri 9 kombinasyonun (3 seviye × 3 mod) hepsinde bulunur** —
+öğrenci hangi modda oynarsa oynasın tüm aileleri görür.
+
+### Seviye ilerlemesi
+
+| | Seviye 1 | Seviye 2 | Seviye 3 |
+|---|---|---|---|
+| Aritmetik | `+4` … `+9`, `-6`, `-8` | `+12`, `+15`, `-13`, `-14` | — |
+| Katlama | `×2`, `×3` (küçük) | `×2`, `×3` (üç basamağa kadar) | `×3` → 972 |
+| Değişen fark | +1'er büyüyen | +2'şer büyüyen | +3'er ve +5'er büyüyen |
+| İç içe | artan + azalan | artan + azalan (farklı adım) | **çarpımsal + toplamsal** şerit |
+| Kare | `1, 4, 9, 16 …` | `4, 9, 16, 25 …` | **`n²+1`**: `2, 5, 10, 17 …` |
+| Harf | ikişer | üçer | dörder + **iki harf dizisi iç içe** (`A, Z, C, X, E, V`) |
+| Ayrıca | — | — | **Fibonacci** (`son iki sayının toplamı`) |
+
+Seviye 3 ayrıca **30 saniye süre sınırlıdır** (seviye 1–2 süresiz).
+
+### Sembolik kural etiketleri
+
+`i` grubunda "Kuralı Yakala" seçenekleri **sembolik** yazılır — `+7`, `×3`,
+`fark artıyor`, `kare sayılar +1`, `iki dizi iç içe` — düzyazı açıklama değil.
+Aynı etiket tur sonu geri bildiriminde de görünür; ayrıntılı cümle `aciklama`
+alanında durur.
+
+Çeldirici kuralı: seçenekler **aynı seviyenin kural havuzundan** ve **aynı türden**
+gelir. Sayı sorusuna harf kuralı, harf sorusuna sayı kuralı çeldirici olarak konmaz —
+böylece cevap elemeyle bulunamaz. Örnek (seviye 3):
+
+```
+2, 5, 10, 17, 26, 37, 50, 65
+→ kare sayılar +1 · kare sayılar · son iki sayının toplamı · iki dizi iç içe
+```
+
+### İçeriği yeniden üretme
+
+`i` grubu elle değil, üreteçle tutulur:
+
+```
+node araclar/i-uret.js      # araclar/i-icerik.js'ten i kayıtlarını üretir
+node araclar/i-dogrula.js   # dizileri kuraldan yeniden hesaplayıp denetler
+```
+
+- `araclar/i-icerik.js` — 42 taban dizi (seviye başına 14), her biri kuralı ve
+  bağımsız doğrulama parametreleriyle birlikte.
+- `araclar/i-uret.js` — her taban diziyi üç modda birden yayımlar, çeldiricileri
+  tohumlu (yinelenebilir) üretir ve `patterns.json`'a yazar. **`e` / `p` / `c`
+  kayıtlarına dokunmaz.**
+- `araclar/i-dogrula.js` — her diziyi kuralından yeniden hesaplayıp karşılaştırır,
+  kapsamı ve çeldirici kalitesini sınar.
 
 ### Yeni örüntü ekleme
 
@@ -385,7 +461,7 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 | 3 | `set_veya_paket` | `e-1-surdur` | Bu oyunda soru havuzu: `<grup>-<seviye>-<mod>` |
 | 4 | `grup` | `e` | İçerik grubu (`e` / `i` / `c` / `p`) |
 | 5 | `ogrenci_kod` | `E-07` | **Takma ad** — kayıtlarda isim asla geçmez |
-| 6 | `gorev_id` | `e1-010` | `patterns.json` içindeki soru kimliği |
+| 6 | `gorev_id` | `e1-010` · `i3-k08` | `patterns.json` içindeki soru kimliği |
 | 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`) |
 | 8 | `chc` | `Gq\|Gf` | CHC alanları, `\|` ile ayrılmış |
 | 9 | `zorluk` | `e-1` | Katman kodu: `<grup>-<seviye>` |

@@ -2930,1911 +2930,874 @@
       "aciklama": "Her sayı bir öncekinin iki katı."
     },
     {
-      "id": "i1-115",
+      "id": "i1-s01",
       "grup": "i",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
       "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "12",
-        "13",
-        "11",
-        "14"
-      ],
-      "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
-    },
-    {
-      "id": "i1-116",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "2",
-        "5",
-        "8",
-        "11",
+        "6",
+        "10",
         "14",
-        "17",
-        "20"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "20",
-        "17",
-        "23",
-        "19"
-      ],
-      "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
-    },
-    {
-      "id": "i1-117",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
-        "25",
-        "30",
-        "35"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "45",
-        "35",
-        "34",
-        "37"
-      ],
-      "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
-    },
-    {
-      "id": "i1-118",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "10",
-        "20",
-        "30",
-        "40",
-        "50",
-        "60",
-        "70"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "90",
-        "70",
-        "68",
-        "80"
-      ],
-      "kural": "+10 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 10 fazla."
-    },
-    {
-      "id": "i1-119",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "20",
         "18",
-        "16",
-        "14",
-        "12",
-        "10",
-        "8"
+        "22",
+        "26",
+        "30"
       ],
       "gizliIndeks": 6,
       "secenekler": [
+        "26",
+        "31",
+        "34",
+        "30"
+      ],
+      "kural": "+4",
+      "aciklama": "Her adımda 4 ekleniyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e01",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
         "6",
-        "8",
-        "12",
-        "10"
-      ],
-      "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
-    },
-    {
-      "id": "i1-120",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "15",
-        "14",
-        "13",
-        "12",
-        "11",
         "10",
-        "9"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "9",
-        "10",
-        "7",
-        "11"
-      ],
-      "kural": "-1 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 1 az."
-    },
-    {
-      "id": "i1-121",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "2",
-        "4",
-        "6",
-        "8",
-        "10",
-        "12",
         "14",
-        "16"
+        "18",
+        "22",
+        "26",
+        "30"
       ],
-      "gizliIndeks": 7,
+      "gizliIndeks": 3,
       "secenekler": [
-        "17",
-        "16",
-        "14",
-        "15"
-      ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-122",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13",
-        "15"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "16",
-        "15",
+        "22",
+        "18",
         "19",
         "14"
       ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
+      "kural": "+4",
+      "aciklama": "Her adımda 4 ekleniyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i1-123",
+      "id": "i1-k01",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "6",
+        "10",
+        "14",
+        "18",
+        "22",
+        "26",
+        "30"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "ayna (simetrik)",
+        "+4",
+        "fark artıyor",
+        "+7"
+      ],
+      "kural": "+4",
+      "aciklama": "Her adımda 4 ekleniyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s02",
       "grup": "i",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
       "dizi": [
-        "10",
-        "12",
+        "7",
         "14",
-        "16",
+        "21",
+        "28",
+        "35",
+        "42",
+        "49"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "56",
+        "42",
+        "49",
+        "50"
+      ],
+      "kural": "+7",
+      "aciklama": "Yedişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e02",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "7",
+        "14",
+        "21",
+        "28",
+        "35",
+        "42",
+        "49"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "36",
+        "28",
+        "42",
+        "35"
+      ],
+      "kural": "+7",
+      "aciklama": "Yedişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k02",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "7",
+        "14",
+        "21",
+        "28",
+        "35",
+        "42",
+        "49"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "iki dizi iç içe",
+        "+7",
+        "+4",
+        "×3"
+      ],
+      "kural": "+7",
+      "aciklama": "Yedişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "9",
         "18",
-        "20",
+        "27",
+        "36",
+        "45",
+        "54",
+        "63"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "64",
+        "63",
+        "54",
+        "72"
+      ],
+      "kural": "+9",
+      "aciklama": "Dokuzar sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "9",
+        "18",
+        "27",
+        "36",
+        "45",
+        "54",
+        "63"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "18",
+        "27",
+        "28",
+        "36"
+      ],
+      "kural": "+9",
+      "aciklama": "Dokuzar sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "9",
+        "18",
+        "27",
+        "36",
+        "45",
+        "54",
+        "63"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "×3",
+        "+9",
+        "fark artıyor",
+        "ayna (simetrik)"
+      ],
+      "kural": "+9",
+      "aciklama": "Dokuzar sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "60",
+        "54",
+        "48",
+        "42",
+        "36",
+        "30",
+        "24"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "25",
+        "24",
+        "18",
+        "30"
+      ],
+      "kural": "-6",
+      "aciklama": "Her adımda 6 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "60",
+        "54",
+        "48",
+        "42",
+        "36",
+        "30",
+        "24"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "48",
+        "43",
+        "36",
+        "42"
+      ],
+      "kural": "-6",
+      "aciklama": "Her adımda 6 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "60",
+        "54",
+        "48",
+        "42",
+        "36",
+        "30",
+        "24"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "-8",
+        "×3",
+        "kare sayılar",
+        "-6"
+      ],
+      "kural": "-6",
+      "aciklama": "Her adımda 6 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s05",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "80",
+        "72",
+        "64",
+        "56",
+        "48",
+        "40",
+        "32"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "40",
+        "24",
+        "33",
+        "32"
+      ],
+      "kural": "-8",
+      "aciklama": "Her adımda 8 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e05",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "80",
+        "72",
+        "64",
+        "56",
+        "48",
+        "40",
+        "32"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "40",
+        "48",
+        "56",
+        "49"
+      ],
+      "kural": "-8",
+      "aciklama": "Her adımda 8 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k05",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "80",
+        "72",
+        "64",
+        "56",
+        "48",
+        "40",
+        "32"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "-8",
+        "iki dizi iç içe",
+        "-6"
+      ],
+      "kural": "-8",
+      "aciklama": "Her adımda 8 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "2",
+        "4",
+        "7",
+        "11",
+        "16",
         "22"
       ],
       "gizliIndeks": 6,
       "secenekler": [
-        "20",
-        "22",
+        "23",
+        "16",
+        "28",
+        "22"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-e06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "2",
+        "4",
+        "7",
+        "11",
+        "16",
+        "22"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "8",
+        "7",
+        "10",
+        "4"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-k06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "1",
+        "2",
+        "4",
+        "7",
+        "11",
+        "16",
+        "22"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "-6",
+        "×2",
+        "kare sayılar",
+        "fark artıyor"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-s07",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "2",
+        "3",
+        "5",
+        "8",
+        "12",
+        "17",
+        "23"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "17",
+        "29",
         "23",
         "24"
       ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer birer büyüyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i1-124",
+      "id": "i1-e07",
       "grup": "i",
-      "tur": "ayna",
+      "tur": "buyuyen",
       "seviye": 1,
-      "mod": "surdur",
+      "mod": "eksik",
       "dizi": [
-        "1",
+        "2",
         "3",
         "5",
-        "3",
-        "1"
+        "8",
+        "12",
+        "17",
+        "23"
       ],
       "gizliIndeks": 4,
       "secenekler": [
-        "1",
+        "8",
+        "16",
+        "12",
+        "13"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer birer büyüyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-k07",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "2",
         "3",
         "5",
-        "2"
+        "8",
+        "12",
+        "17",
+        "23"
       ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i1-125",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦"
-      ],
-      "gizliIndeks": 7,
+      "gizliIndeks": -1,
       "secenekler": [
-        "🔺",
-        "⭐",
-        "🌸",
-        "🟦"
+        "×2",
+        "-6",
+        "fark artıyor",
+        "ayna (simetrik)"
       ],
-      "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Isınma: iki şekil sırayla."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer birer büyüyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i1-126",
+      "id": "i1-s08",
       "grup": "i",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
       "dizi": [
-        "🟦",
-        "🟦🟦",
-        "🟦🟦🟦",
-        "🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "🟦🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦🟦🟦",
-        "🟦🟦🟦"
-      ],
-      "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
-    },
-    {
-      "id": "i1-127",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "6",
-        "7",
-        "8",
-        "11"
-      ],
-      "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
-    },
-    {
-      "id": "i1-128",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
         "2",
-        "5",
+        "4",
         "8",
-        "11",
-        "14",
-        "17",
-        "20"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "12",
-        "14",
-        "17",
-        "11"
-      ],
-      "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
-    },
-    {
-      "id": "i1-129",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
-        "25",
-        "30",
-        "35"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "20",
-        "10",
         "16",
-        "15"
+        "32",
+        "64",
+        "128"
       ],
-      "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
-    },
-    {
-      "id": "i1-130",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "10",
-        "20",
-        "30",
-        "40",
-        "50",
-        "60",
-        "70"
-      ],
-      "gizliIndeks": 2,
+      "gizliIndeks": 6,
       "secenekler": [
-        "20",
-        "50",
-        "28",
-        "30"
+        "64",
+        "129",
+        "192",
+        "128"
       ],
-      "kural": "+10 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 10 fazla."
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i1-131",
+      "id": "i1-e08",
       "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "20",
-        "18",
-        "16",
-        "14",
-        "12",
-        "10",
-        "8"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "14",
-        "16",
-        "18",
-        "17"
-      ],
-      "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
-    },
-    {
-      "id": "i1-132",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "15",
-        "14",
-        "13",
-        "12",
-        "11",
-        "10",
-        "9"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "14",
-        "15",
-        "13",
-        "12"
-      ],
-      "kural": "-1 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 1 az."
-    },
-    {
-      "id": "i1-133",
-      "grup": "i",
-      "tur": "sayi",
+      "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
       "dizi": [
         "2",
         "4",
-        "6",
         "8",
-        "10",
-        "12",
-        "14",
+        "16",
+        "32",
+        "64",
+        "128"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "17",
+        "24",
+        "8",
         "16"
+      ],
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-k08",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "2",
+        "4",
+        "8",
+        "16",
+        "32",
+        "64",
+        "128"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar",
+        "×2",
+        "fark artıyor",
+        "ayna (simetrik)"
+      ],
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-s09",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "5",
+        "10",
+        "20",
+        "40",
+        "80",
+        "160"
       ],
       "gizliIndeks": 5,
       "secenekler": [
-        "10",
-        "14",
-        "12",
-        "11"
+        "240",
+        "161",
+        "80",
+        "160"
       ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i1-134",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13",
-        "15"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "3",
-        "9",
-        "6",
-        "5"
-      ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-135",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "20",
-        "22"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "16",
-        "14",
-        "13",
-        "12"
-      ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-136",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "3",
-        "1"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "9",
-        "7",
-        "6",
-        "5"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i1-137",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 1,
-      "mod": "eksik",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "🔺",
-        "🟦",
-        "⭐",
-        "🌸"
-      ],
-      "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Isınma: iki şekil sırayla."
-    },
-    {
-      "id": "i1-138",
+      "id": "i1-e09",
       "grup": "i",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
       "dizi": [
-        "🟦",
-        "🟦🟦",
-        "🟦🟦🟦",
-        "🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦"
+        "5",
+        "10",
+        "20",
+        "40",
+        "80",
+        "160"
       ],
       "gizliIndeks": 2,
       "secenekler": [
-        "⭐",
-        "🟦🟦🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦🟦🟦",
-        "🟦🟦🟦"
-      ],
-      "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
-    },
-    {
-      "id": "i1-139",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+5 ekleniyor",
-        "+4 ekleniyor",
-        "+3 ekleniyor",
-        "+2 ekleniyor"
-      ],
-      "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
-    },
-    {
-      "id": "i1-140",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "2",
-        "5",
-        "8",
-        "11",
-        "14",
-        "17",
+        "10",
+        "21",
+        "30",
         "20"
       ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+3 ekleniyor",
-        "tek sayılar sırayla",
-        "renk döngüsü: 🔺🟦",
-        "artış her adımda 1 büyüyor"
-      ],
-      "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i1-141",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
-        "25",
-        "30",
-        "35"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+4 ekleniyor",
-        "+3 ekleniyor",
-        "-3 çıkarılıyor",
-        "+5 ekleniyor"
-      ],
-      "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
-    },
-    {
-      "id": "i1-142",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "10",
-        "20",
-        "30",
-        "40",
-        "50",
-        "60",
-        "70"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+4 ekleniyor",
-        "+10 ekleniyor",
-        "artış her adımda 1 büyüyor",
-        "dizi ortadan simetrik (ayna)"
-      ],
-      "kural": "+10 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 10 fazla."
-    },
-    {
-      "id": "i1-143",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "20",
-        "18",
-        "16",
-        "14",
-        "12",
-        "10",
-        "8"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "-3 çıkarılıyor",
-        "+10 ekleniyor",
-        "2 ile çarpılıyor",
-        "-2 çıkarılıyor"
-      ],
-      "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
-    },
-    {
-      "id": "i1-144",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "15",
-        "14",
-        "13",
-        "12",
-        "11",
-        "10",
-        "9"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+5 ekleniyor",
-        "son iki sayının toplamı",
-        "dizi ortadan simetrik (ayna)",
-        "-1 çıkarılıyor"
-      ],
-      "kural": "-1 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 1 az."
-    },
-    {
-      "id": "i1-145",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "2",
-        "4",
-        "6",
-        "8",
-        "10",
-        "12",
-        "14",
-        "16"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "çift sayılar sırayla",
-        "+5 ekleniyor",
-        "renk döngüsü: 🔺🟦",
-        "+3 ekleniyor"
-      ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-146",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "7",
-        "9",
-        "11",
-        "13",
-        "15"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "-2 çıkarılıyor",
-        "aynı şekil ikişerli tekrar ediyor",
-        "tek sayılar sırayla",
-        "çift sayılar sırayla"
-      ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-147",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "20",
-        "22"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "çift sayılar sırayla",
-        "+1 ekleniyor",
-        "+4 ekleniyor",
-        "+3 ekleniyor"
-      ],
-      "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i1-148",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "1",
-        "3",
-        "5",
-        "3",
-        "1"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "2 ile çarpılıyor",
-        "+4 ekleniyor",
-        "dizi ortadan simetrik (ayna)",
-        "+3 ekleniyor"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i1-149",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 1,
-      "mod": "kural",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦",
-        "🔺",
-        "🟦"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+1 ekleniyor",
-        "son iki sayının toplamı",
-        "+3 ekleniyor",
-        "iki şekil sırayla tekrar ediyor"
-      ],
-      "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Isınma: iki şekil sırayla."
-    },
-    {
-      "id": "i1-150",
+      "id": "i1-k09",
       "grup": "i",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
       "dizi": [
-        "🟦",
-        "🟦🟦",
-        "🟦🟦🟦",
-        "🟦🟦🟦🟦",
-        "🟦🟦🟦🟦🟦"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "renk döngüsü: 🔴🔵🔵",
-        "2 ile çarpılıyor",
-        "artış her adımda 2 büyüyor",
-        "her adımda bir tane daha ekleniyor"
-      ],
-      "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
-    },
-    {
-      "id": "i2-151",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "4",
-        "8",
-        "12",
-        "16",
+        "5",
+        "10",
         "20",
-        "24",
-        "28",
-        "32"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "34",
-        "33",
-        "32",
-        "28"
-      ],
-      "kural": "+4 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 4 fazla."
-    },
-    {
-      "id": "i2-152",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "35",
-        "42",
-        "49"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "50",
-        "63",
-        "49",
-        "56"
-      ],
-      "kural": "+7 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 7 fazla."
-    },
-    {
-      "id": "i2-153",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "50",
-        "45",
         "40",
-        "35",
-        "30",
-        "25",
-        "20",
-        "15"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "20",
-        "25",
-        "15",
-        "14"
-      ],
-      "kural": "-5 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 5 az."
-    },
-    {
-      "id": "i2-154",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "100",
-        "90",
         "80",
-        "70",
-        "60",
-        "50",
-        "40",
-        "30"
+        "160"
       ],
-      "gizliIndeks": 7,
+      "gizliIndeks": -1,
       "secenekler": [
-        "31",
-        "40",
-        "20",
-        "30"
+        "+9",
+        "+7",
+        "ayna (simetrik)",
+        "×2"
       ],
-      "kural": "-10 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 10 az."
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i2-155",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "3",
-        "9",
-        "15",
-        "21",
-        "27",
-        "33",
-        "39"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "41",
-        "39",
-        "38",
-        "51"
-      ],
-      "kural": "+6 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 6 fazla."
-    },
-    {
-      "id": "i2-156",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "11",
-        "13",
-        "15",
-        "17",
-        "19",
-        "21",
-        "23",
-        "25"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "27",
-        "29",
-        "24",
-        "25"
-      ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i2-157",
+      "id": "i1-s10",
       "grup": "i",
       "tur": "buyuyen",
-      "seviye": 2,
+      "seviye": 1,
       "mod": "surdur",
       "dizi": [
         "1",
         "3",
-        "6",
-        "10",
-        "15",
-        "21",
-        "28"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "31",
-        "34",
-        "27",
-        "28"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
-    },
-    {
-      "id": "i2-158",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "1",
-        "4",
         "9",
-        "16",
-        "25",
-        "36"
+        "27",
+        "81",
+        "243"
       ],
       "gizliIndeks": 5,
       "secenekler": [
-        "41",
-        "35",
-        "38",
-        "36"
+        "81",
+        "243",
+        "405",
+        "244"
       ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i2-159",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "2",
-        "5",
-        "8",
-        "11",
-        "8",
-        "5",
-        "2"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "3",
-        "4",
-        "2",
-        "6"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-160",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "4",
-        "8",
-        "12",
-        "8",
-        "4"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "3",
-        "6",
-        "4",
-        "2"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-161",
+      "id": "i1-e10",
       "grup": "i",
       "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "2",
-        "4",
-        "8",
-        "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "127",
-        "126",
-        "132",
-        "128"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i2-162",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵"
-      ],
-      "gizliIndeks": 8,
-      "secenekler": [
-        "🔴",
-        "⭐",
-        "🔵",
-        "🌸"
-      ],
-      "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü."
-    },
-    {
-      "id": "i2-163",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "surdur",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🟢",
-        "🟦",
-        "🔺"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "🔺",
-        "🟢",
-        "🟦",
-        "⭐"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
-    },
-    {
-      "id": "i2-164",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
+      "seviye": 1,
       "mod": "eksik",
       "dizi": [
-        "4",
-        "8",
-        "12",
-        "16",
-        "20",
-        "24",
-        "28",
-        "32"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "20",
-        "18",
-        "16",
-        "22"
-      ],
-      "kural": "+4 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 4 fazla."
-    },
-    {
-      "id": "i2-165",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "35",
-        "42",
-        "49"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "33",
-        "28",
-        "35",
-        "37"
-      ],
-      "kural": "+7 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 7 fazla."
-    },
-    {
-      "id": "i2-166",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "50",
-        "45",
-        "40",
-        "35",
-        "30",
-        "25",
-        "20",
-        "15"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "25",
-        "31",
-        "30",
-        "29"
-      ],
-      "kural": "-5 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 5 az."
-    },
-    {
-      "id": "i2-167",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "100",
-        "90",
-        "80",
-        "70",
-        "60",
-        "50",
-        "40",
-        "30"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "90",
-        "79",
-        "78",
-        "80"
-      ],
-      "kural": "-10 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 10 az."
-    },
-    {
-      "id": "i2-168",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
+        "1",
         "3",
         "9",
-        "15",
-        "21",
         "27",
-        "33",
-        "39"
+        "81",
+        "243"
       ],
       "gizliIndeks": 3,
       "secenekler": [
-        "19",
-        "27",
-        "21",
-        "22"
-      ],
-      "kural": "+6 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 6 fazla."
-    },
-    {
-      "id": "i2-169",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "11",
-        "13",
-        "15",
-        "17",
-        "19",
-        "21",
-        "23",
-        "25"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "15",
-        "19",
-        "13",
-        "16"
-      ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i2-170",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "3",
-        "6",
-        "10",
-        "15",
-        "21",
-        "28"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "15",
-        "21",
-        "12",
-        "16"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
-    },
-    {
-      "id": "i2-171",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "4",
-        "9",
-        "16",
-        "25",
-        "36"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "10",
-        "9",
-        "14",
-        "7"
-      ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
-    },
-    {
-      "id": "i2-172",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "2",
-        "5",
-        "8",
-        "11",
-        "8",
-        "5",
-        "2"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "11",
-        "10",
-        "9",
-        "12"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-173",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "4",
-        "8",
-        "12",
-        "8",
-        "4"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "11",
-        "13",
-        "14",
-        "12"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-174",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "2",
-        "4",
-        "8",
-        "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "7",
-        "16",
-        "8",
-        "6"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i2-175",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "🌸",
-        "🔵",
-        "🔴",
-        "⭐"
-      ],
-      "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü."
-    },
-    {
-      "id": "i2-176",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🟢",
-        "🟦",
-        "🔺"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "🟢",
-        "⭐",
-        "🔺",
-        "🟦"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
-    },
-    {
-      "id": "i2-177",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "4",
-        "8",
-        "12",
-        "16",
-        "20",
-        "24",
-        "28",
-        "32"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+4 ekleniyor",
-        "+2 ekleniyor",
-        "+1 ekleniyor",
-        "artış her adımda 1 büyüyor"
-      ],
-      "kural": "+4 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 4 fazla."
-    },
-    {
-      "id": "i2-178",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "35",
-        "42",
-        "49"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+4 ekleniyor",
-        "+7 ekleniyor",
-        "son iki sayının toplamı",
-        "artış her adımda 2 büyüyor"
-      ],
-      "kural": "+7 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 7 fazla."
-    },
-    {
-      "id": "i2-179",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "50",
         "45",
-        "40",
-        "35",
-        "30",
-        "25",
-        "20",
-        "15"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "-5 çıkarılıyor",
-        "+2 ekleniyor",
-        "renk döngüsü: 🔺🟦",
-        "-2 çıkarılıyor"
-      ],
-      "kural": "-5 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 5 az."
-    },
-    {
-      "id": "i2-180",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "100",
-        "90",
-        "80",
-        "70",
-        "60",
-        "50",
-        "40",
-        "30"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+3 ekleniyor",
-        "-10 çıkarılıyor",
-        "+10 ekleniyor",
-        "+5 ekleniyor"
-      ],
-      "kural": "-10 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 10 az."
-    },
-    {
-      "id": "i2-181",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "3",
-        "9",
-        "15",
-        "21",
-        "27",
-        "33",
-        "39"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "üç şekil sırayla tekrar ediyor",
-        "çift sayılar sırayla",
-        "+10 ekleniyor",
-        "+6 ekleniyor"
-      ],
-      "kural": "+6 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 6 fazla."
-    },
-    {
-      "id": "i2-182",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "11",
-        "13",
-        "15",
-        "17",
-        "19",
-        "21",
-        "23",
-        "25"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "artış her adımda 1 büyüyor",
-        "tek sayılar sırayla",
-        "dizi ortadan simetrik (ayna)",
-        "her adımda bir tane daha ekleniyor"
-      ],
-      "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
-    },
-    {
-      "id": "i2-183",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "1",
-        "3",
-        "6",
-        "10",
-        "15",
-        "21",
-        "28"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "artış her adımda 1 büyüyor",
-        "+5 ekleniyor",
-        "+1 ekleniyor",
-        "+4 ekleniyor"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
-    },
-    {
-      "id": "i2-184",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "1",
-        "4",
-        "9",
-        "16",
-        "25",
-        "36"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "artış her adımda 2 büyüyor",
-        "son iki sayının toplamı",
-        "artış her adımda 1 büyüyor",
-        "+4 ekleniyor"
-      ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
-    },
-    {
-      "id": "i2-185",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "2",
-        "5",
-        "8",
-        "11",
-        "8",
-        "5",
-        "2"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "her adımda bir tane daha ekleniyor",
-        "aynı şekil ikişerli tekrar ediyor",
-        "dizi ortadan simetrik (ayna)",
-        "artış her adımda 1 büyüyor"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-186",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "4",
-        "8",
-        "12",
-        "8",
-        "4"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "-3 çıkarılıyor",
-        "dizi ortadan simetrik (ayna)",
-        "çift sayılar sırayla",
-        "+10 ekleniyor"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i2-187",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "2",
-        "4",
-        "8",
-        "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "üç şekil sırayla tekrar ediyor",
-        "bir büyük bir küçük",
-        "2 ile çarpılıyor",
-        "renk döngüsü: 🔺🟦"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i2-188",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵",
-        "🔴",
-        "🔵",
-        "🔵"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "+4 ekleniyor",
-        "üç şekil sırayla tekrar ediyor",
-        "+3 ekleniyor",
-        "-5 çıkarılıyor"
-      ],
-      "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü."
-    },
-    {
-      "id": "i2-189",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 2,
-      "mod": "kural",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🟢",
-        "🟦",
-        "🔺"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "dizi ortadan simetrik (ayna)",
-        "son iki sayının toplamı",
-        "+10 ekleniyor",
-        "her adımda bir tane daha ekleniyor"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
-    },
-    {
-      "id": "i3-190",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "1",
-        "3",
-        "6",
-        "10",
-        "15",
-        "21",
         "28",
-        "36"
+        "27",
+        "9"
       ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "37",
-        "34",
-        "33",
-        "36"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-191",
+      "id": "i1-k10",
       "grup": "i",
       "tur": "buyuyen",
-      "seviye": 3,
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "1",
+        "3",
+        "9",
+        "27",
+        "81",
+        "243"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "iki dizi iç içe",
+        "×3",
+        "fark artıyor",
+        "-8"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i1-s11",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
       "mod": "surdur",
       "dizi": [
         "1",
@@ -4847,146 +3810,870 @@
       ],
       "gizliIndeks": 6,
       "secenekler": [
-        "44",
         "49",
-        "54",
-        "59"
+        "50",
+        "36",
+        "62"
       ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "kural": "kare sayılar",
+      "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-192",
+      "id": "i1-e11",
       "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "4",
+        "9",
+        "16",
+        "25",
+        "36",
+        "49"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "16",
+        "25",
+        "34",
+        "26"
+      ],
+      "kural": "kare sayılar",
+      "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k11",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "1",
+        "4",
+        "9",
+        "16",
+        "25",
+        "36",
+        "49"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar",
+        "iki dizi iç içe",
+        "ayna (simetrik)",
+        "+9"
+      ],
+      "kural": "kare sayılar",
+      "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-s12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 1,
       "mod": "surdur",
       "dizi": [
+        "10",
+        "1",
+        "9",
         "2",
-        "6",
-        "13",
-        "23",
+        "8",
+        "3",
+        "7",
+        "4"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "4",
+        "5",
+        "7",
+        "1"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i1-e12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "10",
+        "1",
+        "9",
+        "2",
+        "8",
+        "3",
+        "7",
+        "4"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "9",
+        "14",
+        "2",
+        "8"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i1-k12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "10",
+        "1",
+        "9",
+        "2",
+        "8",
+        "3",
+        "7",
+        "4"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "-6",
+        "×3",
+        "kare sayılar",
+        "iki dizi iç içe"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i1-s13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "A",
+        "C",
+        "E",
+        "G",
+        "I",
+        "K",
+        "M"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "L",
+        "M",
+        "O",
+        "N"
+      ],
+      "kural": "harfler ikişer",
+      "aciklama": "Alfabede birer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i1-e13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "A",
+        "C",
+        "E",
+        "G",
+        "I",
+        "K",
+        "M"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "F",
+        "I",
+        "H",
+        "G"
+      ],
+      "kural": "harfler ikişer",
+      "aciklama": "Alfabede birer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i1-k13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "A",
+        "C",
+        "E",
+        "G",
+        "I",
+        "K",
+        "M"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "harfler ikişer",
+        "harfler birer",
+        "iki harf dizisi iç içe",
+        "harfler üçer"
+      ],
+      "kural": "harfler ikişer",
+      "aciklama": "Alfabede birer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i1-s14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 1,
+      "mod": "surdur",
+      "dizi": [
+        "3",
+        "7",
+        "11",
+        "15",
+        "11",
+        "7",
+        "3"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "2",
+        "3",
+        "7",
+        "4"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-e14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 1,
+      "mod": "eksik",
+      "dizi": [
+        "3",
+        "7",
+        "11",
+        "15",
+        "11",
+        "7",
+        "3"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "12",
+        "11",
+        "7",
+        "15"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i1-k14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 1,
+      "mod": "kural",
+      "dizi": [
+        "3",
+        "7",
+        "11",
+        "15",
+        "11",
+        "7",
+        "3"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "ayna (simetrik)",
+        "×2",
+        "+4",
+        "-8"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-s01",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "12",
+        "24",
         "36",
-        "52",
-        "71"
+        "48",
+        "60",
+        "72",
+        "84"
       ],
       "gizliIndeks": 6,
       "secenekler": [
         "85",
-        "72",
-        "71",
-        "73"
+        "96",
+        "84",
+        "72"
       ],
-      "kural": "artış her adımda 3 büyüyor",
-      "aciklama": "Aradaki fark sırayla 4, 7, 10… şeklinde büyüyor."
+      "kural": "+12",
+      "aciklama": "Onikişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-193",
+      "id": "i2-e01",
       "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "12",
+        "24",
+        "36",
+        "48",
+        "60",
+        "72",
+        "84"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "61",
+        "72",
+        "48",
+        "60"
+      ],
+      "kural": "+12",
+      "aciklama": "Onikişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-k01",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "12",
+        "24",
+        "36",
+        "48",
+        "60",
+        "72",
+        "84"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "+12",
+        "×2",
+        "×3"
+      ],
+      "kural": "+12",
+      "aciklama": "Onikişer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-s02",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
       "mod": "surdur",
       "dizi": [
-        "5",
+        "15",
+        "30",
+        "45",
+        "60",
+        "75",
+        "90",
+        "105"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "105",
+        "106",
+        "90",
+        "120"
+      ],
+      "kural": "+15",
+      "aciklama": "Onbeşer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-e02",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "15",
+        "30",
+        "45",
+        "60",
+        "75",
+        "90",
+        "105"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "45",
+        "46",
+        "60",
+        "30"
+      ],
+      "kural": "+15",
+      "aciklama": "Onbeşer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-k02",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "15",
+        "30",
+        "45",
+        "60",
+        "75",
+        "90",
+        "105"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "iki dizi iç içe",
+        "+15",
+        "fark artıyor",
+        "-14"
+      ],
+      "kural": "+15",
+      "aciklama": "Onbeşer sayıyoruz.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-s03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "91",
+        "78",
+        "65",
+        "52",
+        "39",
+        "26",
+        "13"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "26",
+        "12",
+        "14",
+        "13"
+      ],
+      "kural": "-13",
+      "aciklama": "Her adımda 13 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-e03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "91",
+        "78",
+        "65",
+        "52",
+        "39",
+        "26",
+        "13"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "52",
+        "53",
+        "65",
+        "39"
+      ],
+      "kural": "-13",
+      "aciklama": "Her adımda 13 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-k03",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "91",
+        "78",
+        "65",
+        "52",
+        "39",
+        "26",
+        "13"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "-14",
+        "-13",
+        "×2"
+      ],
+      "kural": "-13",
+      "aciklama": "Her adımda 13 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-s04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "98",
+        "84",
+        "70",
+        "56",
+        "42",
+        "28",
+        "14"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "15",
+        "13",
+        "14",
+        "28"
+      ],
+      "kural": "-14",
+      "aciklama": "Her adımda 14 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-e04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "98",
+        "84",
+        "70",
+        "56",
+        "42",
+        "28",
+        "14"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "42",
+        "56",
+        "28",
+        "43"
+      ],
+      "kural": "-14",
+      "aciklama": "Her adımda 14 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-k04",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "98",
+        "84",
+        "70",
+        "56",
+        "42",
+        "28",
+        "14"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "+12",
+        "fark artıyor",
+        "-14",
+        "ayna (simetrik)"
+      ],
+      "kural": "-14",
+      "aciklama": "Her adımda 14 azalıyor.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-s05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "3",
+        "7",
+        "13",
+        "21",
+        "31",
+        "43"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "31",
+        "44",
+        "43",
+        "55"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-e05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "3",
+        "7",
+        "13",
+        "21",
+        "31",
+        "43"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "13",
+        "19",
+        "14",
+        "7"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-k05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "1",
+        "3",
+        "7",
+        "13",
+        "21",
+        "31",
+        "43"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "×3",
+        "-14",
+        "ayna (simetrik)"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-s06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "3",
+        "6",
+        "10",
+        "15",
+        "21",
+        "28",
+        "36"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "44",
+        "37",
+        "36",
+        "28"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-e06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "3",
+        "6",
+        "10",
+        "15",
+        "21",
+        "28",
+        "36"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "16",
         "10",
         "20",
-        "35",
-        "55",
-        "80",
-        "110"
+        "15"
       ],
-      "gizliIndeks": 6,
-      "secenekler": [
-        "130",
-        "111",
-        "108",
-        "110"
-      ],
-      "kural": "artış her adımda 5 büyüyor",
-      "aciklama": "Aradaki fark sırayla 5, 10, 15… şeklinde büyüyor."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-194",
+      "id": "i2-k06",
       "grup": "i",
       "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "surdur",
+      "seviye": 2,
+      "mod": "kural",
       "dizi": [
         "1",
-        "1",
-        "2",
         "3",
-        "5",
-        "8",
-        "13",
-        "21"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "18",
-        "22",
+        "6",
+        "10",
+        "15",
         "21",
-        "23"
+        "28",
+        "36"
       ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
-    },
-    {
-      "id": "i3-195",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "2",
-        "3",
-        "5",
-        "8",
-        "13",
-        "21",
-        "34"
-      ],
-      "gizliIndeks": 6,
+      "gizliIndeks": -1,
       "secenekler": [
-        "34",
-        "35",
-        "32",
-        "31"
+        "×3",
+        "fark artıyor",
+        "-13",
+        "ayna (simetrik)"
       ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-196",
+      "id": "i2-s07",
       "grup": "i",
       "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "1",
-        "2",
-        "4",
-        "8",
-        "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
-        "136",
-        "128",
-        "130",
-        "126"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i3-197",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
+      "seviye": 2,
       "mod": "surdur",
       "dizi": [
         "3",
@@ -4999,543 +4686,1182 @@
       ],
       "gizliIndeks": 6,
       "secenekler": [
-        "188",
-        "190",
+        "96",
+        "288",
         "192",
         "193"
       ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-198",
+      "id": "i2-e07",
       "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "surdur",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
       "dizi": [
+        "3",
+        "6",
         "12",
         "24",
-        "36",
         "48",
-        "60",
-        "72",
-        "84",
-        "96"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
         "96",
-        "84",
-        "108",
-        "94"
+        "192"
       ],
-      "kural": "+12 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 12 fazla."
+      "gizliIndeks": 4,
+      "secenekler": [
+        "24",
+        "48",
+        "72",
+        "49"
+      ],
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-199",
+      "id": "i2-k07",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "3",
+        "6",
+        "12",
+        "24",
+        "48",
+        "96",
+        "192"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "×2",
+        "+12",
+        "-13",
+        "iki dizi iç içe"
+      ],
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-s08",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "7",
+        "14",
+        "28",
+        "56",
+        "112",
+        "224"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "224",
+        "112",
+        "225",
+        "336"
+      ],
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-e08",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "7",
+        "14",
+        "28",
+        "56",
+        "112",
+        "224"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "28",
+        "14",
+        "29",
+        "42"
+      ],
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-k08",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "7",
+        "14",
+        "28",
+        "56",
+        "112",
+        "224"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "-14",
+        "×2",
+        "+15",
+        "×3"
+      ],
+      "kural": "×2",
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-s09",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "2",
+        "6",
+        "18",
+        "54",
+        "162",
+        "486"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "486",
+        "810",
+        "487",
+        "162"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-e09",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "2",
+        "6",
+        "18",
+        "54",
+        "162",
+        "486"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "55",
+        "54",
+        "18",
+        "90"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-k09",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "2",
+        "6",
+        "18",
+        "54",
+        "162",
+        "486"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "iki dizi iç içe",
+        "+15",
+        "×3",
+        "fark artıyor"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-s10",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "5",
+        "15",
+        "45",
+        "135",
+        "405"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "405",
+        "675",
+        "135",
+        "406"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-e10",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "5",
+        "15",
+        "45",
+        "135",
+        "405"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "15",
+        "46",
+        "45",
+        "75"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-k10",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "5",
+        "15",
+        "45",
+        "135",
+        "405"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "ayna (simetrik)",
+        "×2",
+        "×3",
+        "-14"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i2-s11",
       "grup": "i",
       "tur": "sayi",
-      "seviye": 3,
+      "seviye": 2,
       "mod": "surdur",
       "dizi": [
-        "120",
-        "105",
-        "90",
-        "75",
-        "60",
-        "45",
-        "30",
-        "15"
-      ],
-      "gizliIndeks": 7,
-      "secenekler": [
+        "4",
+        "9",
         "16",
-        "15",
-        "45",
-        "13"
-      ],
-      "kural": "-15 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 15 az."
-    },
-    {
-      "id": "i3-200",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
         "25",
-        "20",
-        "15",
-        "10",
-        "5"
-      ],
-      "gizliIndeks": 8,
-      "secenekler": [
-        "6",
-        "5",
-        "7",
-        "4"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i3-201",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "21",
-        "14",
-        "7"
+        "36",
+        "49",
+        "64"
       ],
       "gizliIndeks": 6,
       "secenekler": [
-        "9",
-        "7",
-        "6",
-        "11"
+        "64",
+        "49",
+        "79",
+        "65"
       ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "kural": "kare sayılar",
+      "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-202",
+      "id": "i2-e11",
       "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 3,
-      "mod": "surdur",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢"
-      ],
-      "gizliIndeks": 11,
-      "secenekler": [
-        "🟦",
-        "🟢",
-        "⭐",
-        "🔺"
-      ],
-      "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Karmaşık görsel döngü."
-    },
-    {
-      "id": "i3-203",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
+      "tur": "sayi",
+      "seviye": 2,
       "mod": "eksik",
       "dizi": [
-        "1",
-        "3",
-        "6",
-        "10",
-        "15",
-        "21",
-        "28",
-        "36"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "13",
-        "15",
-        "17",
-        "21"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
-    },
-    {
-      "id": "i3-204",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "1",
         "4",
         "9",
         "16",
         "25",
         "36",
-        "49"
+        "49",
+        "64"
       ],
       "gizliIndeks": 3,
       "secenekler": [
-        "21",
-        "14",
-        "18",
+        "34",
+        "25",
+        "26",
         "16"
       ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "kural": "kare sayılar",
+      "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-205",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "2",
-        "6",
-        "13",
-        "23",
-        "36",
-        "52",
-        "71"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "29",
-        "38",
-        "34",
-        "36"
-      ],
-      "kural": "artış her adımda 3 büyüyor",
-      "aciklama": "Aradaki fark sırayla 4, 7, 10… şeklinde büyüyor."
-    },
-    {
-      "id": "i3-206",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "5",
-        "10",
-        "20",
-        "35",
-        "55",
-        "80",
-        "110"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "20",
-        "19",
-        "22",
-        "10"
-      ],
-      "kural": "artış her adımda 5 büyüyor",
-      "aciklama": "Aradaki fark sırayla 5, 10, 15… şeklinde büyüyor."
-    },
-    {
-      "id": "i3-207",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "1",
-        "2",
-        "3",
-        "5",
-        "8",
-        "13",
-        "21"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "3",
-        "6",
-        "2",
-        "4"
-      ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
-    },
-    {
-      "id": "i3-208",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "2",
-        "3",
-        "5",
-        "8",
-        "13",
-        "21",
-        "34"
-      ],
-      "gizliIndeks": 4,
-      "secenekler": [
-        "13",
-        "11",
-        "10",
-        "15"
-      ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
-    },
-    {
-      "id": "i3-209",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "1",
-        "2",
-        "4",
-        "8",
-        "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "5",
-        "4",
-        "12",
-        "2"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i3-210",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "3",
-        "6",
-        "12",
-        "24",
-        "48",
-        "96",
-        "192"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "22",
-        "20",
-        "32",
-        "24"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i3-211",
+      "id": "i2-k11",
       "grup": "i",
       "tur": "sayi",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "12",
-        "24",
-        "36",
-        "48",
-        "60",
-        "72",
-        "84",
-        "96"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "60",
-        "48",
-        "46",
-        "36"
-      ],
-      "kural": "+12 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 12 fazla."
-    },
-    {
-      "id": "i3-212",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "120",
-        "105",
-        "90",
-        "75",
-        "60",
-        "45",
-        "30",
-        "15"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "90",
-        "88",
-        "92",
-        "120"
-      ],
-      "kural": "-15 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 15 az."
-    },
-    {
-      "id": "i3-213",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
-        "25",
-        "20",
-        "15",
-        "10",
-        "5"
-      ],
-      "gizliIndeks": 3,
-      "secenekler": [
-        "18",
-        "19",
-        "21",
-        "20"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i3-214",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "21",
-        "14",
-        "7"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "25",
-        "21",
-        "23",
-        "19"
-      ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
-    },
-    {
-      "id": "i3-215",
-      "grup": "i",
-      "tur": "sekil-renk",
-      "seviye": 3,
-      "mod": "eksik",
-      "dizi": [
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢"
-      ],
-      "gizliIndeks": 2,
-      "secenekler": [
-        "🟢",
-        "🔺",
-        "⭐",
-        "🟦"
-      ],
-      "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Karmaşık görsel döngü."
-    },
-    {
-      "id": "i3-216",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
+      "seviye": 2,
       "mod": "kural",
       "dizi": [
-        "1",
-        "3",
-        "6",
-        "10",
-        "15",
-        "21",
-        "28",
-        "36"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "dizi ortadan simetrik (ayna)",
-        "+4 ekleniyor",
-        "2 ile çarpılıyor",
-        "artış her adımda 1 büyüyor"
-      ],
-      "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
-    },
-    {
-      "id": "i3-217",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": [
-        "1",
         "4",
         "9",
         "16",
         "25",
         "36",
-        "49"
+        "49",
+        "64"
       ],
       "gizliIndeks": -1,
       "secenekler": [
-        "çift sayılar sırayla",
-        "renk döngüsü: 🔺🟦",
-        "artış her adımda 2 büyüyor",
-        "-2 çıkarılıyor"
+        "-13",
+        "fark artıyor",
+        "kare sayılar",
+        "×2"
       ],
-      "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "kural": "kare sayılar",
+      "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-218",
+      "id": "i2-s12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "2",
+        "20",
+        "4",
+        "19",
+        "6",
+        "18",
+        "8",
+        "17"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "26",
+        "8",
+        "18",
+        "17"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i2-e12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "2",
+        "20",
+        "4",
+        "19",
+        "6",
+        "18",
+        "8",
+        "17"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "6",
+        "30",
+        "19",
+        "18"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i2-k12",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "2",
+        "20",
+        "4",
+        "19",
+        "6",
+        "18",
+        "8",
+        "17"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "×3",
+        "×2",
+        "fark artıyor",
+        "iki dizi iç içe"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i2-s13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "B",
+        "E",
+        "H",
+        "K",
+        "N",
+        "Q"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "P",
+        "R",
+        "S",
+        "Q"
+      ],
+      "kural": "harfler üçer",
+      "aciklama": "Alfabede ikişer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i2-e13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "B",
+        "E",
+        "H",
+        "K",
+        "N",
+        "Q"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "M",
+        "K",
+        "L",
+        "J"
+      ],
+      "kural": "harfler üçer",
+      "aciklama": "Alfabede ikişer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i2-k13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "B",
+        "E",
+        "H",
+        "K",
+        "N",
+        "Q"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "harfler üçer",
+        "iki harf dizisi iç içe",
+        "harfler dörder",
+        "harfler birer"
+      ],
+      "kural": "harfler üçer",
+      "aciklama": "Alfabede ikişer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i2-s14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 2,
+      "mod": "surdur",
+      "dizi": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "18",
+        "12",
+        "6"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "7",
+        "12",
+        "5",
+        "6"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-e14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 2,
+      "mod": "eksik",
+      "dizi": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "18",
+        "12",
+        "6"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "18",
+        "12",
+        "13",
+        "6"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i2-k14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 2,
+      "mod": "kural",
+      "dizi": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "18",
+        "12",
+        "6"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar",
+        "×2",
+        "ayna (simetrik)",
+        "iki dizi iç içe"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i3-s01",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "1",
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34"
+      ],
+      "gizliIndeks": 8,
+      "secenekler": [
+        "47",
+        "35",
+        "21",
+        "34"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e01",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "1",
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "11",
+        "9",
+        "8",
+        "5"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k01",
       "grup": "i",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
       "dizi": [
+        "1",
+        "1",
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "son iki sayının toplamı",
+        "×2",
+        "kare sayılar +1",
+        "ayna (simetrik)"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-s02",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34",
+        "55"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "56",
+        "55",
+        "34",
+        "76"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e02",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34",
+        "55"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "18",
+        "14",
+        "13",
+        "8"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k02",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "2",
+        "3",
+        "5",
+        "8",
+        "13",
+        "21",
+        "34",
+        "55"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar",
+        "ayna (simetrik)",
+        "son iki sayının toplamı",
+        "×3"
+      ],
+      "kural": "son iki sayının toplamı",
+      "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-s03",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "3",
+        "9",
+        "27",
+        "81",
+        "243",
+        "729"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "1215",
+        "730",
+        "729",
+        "243"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e03",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "3",
+        "9",
+        "27",
+        "81",
+        "243",
+        "729"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "82",
+        "27",
+        "81",
+        "135"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k03",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "1",
+        "3",
+        "9",
+        "27",
+        "81",
+        "243",
+        "729"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "son iki sayının toplamı",
+        "iki dizi iç içe",
+        "ayna (simetrik)",
+        "×3"
+      ],
+      "kural": "×3",
+      "aciklama": "Her adımda üçe katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-s04",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "324",
+        "972"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "973",
+        "1620",
+        "972",
+        "324"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e04",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "324",
+        "972"
+      ],
+      "gizliIndeks": 2,
+      "secenekler": [
+        "12",
+        "37",
+        "36",
+        "60"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k04",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "324",
+        "972"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar",
+        "ayna (simetrik)",
+        "×3",
+        "×2"
+      ],
+      "kural": "×3",
+      "aciklama": "Her sayı bir öncekinin üç katı.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-s05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "6",
+        "12",
+        "24",
+        "48",
+        "96",
+        "192",
+        "384"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "385",
+        "384",
+        "192",
+        "576"
+      ],
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "6",
+        "12",
+        "24",
+        "48",
+        "96",
+        "192",
+        "384"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "96",
+        "48",
+        "97",
+        "144"
+      ],
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k05",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "6",
+        "12",
+        "24",
+        "48",
+        "96",
+        "192",
+        "384"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "son iki sayının toplamı",
+        "×2",
+        "kare sayılar +1"
+      ],
+      "kural": "×2",
+      "aciklama": "Her adımda ikiye katlanıyor.",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-s06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "2",
+        "6",
+        "13",
+        "23",
+        "36",
+        "52",
+        "71"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "90",
+        "72",
+        "52",
+        "71"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "2",
+        "6",
+        "13",
+        "23",
+        "36",
+        "52",
+        "71"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "13",
+        "33",
+        "24",
+        "23"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k06",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "1",
         "2",
         "6",
         "13",
@@ -5546,16 +5872,80 @@
       ],
       "gizliIndeks": -1,
       "secenekler": [
-        "artış her adımda 3 büyüyor",
-        "çift sayılar sırayla",
-        "bir büyük bir küçük",
-        "+10 ekleniyor"
+        "fark artıyor",
+        "×2",
+        "ayna (simetrik)",
+        "iki dizi iç içe"
       ],
-      "kural": "artış her adımda 3 büyüyor",
-      "aciklama": "Aradaki fark sırayla 4, 7, 10… şeklinde büyüyor."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-219",
+      "id": "i3-s07",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "5",
+        "10",
+        "20",
+        "35",
+        "55",
+        "80",
+        "110",
+        "145"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "145",
+        "146",
+        "180",
+        "110"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-e07",
+      "grup": "i",
+      "tur": "buyuyen",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "5",
+        "10",
+        "20",
+        "35",
+        "55",
+        "80",
+        "110",
+        "145"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "36",
+        "50",
+        "20",
+        "35"
+      ],
+      "kural": "fark artıyor",
+      "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
+    },
+    {
+      "id": "i3-k07",
       "grup": "i",
       "tur": "buyuyen",
       "seviye": 3,
@@ -5567,469 +5957,643 @@
         "35",
         "55",
         "80",
-        "110"
+        "110",
+        "145"
       ],
       "gizliIndeks": -1,
       "secenekler": [
-        "+2 ekleniyor",
-        "+3 ekleniyor",
-        "artış her adımda 5 büyüyor",
-        "+4 ekleniyor"
+        "iki dizi iç içe",
+        "fark artıyor",
+        "kare sayılar +1",
+        "×3"
       ],
-      "kural": "artış her adımda 5 büyüyor",
-      "aciklama": "Aradaki fark sırayla 5, 10, 15… şeklinde büyüyor."
+      "kural": "fark artıyor",
+      "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
+      "chc": [
+        "Gf",
+        "Gq"
+      ]
     },
     {
-      "id": "i3-220",
+      "id": "i3-s08",
       "grup": "i",
-      "tur": "buyuyen",
+      "tur": "sayi",
       "seviye": 3,
-      "mod": "kural",
+      "mod": "surdur",
       "dizi": [
-        "1",
-        "1",
         "2",
-        "3",
         "5",
-        "8",
-        "13",
-        "21"
+        "10",
+        "17",
+        "26",
+        "37",
+        "50",
+        "65"
       ],
-      "gizliIndeks": -1,
+      "gizliIndeks": 7,
       "secenekler": [
-        "-3 çıkarılıyor",
-        "tek sayılar sırayla",
-        "son iki sayının toplamı",
-        "aynı şekil ikişerli tekrar ediyor"
+        "80",
+        "50",
+        "65",
+        "66"
       ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "kural": "kare sayılar +1",
+      "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-221",
+      "id": "i3-e08",
       "grup": "i",
-      "tur": "buyuyen",
+      "tur": "sayi",
       "seviye": 3,
-      "mod": "kural",
+      "mod": "eksik",
       "dizi": [
         "2",
-        "3",
         "5",
-        "8",
-        "13",
-        "21",
-        "34"
+        "10",
+        "17",
+        "26",
+        "37",
+        "50",
+        "65"
       ],
-      "gizliIndeks": -1,
+      "gizliIndeks": 4,
       "secenekler": [
-        "artış her adımda 1 büyüyor",
-        "son iki sayının toplamı",
-        "-2 çıkarılıyor",
-        "renk döngüsü: 🔴🔵🔵"
+        "17",
+        "35",
+        "26",
+        "27"
       ],
-      "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "kural": "kare sayılar +1",
+      "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-222",
+      "id": "i3-k08",
       "grup": "i",
-      "tur": "buyuyen",
+      "tur": "sayi",
       "seviye": 3,
       "mod": "kural",
       "dizi": [
-        "1",
         "2",
-        "4",
-        "8",
+        "5",
+        "10",
+        "17",
+        "26",
+        "37",
+        "50",
+        "65"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "kare sayılar +1",
+        "kare sayılar",
+        "son iki sayının toplamı",
+        "iki dizi iç içe"
+      ],
+      "kural": "kare sayılar +1",
+      "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i3-s09",
+      "grup": "i",
+      "tur": "sayi",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "9",
         "16",
-        "32",
-        "64",
-        "128"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "üç şekil sırayla tekrar ediyor",
-        "+2 ekleniyor",
-        "2 ile çarpılıyor",
-        "+10 ekleniyor"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i3-223",
-      "grup": "i",
-      "tur": "buyuyen",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": [
-        "3",
-        "6",
-        "12",
-        "24",
-        "48",
-        "96",
-        "192"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "renk döngüsü: 🔺🟦",
-        "2 ile çarpılıyor",
-        "çift sayılar sırayla",
-        "üç şekil sırayla tekrar ediyor"
-      ],
-      "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i3-224",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": [
-        "12",
-        "24",
-        "36",
-        "48",
-        "60",
-        "72",
-        "84",
-        "96"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "dizi ortadan simetrik (ayna)",
-        "çift sayılar sırayla",
-        "+12 ekleniyor",
-        "-3 çıkarılıyor"
-      ],
-      "kural": "+12 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 12 fazla."
-    },
-    {
-      "id": "i3-225",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": [
-        "120",
-        "105",
-        "90",
-        "75",
-        "60",
-        "45",
-        "30",
-        "15"
-      ],
-      "gizliIndeks": -1,
-      "secenekler": [
-        "-15 çıkarılıyor",
-        "renk döngüsü: 🔴🔵🔵",
-        "iki şekil sırayla tekrar ediyor",
-        "+1 ekleniyor"
-      ],
-      "kural": "-15 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 15 az."
-    },
-    {
-      "id": "i3-226",
-      "grup": "i",
-      "tur": "ayna",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": [
-        "5",
-        "10",
-        "15",
-        "20",
         "25",
-        "20",
-        "15",
-        "10",
-        "5"
+        "36",
+        "49",
+        "64",
+        "81",
+        "100"
       ],
-      "gizliIndeks": -1,
+      "gizliIndeks": 7,
       "secenekler": [
-        "her adımda bir tane daha ekleniyor",
-        "tek sayılar sırayla",
-        "çift sayılar sırayla",
-        "dizi ortadan simetrik (ayna)"
+        "101",
+        "119",
+        "100",
+        "81"
       ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "kural": "kare sayılar",
+      "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-227",
+      "id": "i3-e09",
       "grup": "i",
-      "tur": "ayna",
+      "tur": "sayi",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "9",
+        "16",
+        "25",
+        "36",
+        "49",
+        "64",
+        "81",
+        "100"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "64",
+        "65",
+        "49",
+        "79"
+      ],
+      "kural": "kare sayılar",
+      "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i3-k09",
+      "grup": "i",
+      "tur": "sayi",
       "seviye": 3,
       "mod": "kural",
       "dizi": [
-        "7",
-        "14",
-        "21",
-        "28",
-        "21",
-        "14",
-        "7"
+        "9",
+        "16",
+        "25",
+        "36",
+        "49",
+        "64",
+        "81",
+        "100"
       ],
       "gizliIndeks": -1,
       "secenekler": [
-        "dizi ortadan simetrik (ayna)",
-        "+1 ekleniyor",
-        "renk döngüsü: 🔺🟦",
-        "artış her adımda 2 büyüyor"
+        "×3",
+        "son iki sayının toplamı",
+        "ayna (simetrik)",
+        "kare sayılar"
       ],
-      "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "kural": "kare sayılar",
+      "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
+      "chc": [
+        "Gq",
+        "Gf"
+      ]
     },
     {
-      "id": "i3-228",
+      "id": "i3-s10",
       "grup": "i",
-      "tur": "sekil-renk",
+      "tur": "ic-ice",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "1",
+        "100",
+        "2",
+        "90",
+        "4",
+        "80",
+        "8",
+        "70"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "8",
+        "70",
+        "71",
+        "132"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i3-e10",
+      "grup": "i",
+      "tur": "ic-ice",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "1",
+        "100",
+        "2",
+        "90",
+        "4",
+        "80",
+        "8",
+        "70"
+      ],
+      "gizliIndeks": 4,
+      "secenekler": [
+        "5",
+        "3",
+        "90",
+        "4"
+      ],
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
+    },
+    {
+      "id": "i3-k10",
+      "grup": "i",
+      "tur": "ic-ice",
       "seviye": 3,
       "mod": "kural",
       "dizi": [
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢",
-        "🔺",
-        "🟦",
-        "🟦",
-        "🟢"
+        "1",
+        "100",
+        "2",
+        "90",
+        "4",
+        "80",
+        "8",
+        "70"
       ],
       "gizliIndeks": -1,
       "secenekler": [
-        "aynı şekil ikişerli tekrar ediyor",
-        "artış her adımda 2 büyüyor",
-        "+5 ekleniyor",
+        "iki dizi iç içe",
+        "×3",
+        "×2",
         "son iki sayının toplamı"
       ],
-      "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Karmaşık görsel döngü."
+      "kural": "iki dizi iç içe",
+      "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
     },
     {
-      "id": "i1-229",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": ["1", "2", "4", "7", "11", "16"],
-      "gizliIndeks": 5,
-      "secenekler": ["16", "15", "17", "22"],
-      "kural": "fark artıyor",
-      "aciklama": "Aradaki farklar 1, 2, 3, 4, 5 diye artıyor."
-    },
-    {
-      "id": "i1-230",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": ["1", "3", "9", "27", "81", "243"],
-      "gizliIndeks": 5,
-      "secenekler": ["243", "162", "240", "729"],
-      "kural": "×3",
-      "aciklama": "Her sayı bir öncekinin üç katı."
-    },
-    {
-      "id": "i1-231",
+      "id": "i3-s11",
       "grup": "i",
       "tur": "ic-ice",
-      "seviye": 1,
+      "seviye": 3,
       "mod": "surdur",
-      "dizi": ["10", "1", "9", "2", "8", "3", "7", "4"],
+      "dizi": [
+        "3",
+        "2",
+        "6",
+        "4",
+        "12",
+        "8",
+        "24",
+        "16"
+      ],
       "gizliIndeks": 7,
-      "secenekler": ["4", "5", "6", "8"],
+      "secenekler": [
+        "8",
+        "16",
+        "17",
+        "24"
+      ],
       "kural": "iki dizi iç içe",
-      "aciklama": "Bir dizi 10'dan geriye, diğeri 1'den ileriye gidiyor."
+      "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
     },
     {
-      "id": "i1-232",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": ["1", "4", "9", "16", "25", "36"],
-      "gizliIndeks": 5,
-      "secenekler": ["36", "42", "49", "35"],
-      "kural": "kare sayılar",
-      "aciklama": "Sayılar 1'in, 2'nin, 3'ün ve devamının kareleri."
-    },
-    {
-      "id": "i1-233",
-      "grup": "i",
-      "tur": "harf",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": ["A", "C", "E", "G", "I", "K"],
-      "gizliIndeks": 5,
-      "secenekler": ["J", "K", "L", "M"],
-      "kural": "harfler ikişer ilerliyor",
-      "aciklama": "Alfabede bir harf atlayarak ilerliyor."
-    },
-    {
-      "id": "i1-234",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 1,
-      "mod": "surdur",
-      "dizi": ["2", "4", "8", "16", "32", "64"],
-      "gizliIndeks": 5,
-      "secenekler": ["64", "96", "62", "128"],
-      "kural": "×2",
-      "aciklama": "Her sayı bir öncekinin iki katı."
-    },
-    {
-      "id": "i2-235",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": ["1", "2", "4", "7", "11", "16"],
-      "gizliIndeks": 3,
-      "secenekler": ["6", "7", "8", "10"],
-      "kural": "fark artıyor",
-      "aciklama": "Aradaki farklar 1, 2, 3, 4, 5 diye artıyor."
-    },
-    {
-      "id": "i2-236",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": ["2", "6", "18", "54", "162", "486"],
-      "gizliIndeks": 4,
-      "secenekler": ["162", "108", "324", "486"],
-      "kural": "×3",
-      "aciklama": "Her sayı bir öncekinin üç katı."
-    },
-    {
-      "id": "i2-237",
+      "id": "i3-e11",
       "grup": "i",
       "tur": "ic-ice",
-      "seviye": 2,
+      "seviye": 3,
       "mod": "eksik",
-      "dizi": ["10", "1", "9", "2", "8", "3", "7", "4"],
+      "dizi": [
+        "3",
+        "2",
+        "6",
+        "4",
+        "12",
+        "8",
+        "24",
+        "16"
+      ],
       "gizliIndeks": 5,
-      "secenekler": ["2", "3", "4", "6"],
+      "secenekler": [
+        "12",
+        "8",
+        "9",
+        "4"
+      ],
       "kural": "iki dizi iç içe",
-      "aciklama": "Bir dizi 10'dan geriye, diğeri 1'den ileriye gidiyor."
+      "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
     },
     {
-      "id": "i2-238",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": ["1", "4", "9", "16", "25", "36"],
-      "gizliIndeks": 4,
-      "secenekler": ["24", "25", "26", "36"],
-      "kural": "kare sayılar",
-      "aciklama": "Sayılar sırasıyla doğal sayıların kareleri."
-    },
-    {
-      "id": "i2-239",
-      "grup": "i",
-      "tur": "harf",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": ["B", "D", "F", "H", "J", "L"],
-      "gizliIndeks": 3,
-      "secenekler": ["G", "H", "I", "J"],
-      "kural": "harfler ikişer ilerliyor",
-      "aciklama": "Alfabede birer harf atlayarak ilerliyor."
-    },
-    {
-      "id": "i2-240",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 2,
-      "mod": "eksik",
-      "dizi": ["3", "6", "12", "24", "48", "96"],
-      "gizliIndeks": 3,
-      "secenekler": ["18", "24", "36", "48"],
-      "kural": "×2",
-      "aciklama": "Her adımda sayı iki katına çıkıyor."
-    },
-    {
-      "id": "i3-241",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": ["1", "2", "4", "7", "11", "16", "22"],
-      "gizliIndeks": -1,
-      "secenekler": ["+3", "×2", "fark artıyor", "kare sayılar"],
-      "kural": "fark artıyor",
-      "aciklama": "Aradaki farklar 1, 2, 3, 4, 5, 6 diye artıyor."
-    },
-    {
-      "id": "i3-242",
-      "grup": "i",
-      "tur": "sayi",
-      "seviye": 3,
-      "mod": "kural",
-      "dizi": ["1", "3", "9", "27", "81", "243", "729"],
-      "gizliIndeks": -1,
-      "secenekler": ["+3", "×2", "×3", "fark artıyor"],
-      "kural": "×3",
-      "aciklama": "Her sayı bir öncekinin üç katı."
-    },
-    {
-      "id": "i3-243",
+      "id": "i3-k11",
       "grup": "i",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "kural",
-      "dizi": ["10", "1", "9", "2", "8", "3", "7", "4", "6", "5"],
+      "dizi": [
+        "3",
+        "2",
+        "6",
+        "4",
+        "12",
+        "8",
+        "24",
+        "16"
+      ],
       "gizliIndeks": -1,
-      "secenekler": ["+3", "×2", "fark artıyor", "iki dizi iç içe"],
+      "secenekler": [
+        "son iki sayının toplamı",
+        "iki dizi iç içe",
+        "×2",
+        "ayna (simetrik)"
+      ],
       "kural": "iki dizi iç içe",
-      "aciklama": "10'dan geriye ve 1'den ileriye giden iki dizi sırayla iç içe."
+      "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
+      "chc": [
+        "Gf",
+        "Gsm"
+      ]
     },
     {
-      "id": "i3-244",
+      "id": "i3-s12",
       "grup": "i",
-      "tur": "sayi",
+      "tur": "harf",
       "seviye": 3,
-      "mod": "kural",
-      "dizi": ["4", "9", "16", "25", "36", "49", "64"],
-      "gizliIndeks": -1,
-      "secenekler": ["×2", "×3", "fark artıyor", "kare sayılar"],
-      "kural": "kare sayılar",
-      "aciklama": "4'ten başlayarak doğal sayıların ardışık kareleri geliyor."
+      "mod": "surdur",
+      "dizi": [
+        "A",
+        "E",
+        "I",
+        "M",
+        "Q",
+        "U"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "T",
+        "U",
+        "V",
+        "W"
+      ],
+      "kural": "harfler dörder",
+      "aciklama": "Alfabede üçer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
     },
     {
-      "id": "i3-245",
+      "id": "i3-e12",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "A",
+        "E",
+        "I",
+        "M",
+        "Q",
+        "U"
+      ],
+      "gizliIndeks": 3,
+      "secenekler": [
+        "L",
+        "M",
+        "N",
+        "O"
+      ],
+      "kural": "harfler dörder",
+      "aciklama": "Alfabede üçer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i3-k12",
       "grup": "i",
       "tur": "harf",
       "seviye": 3,
       "mod": "kural",
-      "dizi": ["A", "C", "E", "G", "I", "K", "M", "O"],
+      "dizi": [
+        "A",
+        "E",
+        "I",
+        "M",
+        "Q",
+        "U"
+      ],
       "gizliIndeks": -1,
-      "secenekler": ["+3", "×2", "harfler ikişer ilerliyor", "fark artıyor"],
-      "kural": "harfler ikişer ilerliyor",
-      "aciklama": "Alfabede her adımda bir harf atlanıyor."
+      "secenekler": [
+        "harfler dörder",
+        "harfler birer",
+        "harfler üçer",
+        "harfler ikişer"
+      ],
+      "kural": "harfler dörder",
+      "aciklama": "Alfabede üçer harf atlanıyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
     },
     {
-      "id": "i3-246",
+      "id": "i3-s13",
       "grup": "i",
-      "tur": "sayi",
+      "tur": "harf",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "A",
+        "Z",
+        "C",
+        "X",
+        "E",
+        "V",
+        "G",
+        "T"
+      ],
+      "gizliIndeks": 7,
+      "secenekler": [
+        "T",
+        "S",
+        "U",
+        "V"
+      ],
+      "kural": "iki harf dizisi iç içe",
+      "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i3-e13",
+      "grup": "i",
+      "tur": "harf",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "A",
+        "Z",
+        "C",
+        "X",
+        "E",
+        "V",
+        "G",
+        "T"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "W",
+        "X",
+        "U",
+        "V"
+      ],
+      "kural": "iki harf dizisi iç içe",
+      "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i3-k13",
+      "grup": "i",
+      "tur": "harf",
       "seviye": 3,
       "mod": "kural",
-      "dizi": ["5", "10", "20", "40", "80", "160", "320"],
+      "dizi": [
+        "A",
+        "Z",
+        "C",
+        "X",
+        "E",
+        "V",
+        "G",
+        "T"
+      ],
       "gizliIndeks": -1,
-      "secenekler": ["+3", "×2", "×3", "kare sayılar"],
-      "kural": "×2",
-      "aciklama": "Her adımda sayı iki katına çıkıyor."
+      "secenekler": [
+        "iki harf dizisi iç içe",
+        "harfler üçer",
+        "harfler birer",
+        "harfler ikişer"
+      ],
+      "kural": "iki harf dizisi iç içe",
+      "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
+      "chc": [
+        "Gf",
+        "Gc"
+      ]
+    },
+    {
+      "id": "i3-s14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 3,
+      "mod": "surdur",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "36",
+        "12",
+        "4"
+      ],
+      "gizliIndeks": 6,
+      "secenekler": [
+        "3",
+        "5",
+        "12",
+        "4"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i3-e14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 3,
+      "mod": "eksik",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "36",
+        "12",
+        "4"
+      ],
+      "gizliIndeks": 5,
+      "secenekler": [
+        "13",
+        "36",
+        "11",
+        "12"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
+    },
+    {
+      "id": "i3-k14",
+      "grup": "i",
+      "tur": "ayna",
+      "seviye": 3,
+      "mod": "kural",
+      "dizi": [
+        "4",
+        "12",
+        "36",
+        "108",
+        "36",
+        "12",
+        "4"
+      ],
+      "gizliIndeks": -1,
+      "secenekler": [
+        "fark artıyor",
+        "son iki sayının toplamı",
+        "ayna (simetrik)",
+        "kare sayılar +1"
+      ],
+      "kural": "ayna (simetrik)",
+      "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
+      "chc": [
+        "Gv",
+        "Gf"
+      ]
     }
   ]
 }
