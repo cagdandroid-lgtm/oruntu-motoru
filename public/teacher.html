@@ -31,27 +31,32 @@
 
         <h3 class="alt-baslik">1. Grubu seç <span class="ipucu-satir">— öğrenci ekranı bu gruba göre açılır</span></h3>
         <div class="grup-kartlari" id="grup-kartlari"></div>
+
+        <h3 class="alt-baslik">2. Ders etiketi <span class="ipucu-satir">— kayıtlarda ve karne başlığında görünür</span></h3>
+        <input type="text" id="ders-etiketi" maxlength="60" autocomplete="off"
+               placeholder="Örn: 2. Ders · 12 Eylül">
+
         <div class="dugme-satiri">
           <button class="basla" id="oturum-ac">🚪 Oturumu Aç</button>
           <button class="uyari" id="oturum-kapat">🔒 Oturumu Kapat</button>
         </div>
         <p class="ipucu" id="oturum-durumu">Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.</p>
 
-        <h3 class="alt-baslik">2. Etkinliği başlat <span class="ipucu-satir">— seviye ve mod yalnız sende görünür</span></h3>
-        <div class="ayar-satiri">
-          <label>Seviye
-            <select id="seviye">
-              <option value="1">Seviye 1 — kolay</option>
-              <option value="2">Seviye 2 — orta</option>
-              <option value="3">Seviye 3 — zor (30 sn süreli)</option>
-            </select>
-          </label>
-          <label>Mod
-            <select id="mod">
-              <option value="surdur">➡️ Sürdür</option>
-              <option value="eksik">🕳️ Eksiği Bul</option>
-              <option value="kural">🔍 Kuralı Yakala</option>
-            </select>
+        <h3 class="alt-baslik">3. Etkinliği başlat <span class="ipucu-satir">— seviye ve mod yalnız sende görünür</span></h3>
+        <label class="tek-alan">Seviye
+          <select id="seviye">
+            <option value="1">Seviye 1 — kolay</option>
+            <option value="2">Seviye 2 — orta</option>
+            <option value="3">Seviye 3 — zor (30 sn süreli)</option>
+          </select>
+        </label>
+
+        <p class="ipucu">Birden çok mod seçebilirsin; seçilenler tur boyunca dönüşümlü gelir.</p>
+        <div class="mod-secim" id="mod-secim"></div>
+        <div class="kip-secim">
+          <label>
+            <input type="checkbox" id="mod-karisik"> 🎲 Mod karışık
+            <span class="ipucu-satir">— sıra rastgele olsun</span>
           </label>
         </div>
         <!-- Akış kontrolleri: yeşil=başlat/devam, kehribar=duraklat, teal=atla, koyu=bitir -->
@@ -62,6 +67,17 @@
           <button class="notr" id="atla">⏭️ Soruyu Atla</button>
           <button class="bitir" id="kapat">✅ Turu Bitir</button>
         </div>
+        <div class="dugme-satiri gezinme" id="soru-gezinme">
+          <button class="notr" id="onceki-soru">◀ Önceki soru</button>
+          <label class="git-secici">Şu soruya git
+            <select id="soruya-git"><option value="">—</option></select>
+          </label>
+          <button class="notr" id="sonraki-soru">Sonraki soru ▶</button>
+        </div>
+        <p class="ipucu gizli" id="gezinme-notu">
+          👤 Bu mod bireyseldir — herkes kendi hızında çalışır, soru gezinme kapalıdır.
+        </p>
+
         <div class="dugme-satiri">
           <button class="uyari" id="geri-al">↩️ Soruyu İptal Et (puanı geri al)</button>
         </div>
@@ -82,7 +98,7 @@
         <div>
           <h3 class="alt-baslik">👥 Sahnedeki öğrenciler (<span id="ogrenci-sayisi">0</span>)</h3>
           <p class="ipucu" id="cevap-durumu">—</p>
-          <p class="ipucu">📊 rapor · ✏️ isim · 🔢 puan · 🔓 ismi serbest bırak.
+          <p class="ipucu">📊 rapor · ✏️ isim · 🔢 puan · 🔓 ismi serbest bırak · 🚪 sahneden çıkar.
             Kod rozeti (E-01) kayıtlarda kullanılan takma addır.</p>
           <ul class="skor-liste duzenlenebilir" id="skor-liste"></ul>
         </div>
@@ -97,7 +113,7 @@
           <button class="sade" id="tasarim-gorunurluk" aria-pressed="true">✏️ Tasarım bölümü açık</button>
           <button class="sade" id="galeri-gorunurluk" aria-pressed="false">🙈 Galeri kapalı</button>
         </div>
-        <p class="ipucu"><b>Tasarım bölümü:</b> öğrencinin ekranındaki “Kendi Örüntünü Kur” kartını açar/kapatır.
+        <p class="ipucu"><b>Tasarım bölümü:</b> öğrencinin ekranındaki “Örüntü Tasarla” kartını açar/kapatır.
           <b>Galeri:</b> gönderilen tasarımların öğrenci ekranında görünmesini açar/kapatır.
           Bir tasarımı sınıfa <b>soru</b> olarak göndermek için önce tur başlatmış olmalısın.</p>
         <div class="galeri" id="galeri"><span class="ipucu">Henüz tasarım gönderilmedi.</span></div>
@@ -120,6 +136,11 @@
         </div>
 
         <h3 class="alt-baslik">Karneler <span class="ipucu-satir">— A4, yazdır veya PDF olarak kaydet</span></h3>
+        <div class="kip-secim" role="radiogroup" aria-label="Karne çıktı kipi">
+          <span class="kip-etiket">Karnede ne yazsın?</span>
+          <label><input type="radio" name="karne-kip" value="isimli" checked> 👪 İsimli <span class="ipucu-satir">(veli için)</span></label>
+          <label><input type="radio" name="karne-kip" value="kodlu"> 🔬 Kodlu <span class="ipucu-satir">(isim geçmez)</span></label>
+        </div>
         <div class="dugme-satiri">
           <button class="notr" id="tum-karneler">🖨️ Tüm Karneleri İndir</button>
           <label class="dosya-sec">

@@ -856,3 +856,173 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   .bolum-govde { padding: 4px 14px 18px; }
   .bolum > summary { padding: 14px; }
 }
+
+/* ---------- Karne çıktı kipi (İsimli / Kodlu) ---------- */
+
+.kip-secim {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--kagit);
+  border: 1px solid var(--cizgi);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin: 8px 0 4px;
+}
+.kip-secim .kip-etiket { font-weight: 600; font-size: 0.98rem; }
+.kip-secim label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.kip-secim input[type="radio"] { width: 20px; height: 20px; margin: 0; accent-color: var(--cam); }
+
+/* Yıkıcı satır içi düğme — diğerlerinden renk ve çerçeveyle ayrışır */
+.skor-liste .mini.tehlikeli {
+  background: var(--yanlis-sis);
+  border: 1px solid var(--yanlis);
+}
+.skor-liste .mini.tehlikeli:hover:not(:disabled) { background: var(--yanlis); }
+
+/* ---------- Yeni modlar: öğrenci ekranı ---------- */
+
+/* Hatayı Bul — dokunulabilir hücreler */
+.hucre.secilebilir { cursor: pointer; border-style: dashed; }
+.hucre.secilebilir:hover,
+.hucre.secilebilir:focus-visible {
+  border-color: var(--kehribar);
+  background: var(--kehribar-sis);
+  transform: translateY(-3px);
+}
+.hucre.donuk { opacity: 0.45; }
+/* İşaret renkle değil, çerçeve + köşe imiyle de verilir */
+.hucre.isaretli {
+  border-color: var(--kehribar);
+  border-width: 3px;
+  background: var(--kehribar-sis);
+  position: relative;
+}
+.hucre.isaretli::after {
+  content: '👆';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+}
+.secenek.hata-yok { grid-column: 1 / -1; }
+
+/* Tersine Örüntü — boş ara kutular ve akış okları */
+.hucre.bos-hucre { border-style: dotted; opacity: 0.5; background: transparent; }
+.akis-oku { align-self: center; color: var(--murekkep-soluk); font-size: 1.2rem; }
+
+/* Uzak Terim — süreklilik noktası ve hedef terim etiketi */
+.hucre.nokta-hucre { border: none; background: transparent; color: var(--murekkep-soluk); }
+.hedef-etiket {
+  position: absolute;
+  top: -12px;
+  right: -6px;
+  background: var(--cam);
+  color: var(--kart);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.dizi .hucre { position: relative; }
+
+/* Kendi Örüntünü Kur */
+.kendi-alani { display: block; }
+.kendi-izgara {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.kendi-slot {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background: var(--kart);
+  color: var(--murekkep-soluk);
+  border: 2px dashed var(--cizgi);
+  border-radius: 14px;
+  padding: 0;
+  min-height: 0;
+  min-width: 0;
+}
+.kendi-slot.dolu { border-style: solid; color: var(--murekkep); }
+.kendi-slot.aktif { border-color: var(--kehribar); border-width: 3px; background: var(--kehribar-sis); }
+/* Motorun eklediği terimler: gri zemin + kesikli çerçeve + 🤖 imi */
+.kendi-slot.motor {
+  background: var(--kagit-koyu);
+  border-style: dashed;
+  border-color: var(--murekkep-soluk);
+  color: var(--murekkep);
+  position: relative;
+}
+.kendi-slot.motor::after {
+  content: '🤖';
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  font-size: 0.85rem;
+}
+.sayi-pad button { font-size: 1.15rem; min-width: 48px; }
+.kendi-soru { font-weight: 600; text-align: center; margin: 6px 0 12px; }
+.secenek.karar-dogru,
+.secenek.karar-yanlis { flex: 1; min-width: 150px; }
+
+/* ---------- Öğretmen paneli: mod seçimi ve soru gezinme ---------- */
+
+.tek-alan { max-width: 320px; }
+
+.mod-secim {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.mod-kutu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 48px;
+  padding: 8px 12px;
+  background: var(--kagit);
+  border: 2px solid var(--cizgi);
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.mod-kutu input { width: 20px; height: 20px; margin: 0; accent-color: var(--cam); }
+.mod-kutu.secili { border-color: var(--cam); background: var(--cam-sis); }
+.bireysel-rozeti {
+  background: var(--kehribar-sis);
+  color: var(--kehribar);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.dugme-satiri.gezinme { align-items: center; }
+.git-secici {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 190px;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+.git-secici select { margin: 0; flex: 1; }

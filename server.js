@@ -11,12 +11,11 @@ const { Oyun } = require('./lib/oyun');
 const raporRotalari = require('./lib/rapor-rotalari');
 const liste = require('./lib/liste');
 const ogretmenOlaylari = require('./lib/ogretmen-olaylari');
+const modlar = require('./lib/modlar');
+const kimlikModulu = require('./lib/kimlik');
 
-// Öğretmen paneli şifresi.
-// Yerelde (env değişkeni yokken) YEREL_SIFRE geçerlidir.
-// Render'da Environment > ADMIN_PASSWORD = hayfan777 tanımlanır ve o kullanılır.
-const YEREL_SIFRE = 'yerel777';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || YEREL_SIFRE;
+// Öğretmen paneli şifresi — koda gömülmez, lib/kimlik.js çözer.
+const KIMLIK = kimlikModulu.sifreyiCoz();
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -79,13 +78,32 @@ const GIRIS_SAYFASI = (hataVarMi) => `<!DOCTYPE html>
   </form>
 </body></html>`;
 
+const PANEL_KAPALI_SAYFASI = `<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel kapalı — Örüntü Motoru</title>
+<link rel="stylesheet" href="/style.css"></head>
+<body class="giris-zemin">
+  <div class="kart giris-kart">
+    <h1>🔒 Panel kapalı</h1>
+    <p class="ipucu">Öğretmen paneli, sunucuda <b>ADMIN_PASSWORD</b> tanımlanana kadar kapalıdır.</p>
+    <p class="ipucu">Render panelinde <b>Environment → ADMIN_PASSWORD</b> ekleyip servisi yeniden başlat.</p>
+  </div>
+</body></html>`;
+
 app.get('/teacher', (istek, yanit) => {
+  if (!KIMLIK.acik) return yanit.status(503).send(PANEL_KAPALI_SAYFASI);
   if (!yetkiliMi(istek)) return yanit.send(GIRIS_SAYFASI(istek.query.hata === '1'));
   yanit.sendFile(path.join(__dirname, 'public', 'teacher.html'));
 });
 
 app.post('/teacher/giris', (istek, yanit) => {
-  if (istek.body.sifre === ADMIN_PASSWORD) {
+  // Render'da ADMIN_PASSWORD tanımlı değilse giriş tümüyle kapalıdır
+  if (!KIMLIK.acik) {
+    console.log('[güvenlik] giriş denemesi reddedildi — ADMIN_PASSWORD tanımlı değil');
+    return yanit.redirect('/teacher');
+  }
+  if (istek.body.sifre === KIMLIK.sifre) {
     yanit.setHeader('Set-Cookie', 'admin_auth=true; Path=/; HttpOnly; SameSite=Lax; Max-Age=43200');
     console.log('[öğretmen] panele giriş yapıldı');
     return yanit.redirect('/teacher');
@@ -137,7 +155,11 @@ function panelYayinla() {
     oyuncular: oyun.panelTablosu(),
     galeri: tasarimlar,
     ayar: oyun.ayar, // zorluk/mod bilgisi YALNIZ panele gider
-    oturum: oyun.oturum,
+    oturum: oyun.oturum, // { acik, grup, dersEtiketi }
+    modBilgi: modlar.MODLAR,
+    // Soru gezinme denetimleri yalnız senkron modda anlamlıdır
+    senkronMu: !oyun.soru || modlar.senkronMu(oyun.soru.mod),
+    suankiMod: oyun.soru ? oyun.soru.mod : null,
     // Grup özeti: aktif öğrenci sayısı + o grup için içerik var mı
     gruplar: liste.grupOzeti().map((g) => ({
       ...g,
@@ -231,6 +253,21 @@ io.on('connection', (soket) => {
     herkeseDurum();
   });
 
+  // Öğrenci giriş ekranına döndüğünde güncel kart listesini ister
+  soket.on('giris:tazele', () => soket.emit('giris', oyun.girisPaketi()));
+
+  // "Kendi Örüntünü Kur": çocuk dizisini kurar, motor sürdürür (cevap değil, ön izleme)
+  soket.on('kendi:surdur', (veri, geriCagir) => {
+    const oyuncu = oyun.oyuncuBul(soket.id);
+    if (!oyuncu) return geriCagir && geriCagir({ hata: 'Önce oyuna katılmalısın.' });
+    if (!oyun.soru || oyun.soru.mod !== 'kendi') {
+      return geriCagir && geriCagir({ hata: 'Şu an bu mod açık değil.' });
+    }
+    const sonuc = modlar.kendiSurdur(veri && veri.dizi);
+    console.log(`[kendi] ${oyuncu.isim} diziyi kurdu (${(veri && veri.dizi || []).length} öğe)`);
+    geriCagir && geriCagir(sonuc);
+  });
+
   soket.on('cevap', (veri, geriCagir) => {
     const sonuc = oyun.cevapVer(soket.id, veri && veri.secim);
     geriCagir && geriCagir(sonuc);
@@ -280,13 +317,5 @@ io.on('connection', (soket) => {
 sunucu.listen(PORT, () => {
   console.log(`🧩 Örüntü Motoru çalışıyor → http://localhost:${PORT}`);
   console.log(`👩‍🏫 Öğretmen paneli → http://localhost:${PORT}/teacher`);
-  console.log('─'.repeat(46));
-  if (process.env.ADMIN_PASSWORD) {
-    console.log(`🔐 Öğretmen şifresi : ${ADMIN_PASSWORD}`);
-    console.log('   Kaynak           : ADMIN_PASSWORD ortam değişkeni');
-  } else {
-    console.log(`🔐 Öğretmen şifresi : ${YEREL_SIFRE}`);
-    console.log('   Kaynak           : yerel varsayılan (YEREL_SIFRE)');
-  }
-  console.log('─'.repeat(46));
+  kimlikModulu.baslangictaYaz(KIMLIK);
 });

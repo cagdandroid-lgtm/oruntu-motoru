@@ -9,10 +9,12 @@ const MOD_METNI = {
 };
 
 let benimIsim = '';
+let sonGirisPaketi = '';
 let benimKod = localStorage.getItem('oruntu_kod') || '';
 let jeton = localStorage.getItem('oruntu_jeton') || '';
 let mevcutSoru = null;
 let cevapVerdim = false;
+let turKapandi = false; // tur:bitti geldiyse cevap onayı açıklamanın üstüne yazmaz
 let oyundaMiyim = false;
 
 const $ = (id) => document.getElementById(id);
@@ -45,12 +47,17 @@ function kartlariCiz(kartlar) {
   }
   kartlar.forEach((k, i) => {
     const kart = document.createElement('button');
-    kart.className = 'isim-kart' + (k.oyunda ? ' oyunda' : '');
+    const kapali = k.oyunda || k.bekleme > 0;
+    kart.className = 'isim-kart' + (kapali ? ' oyunda' : '');
     kart.style.animationDelay = Math.min(i * 0.04, 0.6) + 's';
     kart.innerHTML =
       `<span class="avatar" aria-hidden="true">${kacan(basHarf(k.isim))}</span>` +
       `<span class="kart-isim"></span>` +
-      (k.oyunda ? '<span class="oyunda-rozeti">🎮 oyunda</span>' : '') +
+      (k.bekleme > 0
+        ? `<span class="oyunda-rozeti">⏳ ${k.bekleme} sn</span>`
+        : k.oyunda
+          ? '<span class="oyunda-rozeti">🎮 oyunda</span>'
+          : '') +
       (k.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '');
     kart.querySelector('.kart-isim').textContent = k.isim;
     kart.addEventListener('click', () => katil(k.kod));
@@ -84,15 +91,19 @@ function oyunaGir(kod, yanit) {
 
 function girisEkraninaDon() {
   oyundaMiyim = false;
+  mevcutSoru = null;
+  cevapVerdim = false;
   gorunur($('ekran-oyun'), false);
   gorunur($('ekran-giris'), true);
+  // Önbelleği sıfırla ki kart listesi (kilit/bekleme durumları) kesin yeniden çizilsin
+  sonGirisPaketi = '';
+  soket.emit('giris:tazele');
   Ambiyans.baslat('ambiyans');
 }
 
 // Oturum durumu değiştikçe giriş ekranı kendiliğinden güncellenir.
 // Kartlar yalnız paket GERÇEKTEN değişince yeniden çizilir; yoksa her sunucu
 // yayınında DOM yenilenir ve öğrencinin dokunuşu boşa düşebilir.
-let sonGirisPaketi = '';
 soket.on('giris', (paket) => {
   const imza = JSON.stringify(paket);
   if (imza === sonGirisPaketi) return;
@@ -103,19 +114,29 @@ soket.on('giris', (paket) => {
   if (paket.acik) kartlariCiz(paket.kartlar);
 });
 
-// Öğretmen serbest bıraktı ya da oturum grubu değişti: giriş ekranına dönülür
+// KİMLİK YAŞAM DÖNGÜSÜ — öğretmen çıkardı / serbest bıraktı / grup değişti:
+// cihazdaki isim silinir, oyun görünümü kapanır, isim seçme ekranı açılır.
+// Çocuk hiçbir koşulda eski oyun ekranında takılı kalmaz.
+const CIKIS_MESAJI = {
+  cikarildi: 'Öğretmenin seni oyundan çıkardı. Birazdan yeniden girebilirsin. 👋',
+  grup: 'Öğretmen başka bir gruba geçti. 👋',
+  serbest: 'Öğretmen seni listeye geri aldı. İstersen adına yeniden dokun. 🙂',
+};
+
 soket.on('cikarildin', (veri) => {
+  kimligiUnut();
+  girisEkraninaDon();
+  girisHatasi(CIKIS_MESAJI[(veri && veri.sebep) || 'serbest'] || CIKIS_MESAJI.serbest);
+});
+
+// Cihazda kayıtlı isim/oturum izlerini siler
+function kimligiUnut() {
   benimIsim = '';
   benimKod = '';
+  jeton = '';
   localStorage.removeItem('oruntu_kod');
   localStorage.removeItem('oruntu_jeton');
-  girisEkraninaDon();
-  girisHatasi(
-    veri && veri.sebep === 'grup'
-      ? 'Öğretmen başka bir gruba geçti. 👋'
-      : 'Öğretmen seni listeye geri aldı. İstersen adına yeniden dokun. 🙂'
-  );
-});
+}
 
 // ---------------- Ses açma/kapama (tercih hatırlanır) ----------------
 
@@ -144,60 +165,14 @@ $('tasarim-ac').addEventListener('click', () =>
 
 // ---------------- Soru çizimi ----------------
 
-function diziyiCiz(soru) {
-  const alan = $('dizi');
-  alan.innerHTML = '';
-  soru.dizi.forEach((deger, i) => {
-    const hucre = document.createElement('div');
-    const gizliMi = i === soru.gizliIndeks;
-    const sayisalMi = deger !== null && /^\d+$/.test(String(deger));
-    hucre.className = 'hucre' + (gizliMi ? ' gizli-hucre' : '') + (sayisalMi ? ' sayi' : '');
-    hucre.textContent = gizliMi ? '?' : deger;
-    hucre.style.animationDelay = i * 0.05 + 's';
-
-    if (gizliMi) {
-      hucre.id = 'gizli-hucre';
-      hucre.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        hucre.classList.add('suruklenirken');
-      });
-      hucre.addEventListener('dragleave', () => hucre.classList.remove('suruklenirken'));
-      hucre.addEventListener('drop', (e) => {
-        e.preventDefault();
-        hucre.classList.remove('suruklenirken');
-        const secim = e.dataTransfer.getData('text/plain');
-        if (secim) cevapGonder(secim);
-      });
-    }
-    alan.appendChild(hucre);
-  });
-}
-
-function secenekleriCiz(soru) {
-  const alan = $('secenekler');
-  alan.innerHTML = '';
-  const metinMi = soru.mod === 'kural';
-
-  for (const secenek of soru.secenekler) {
-    const dugme = document.createElement('button');
-    dugme.className = 'secenek' + (metinMi ? ' metin' : '');
-    dugme.textContent = secenek;
-    dugme.dataset.deger = secenek;
-    dugme.draggable = !metinMi;
-
-    dugme.addEventListener('dragstart', (e) => e.dataTransfer.setData('text/plain', secenek));
-    dugme.addEventListener('click', () => cevapGonder(secenek));
-    alan.appendChild(dugme);
-  }
-}
-
 function cevapGonder(secim) {
   if (cevapVerdim || !mevcutSoru) return;
   cevapVerdim = true;
 
+  const basitMi = typeof secim !== 'object';
   document.querySelectorAll('.secenek').forEach((d) => {
     d.disabled = true;
-    if (d.dataset.deger === String(secim)) d.classList.add('secildi');
+    if (basitMi && d.dataset.deger === String(secim)) d.classList.add('secildi');
   });
 
   soket.emit('cevap', { secim }, (yanit) => {
@@ -207,8 +182,12 @@ function cevapGonder(secim) {
         d.disabled = false;
         d.classList.remove('secildi');
       });
+      $('geri-bildirim').innerHTML = `<div class="geri-bildirim notr">${kacan(yanit.hata)}</div>`;
       return;
     }
+    // Sınıfta tek kişi kalmışsa tur, onay bize dönmeden kapanmış olabilir;
+    // o durumda tur sonu açıklamasının üstüne yazmayız.
+    if (turKapandi) return;
     $('geri-bildirim').innerHTML =
       '<div class="geri-bildirim iyi">✔️ Cevabın alındı, arkadaşlarını bekliyoruz…</div>';
   });
@@ -219,18 +198,26 @@ function cevapGonder(secim) {
 soket.on('tur:basladi', ({ soru, kalanSure }) => {
   mevcutSoru = soru;
   cevapVerdim = false;
+  turKapandi = false;
 
   gorunur($('bekleme-karti'), false);
   gorunur($('soru-karti'), true);
   tasarimPaneli(false); // soru gelince tek odak: tasarım paneli kapanır
   $('geri-bildirim').innerHTML = '';
-  $('mod-basligi').textContent = MOD_METNI[soru.mod].baslik;
-  $('mod-aciklamasi').textContent =
-    MOD_METNI[soru.mod].aciklama + (soru.mod === 'surdur' ? ' (seçeneği sürükleyip bırakabilirsin)' : '');
   $('soru-sirasi').textContent = `Soru ${soru.sira}/${soru.toplam}`;
 
-  diziyiCiz(soru);
-  secenekleriCiz(soru);
+  if (ModEkran.yeniMi(soru.mod)) {
+    // Hatayı Bul / Tersine Örüntü / Uzak Terim / Kendi Örüntünü Kur
+    ModEkran.ciz(soru, cevapGonder, soket);
+  } else {
+    $('mod-basligi').textContent = MOD_METNI[soru.mod].baslik;
+    $('mod-aciklamasi').textContent =
+      MOD_METNI[soru.mod].aciklama + (soru.mod === 'surdur' ? ' (seçeneği sürükleyip bırakabilirsin)' : '');
+    $('secenekler').className = 'secenekler';
+    gorunur($('dizi'), true);
+    ModKlasik.diziyiCiz(soru);
+    ModKlasik.secenekleriCiz(soru);
+  }
   sayaciGuncelle(kalanSure);
 });
 
@@ -248,7 +235,30 @@ function sayaciGuncelle(kalan) {
 }
 
 soket.on('tur:bitti', ({ sonuc, benim }) => {
+  turKapandi = true;
   gorunur($('sayac'), false);
+
+  // Yeni modların kendi açıklama biçimi var
+  if (mevcutSoru && ModEkran.yeniMi(mevcutSoru.mod)) {
+    const ozet = ModEkran.turBitti(sonuc, benim);
+    const iyiMi = benim && benim.dogruMu;
+    const sinif = iyiMi ? 'iyi' : 'nazik';
+    const bas = iyiMi
+      ? `🎉 Harika! +${benim.kazanilan} puan`
+      : benim
+        ? `💙 Bu sefer olmadı${benim.kazanilan ? ` — yine de +${benim.kazanilan} puan` : ''}`
+        : '⏰ Süre doldu';
+    $('geri-bildirim').innerHTML =
+      `<div class="geri-bildirim ${sinif}">${bas}<span class="kural-metni">${ozet}</span>` +
+      `<span class="kural-metni">🔑 ${kacan(sonuc.aciklama || '')}</span></div>`;
+    document.querySelectorAll('.secenek').forEach((d) => (d.disabled = true));
+    if (iyiMi) {
+      Efekt.konfeti(70);
+      Efekt.dogruSesi();
+    } else Efekt.yanlisSesi();
+    cevapVerdim = true;
+    return;
+  }
 
   // Gizli hücreyi aç
   const gizli = $('gizli-hucre');
@@ -365,6 +375,10 @@ soket.on('connect', () => {
   // Bağlantı koptuysa aynı KODLA otomatik geri dön (kilitli kartı jeton açar)
   if (!benimKod) return;
   soket.emit('katil', { kod: benimKod, jeton }, (yanit) => {
-    if (yanit && yanit.tamam) oyunaGir(benimKod, yanit);
+    if (yanit && yanit.tamam) return oyunaGir(benimKod, yanit);
+    // Sunucu kabul etmiyorsa (çıkarıldı, oturum kapandı, kart başkasına geçti)
+    // cihazdaki isim bırakılmaz; öğrenci isim seçme ekranında kalır.
+    kimligiUnut();
+    if (oyundaMiyim) girisEkraninaDon();
   });
 });

@@ -53,7 +53,9 @@ function grupKartlariCiz(gruplar) {
 
 $('oturum-ac').addEventListener('click', () => {
   if (!secilenGrup) return bildir('⚠️ Önce bir grup kartına dokun.');
-  gonder('ogretmen:oturumAc', { grup: secilenGrup });
+  const etiket = $('ders-etiketi').value.trim();
+  if (!etiket && !confirm('Ders etiketi boş. Etiketsiz devam edilsin mi?\n\n(Etiket kayıtlarda ve karne başlığında görünür; sonradan oturumu yeniden açarak eklenebilir.)')) return;
+  gonder('ogretmen:oturumAc', { grup: secilenGrup, etiket });
 });
 $('oturum-kapat').addEventListener('click', () => {
   if (confirm('Oturum kapatılacak; öğrenci ekranları bekleme moduna dönecek. Emin misin?')) {
@@ -61,12 +63,60 @@ $('oturum-kapat').addEventListener('click', () => {
   }
 });
 
+// ---- Mod seçimi (birden çok seçilebilir) ----
+let modBilgi = {};
+let secilenModlar = ['surdur'];
+
+function modSecimiCiz() {
+  const alan = $('mod-secim');
+  alan.innerHTML = '';
+  for (const [anahtar, bilgi] of Object.entries(modBilgi)) {
+    const etiket = document.createElement('label');
+    etiket.className = 'mod-kutu' + (secilenModlar.includes(anahtar) ? ' secili' : '');
+    const kutu = document.createElement('input');
+    kutu.type = 'checkbox';
+    kutu.value = anahtar;
+    kutu.checked = secilenModlar.includes(anahtar);
+    // Liste baştan çizilmez; yalnız ilgili kutunun görünümü güncellenir
+    // (yeniden çizim, tıklanan düğümü DOM'dan koparıyordu).
+    kutu.addEventListener('change', () => {
+      if (!kutu.checked && secilenModlar.length === 1) {
+        kutu.checked = true;
+        return bildir('⚠️ En az bir mod seçili kalmalı.');
+      }
+      secilenModlar = kutu.checked
+        ? [...new Set([...secilenModlar, anahtar])]
+        : secilenModlar.filter((m) => m !== anahtar);
+      etiket.classList.toggle('secili', kutu.checked);
+    });
+    const metin = document.createElement('span');
+    metin.textContent = `${bilgi.emoji} ${bilgi.ad}`;
+    etiket.append(kutu, metin);
+    if (!bilgi.senkron) {
+      const rozet = document.createElement('span');
+      rozet.className = 'bireysel-rozeti';
+      rozet.textContent = '👤 bireysel';
+      etiket.appendChild(rozet);
+    }
+    alan.appendChild(etiket);
+  }
+}
+
 $('baslat').addEventListener('click', () =>
   gonder('ogretmen:baslat', {
     seviye: Number($('seviye').value),
-    mod: $('mod').value,
+    modlar: secilenModlar,
+    karisik: $('mod-karisik').checked,
   })
 );
+
+// ---- Soru gezinme (yalnız senkron modda) ----
+$('onceki-soru').addEventListener('click', () => gonder('ogretmen:oncekiSoru'));
+$('sonraki-soru').addEventListener('click', () => gonder('ogretmen:atla'));
+$('soruya-git').addEventListener('change', (e) => {
+  const sira = Number(e.target.value);
+  if (sira) gonder('ogretmen:soruyaGit', { sira });
+});
 $('duraklat').addEventListener('click', () => gonder('ogretmen:duraklat'));
 $('devam').addEventListener('click', () => gonder('ogretmen:devam'));
 $('atla').addEventListener('click', () => gonder('ogretmen:atla'));
@@ -135,11 +185,17 @@ soket.on('panel:durum', (veri) => {
   const oturumRozeti = $('oturum-rozeti');
   oturumRozeti.textContent = acikOturum.acik ? `🚪 ${acikOturum.grup} oturumu açık` : '🔒 Oturum kapalı';
   oturumRozeti.classList.toggle('vurgulu', acikOturum.acik);
+  const ders = acikOturum.dersEtiketi || '';
+  // Öğretmen yazarken üstüne yazma; yalnız kutu boşken oturumun etiketini göster
+  const dersKutusu = $('ders-etiketi');
+  if (document.activeElement !== dersKutusu && !dersKutusu.value) dersKutusu.value = ders;
+
   $('oturum-ozet').textContent = acikOturum.acik
-    ? `${acikOturum.grup} grubu · seviye ${veri.ayar.seviye}`
+    ? `${acikOturum.grup} grubu · seviye ${veri.ayar.seviye}` + (ders ? ` · ${ders}` : '')
     : 'grup seç ve oturumu aç';
   $('oturum-durumu').textContent = acikOturum.acik
-    ? `✅ Öğrenci ekranlarında ${acikOturum.grup} grubunun isim kartları görünüyor.`
+    ? `✅ Öğrenci ekranlarında ${acikOturum.grup} grubunun isim kartları görünüyor.` +
+      (ders ? ` Ders etiketi: “${ders}”.` : ' Ders etiketi girilmedi.')
     : 'Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.';
   $('canli-ozet').textContent = `${veri.bagliSayisi} sahnede · ${veri.oyuncular.length} kayıtlı`;
   $('galeri-ozet').textContent = `${(veri.galeri || []).length} tasarım`;
@@ -154,6 +210,23 @@ soket.on('panel:durum', (veri) => {
   tdugme.textContent = tasarimAcik ? '✏️ Tasarım bölümü açık' : '🚫 Tasarım bölümü kapalı';
   tdugme.setAttribute('aria-pressed', String(tasarimAcik));
 
+  // Mod listesi ilk gelişte kurulur
+  if (veri.modBilgi && Object.keys(modBilgi).length === 0) {
+    modBilgi = veri.modBilgi;
+    if (veri.ayar && veri.ayar.modlar) secilenModlar = veri.ayar.modlar.slice();
+    modSecimiCiz();
+  }
+  if (veri.ayar && typeof veri.ayar.karisik === 'boolean') {
+    $('mod-karisik').checked = veri.ayar.karisik;
+  }
+
+  // Soru gezinme YALNIZ senkron modda görünür; bireysel modda gizlenir
+  const gezinmeAcik = veri.senkronMu !== false && veri.toplam > 0;
+  $('soru-gezinme').classList.toggle('gizli', !gezinmeAcik);
+  $('gezinme-notu').classList.toggle('gizli', veri.senkronMu !== false || !veri.toplam);
+  if (gezinmeAcik) soruSeciciyiTazele(veri.sira, veri.toplam);
+  $('onceki-soru').disabled = veri.sira <= 1;
+
   sayaciCiz(veri.kalanSure);
   skorlariCiz(veri.oyuncular);
   galeriyiCiz(veri.galeri);
@@ -162,6 +235,23 @@ soket.on('panel:durum', (veri) => {
 });
 
 soket.on('sayac', sayaciCiz);
+
+// "Şu soruya git" seçicisi — havuz değiştikçe yeniden kurulur
+let sonSeciciToplam = 0;
+function soruSeciciyiTazele(sira, toplam) {
+  const secici = $('soruya-git');
+  if (toplam !== sonSeciciToplam) {
+    sonSeciciToplam = toplam;
+    secici.innerHTML = '';
+    for (let i = 1; i <= toplam; i++) {
+      const o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = `${i}. soru`;
+      secici.appendChild(o);
+    }
+  }
+  secici.value = String(sira);
+}
 
 function sayaciCiz(kalan) {
   const kutu = $('sayac');
@@ -173,18 +263,42 @@ soket.on('tur:basladi', ({ soru }) => {
   sonSoru = soru;
   const alan = $('onizleme-dizi');
   alan.innerHTML = '';
-  soru.dizi.forEach((deger, i) => {
-    const hucre = document.createElement('div');
-    hucre.className = 'hucre' + (i === soru.gizliIndeks ? ' gizli-hucre' : '');
-    hucre.textContent = i === soru.gizliIndeks ? '?' : deger;
-    alan.appendChild(hucre);
-  });
+
+  if (soru.mod === 'kendi') {
+    alan.innerHTML = '<span class="ipucu">🎨 Öğrenciler kendi örüntülerini kuruyor — hazır dizi yok.</span>';
+  } else {
+    soru.dizi.forEach((deger, i) => {
+      const hucre = document.createElement('div');
+      const gizliMi = i === soru.gizliIndeks;
+      hucre.className = 'hucre' + (gizliMi ? ' gizli-hucre' : '');
+      hucre.textContent = gizliMi ? '?' : deger === null ? '' : deger;
+      alan.appendChild(hucre);
+    });
+    if (soru.mod === 'uzak') {
+      const hedef = document.createElement('div');
+      hedef.className = 'hucre gizli-hucre';
+      hedef.textContent = `${soru.hedefTerim}.?`;
+      alan.append(Object.assign(document.createElement('div'), { className: 'hucre', textContent: '…' }), hedef);
+    }
+  }
   $('onizleme-cevap').textContent = 'Cevap bekleniyor…';
 });
 
 // Öğretmene özel: doğru cevap (yalnızca yetkili odaya gönderilir)
-soket.on('panel:cevap', ({ dogru, kural, aciklama }) => {
-  $('onizleme-cevap').innerHTML = `✅ Doğru cevap: <b>${dogru}</b><br>🔑 ${kural} — ${aciklama}`;
+soket.on('panel:cevap', ({ dogru, kural, aciklama, mod, bozukIndeks, dogruDeger }) => {
+  let satir;
+  if (mod === 'kendi') {
+    // Hazır cevabı olmayan bireysel mod: puan kural tutarlılığına göre verilir
+    satir = '🎨 Hazır cevap yok — puan, öğrencinin kurduğu dizinin tek kurallı olmasına göre verilir.';
+  } else if (mod === 'hata') {
+    satir =
+      bozukIndeks >= 0
+        ? `🐞 Hata <b>${bozukIndeks + 1}. öğede</b>; doğrusu <b>${dogruDeger}</b>.`
+        : '✅ Bu turda hata YOK — doğru cevap “hata yok”.';
+  } else {
+    satir = `✅ Doğru cevap: <b>${dogru}</b>`;
+  }
+  $('onizleme-cevap').innerHTML = `${satir}<br>🔑 ${kacan(kural || '')} — ${kacan(aciklama || '')}`;
 });
 
 function isimDuzenle(o) {
@@ -203,6 +317,12 @@ function puanDuzenle(o) {
 function serbestBirak(o) {
   if (!confirm(`"${o.isim}" ismi serbest bırakılsın mı?\n\nÖğrenci giriş ekranına döner; puanı ve kayıtları korunur, aynı isme yeniden dokununca kaldığı yerden devam eder.`)) return;
   gonder('ogretmen:serbestBirak', { kod: o.kod });
+}
+
+// Sahneden çıkar: oyuncu silinir, puanı düşer, cihazındaki isim temizlenir
+function sahnedenCikar(o) {
+  if (!confirm(`"${o.isim}" sahneden çıkarılsın mı?\n\nPuanı silinir ve cihazında isim seçme ekranı açılır. Kısa bir süre aynı isimle geri giremez. Ölçüm kayıtları korunur.`)) return;
+  gonder('ogretmen:sahnedenCikar', { kod: o.kod });
 }
 
 function skorlariCiz(oyuncular) {
@@ -228,13 +348,16 @@ function skorlariCiz(oyuncular) {
          <button class="mini" title="İsmi değiştir" aria-label="İsmi değiştir">✏️</button>
          <button class="mini" title="Puanı değiştir" aria-label="Puanı değiştir">🔢</button>
          <button class="mini" title="İsmi serbest bırak" aria-label="İsmi serbest bırak">🔓</button>
+         <button class="mini tehlikeli" title="Sahneden çıkar" aria-label="Sahneden çıkar">🚪</button>
        </span>`;
     madde.querySelector('.isim').textContent = o.isim;
-    const [raporDugme, isimDugme, puanDugme, serbestDugme] = madde.querySelectorAll('.duzen .mini');
+    const [raporDugme, isimDugme, puanDugme, serbestDugme, cikarDugme] =
+      madde.querySelectorAll('.duzen .mini');
     raporDugme.addEventListener('click', () => window.raporGoster && window.raporGoster(o.anahtar));
     isimDugme.addEventListener('click', () => isimDuzenle(o));
     puanDugme.addEventListener('click', () => puanDuzenle(o));
     serbestDugme.addEventListener('click', () => serbestBirak(o));
+    cikarDugme.addEventListener('click', () => sahnedenCikar(o));
     liste.appendChild(madde);
   });
 }

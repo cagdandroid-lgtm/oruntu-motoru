@@ -35,8 +35,12 @@
   $('csv-kodlu').addEventListener('click', () => csvIndir(false));
   $('csv-isimli').addEventListener('click', () => csvIndir(true));
 
+  // Karne çıktı kipi: isimli (veli) / kodlu (isim geçmez)
+  const karneKipi = () =>
+    (document.querySelector('input[name="karne-kip"]:checked') || {}).value || 'isimli';
+
   $('tum-karneler').addEventListener('click', () => {
-    yeniSekme('/teacher/veri/karneler');
+    yeniSekme('/teacher/veri/karneler?ad=' + karneKipi());
     disaAktarildiMi = true;
     hatirlatmayiTazele();
   });
@@ -149,7 +153,9 @@
   function raporCiz(r) {
     $('rapor-baslik').textContent = `📋 ${r.isim} — Öğrenci Raporu`;
     $('rapor-karne').onclick = () =>
-      yeniSekme('/teacher/veri/karne?anahtar=' + encodeURIComponent(r.anahtar));
+      yeniSekme(
+        '/teacher/veri/karne?ad=' + karneKipi() + '&anahtar=' + encodeURIComponent(r.anahtar)
+      );
 
     const kutu = (sayi, ad) =>
       `<div class="rapor-kutu"><span class="sayi">${kacir(sayi)}</span><span class="ad">${ad}</span></div>`;

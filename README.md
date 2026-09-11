@@ -15,28 +15,39 @@ npm start
 | Adres | Kim için |
 |---|---|
 | `http://localhost:3000` | Öğrenci — isim girip katılır |
-| `http://localhost:3000/teacher` | Öğretmen — şifre: `yerel777` |
+| `http://localhost:3000/teacher` | Öğretmen — yerel varsayılan şifre: `uycep-local` |
 
 Port `process.env.PORT || 3000` (Render uyumlu). Oda kodu yoktur; herkes tek sınıf odasına bağlanır.
 
 ### Öğretmen şifresi
 
-Şifre ortam değişkeninden okunur, yoksa yerel varsayılana düşer:
+Şifre **koda asla gömülmez**; `process.env.ADMIN_PASSWORD`'tan okunur
+([lib/kimlik.js](lib/kimlik.js)). Kaynak sırası:
 
-| Ortam | Şifre | Nereden gelir |
-|---|---|---|
-| Yerel (`npm start`) | `yerel777` | `server.js` başındaki `YEREL_SIFRE` sabiti |
-| Render / yayında | `hayfan777` | Render → Environment → `ADMIN_PASSWORD` |
+1. Gerçek ortam değişkeni (`ADMIN_PASSWORD=... npm start`)
+2. Proje kökündeki `.env` dosyası (`ADMIN_PASSWORD=...`) — `.gitignore`'dadır, depoya gitmez
+3. Ortama göre varsayılan:
 
-Render'da **Environment** sekmesine `ADMIN_PASSWORD = hayfan777` eklenmelidir;
-eklenmezse yayındaki sürüm de yerel şifreyi kullanır. Sunucu açılışta hangi
-kaynağı kullandığını log'a yazar.
+| Ortam | Davranış |
+|---|---|
+| **Yerel** (`RENDER` tanımsız) | `.env` **zorunlu değildir**; `uycep-local` varsayılanıyla çalışır, `npm start` tek başına yeter |
+| **Render** (`RENDER` tanımlı) | Varsayılan **kullanılmaz**. Konsola büyük uyarı basılır ve `/teacher` girişi, Render → Environment → `ADMIN_PASSWORD` tanımlanana kadar **kapalı** tutulur |
 
-Geçici olarak yerelde de yayın şifresini denemek için:
+Sunucu her açılışta kullandığı şifreyi log'a yazar (Render'da bu satırı yalnız
+hesap sahibi görür):
 
-```bash
-ADMIN_PASSWORD=hayfan777 npm start
 ```
+🔑 Öğretmen paneli şifresi: uycep-local
+   Kaynak: yerel varsayılan
+```
+
+Yerelde kendi şifreni kullanmak için proje köküne `.env` oluştur:
+
+```
+ADMIN_PASSWORD=kendi-sifren
+```
+
+> Gerçek yayın şifresi bu dosyaya ya da depodaki başka hiçbir dosyaya yazılmaz.
 
 ---
 
@@ -55,6 +66,30 @@ ADMIN_PASSWORD=hayfan777 npm start
 4. Öğretmen panelden **🔓** ile ismi serbest bırakabilir; kart yeniden seçilebilir olur
    (puan ve ölçüm kayıtları korunur — aynı isme yeniden dokunan kaldığı yerden devam eder).
 
+### Kimlik yaşam döngüsü
+
+Öğretmen bir öğrenciyi **🚪 sahneden çıkardığında** ya da **🔓 ismini serbest
+bıraktığında**, o öğrencinin cihazında üç şey aynı anda olur:
+
+1. Cihazda saklanan isim/kod ve oturum jetonu **silinir**.
+2. Oyun görünümü **kapanır**.
+3. **İsim seçme ekranı açılır** ve ne olduğunu anlatan sıcak bir satır gösterilir
+   (“Öğretmenin seni oyundan çıkardı…”).
+
+Çocuk hiçbir koşulda eski oyun ekranında takılı kalmaz — sayfayı yenilese bile
+isim ekranında kalır, çünkü sunucu da o kodu artık kabul etmez.
+
+| | 🔓 Serbest bırak | 🚪 Sahneden çıkar |
+|---|---|---|
+| Cihazdaki isim | silinir | silinir |
+| Oyuncunun puanı | **korunur** | silinir |
+| Ölçüm kayıtları | korunur | **korunur** (kod bazlı) |
+| Yeniden giriş | hemen | 45 sn sonra (kart `⏳` ile kapalı görünür) |
+
+**Sayfa yenileme bunlardan etkilenmez:** normal koşulda öğrenci sayfayı
+yenilediğinde tarayıcıdaki kod + jeton ile kendiliğinden aynı isme döner ve
+puanı, turu, sırası kaldığı yerden devam eder.
+
 Gizlilik kuralları:
 
 - Öğrenci ekranına **hiçbir aşamada** başka grupların isimleri ya da sayısı gitmez;
@@ -69,23 +104,115 @@ kullanır; oyun ikisi arasında hiçbir ayrım yapmaz.
 
 ---
 
+## 🏷️ Ders etiketi
+
+Oturum açarken öğretmen serbest bir etiket girer: **“2. Ders · 12 Eylül”**.
+En çok 60 karakterdir, biçim dayatılmaz. Etiket şuralarda görünür:
+
+- **Olay kaydında** — CSV'de `ders_etiketi` sütunu (standart 13 sütunun sonuna eklenir).
+  Birden çok dersin CSV'si birleştirildiğinde oturumlar böyle ayrışır.
+- **Karne başlığında** — belgenin üst şeridinde ve kimlik satırında “Ders” kutusu olarak.
+- **Panel özetinde** — bölüm başlığında ve oturum durumu satırında.
+
+Etiket boş bırakılırsa panel onay sorar; boş geçilirse kayıtlarda sütun boş kalır.
+Oturum yeniden açılarak sonradan da girilebilir.
+
+---
+
 ## Oyun akışı
 
-1. Öğretmen panelden **grubu** seçip oturumu açar, sonra **seviye** (1–3) ve **mod**
-   seçip *Turu Başlat*'a basar. (Grup oturumdan gelir; seviye ve mod öğrenciye gösterilmez.)
+1. Öğretmen panelden **grubu** seçip **ders etiketini** yazar, oturumu açar; sonra
+   **seviye** (1–3) ve **bir ya da daha çok mod** seçip *Turu Başlat*'a basar. (Grup oturumdan gelir; seviye ve mod öğrenciye gösterilmez.)
 2. Öğrenci ekranında örüntü dizisi belirir; gizli hücre kesikli kehribar çerçeveli `?` olarak durur.
 3. Öğrenci 4 seçenekten birine dokunur **veya** seçeneği gizli hücreye sürükler.
 4. **Herkes cevaplayınca** ya da **süre bitince** tur kapanır.
 5. Gizli hücre animasyonla açılır, kural açıklanır, doğru cevapta konfeti patlar.
 6. Skor tablosu güncellenir, 6 saniye sonra sonraki soru otomatik gelir.
 
-### Üç mod
+### Yedi mod
 
-| Mod | Ne sorulur |
+| Mod | Ne sorulur | Kaynak |
+|---|---|---|
+| ➡️ **Sürdür** | Dizinin **son** hücresi gizlidir — sıradaki adım nedir? | `patterns.json` |
+| 🕳️ **Eksiği Bul** | Dizinin **ortasındaki** bir hücre gizlidir — boşluğa ne gelir? | `patterns.json` |
+| 🔍 **Kuralı Yakala** | Dizi tam gösterilir; öğrenci kuralı sembolik seçeneklerden seçer (`+3`, `×2`, `fark artıyor`) | `patterns.json` |
+| 🐞 **Hatayı Bul** | Bir öğe kuralı bozar; çocuk **önce hatalı öğeye dokunur, sonra doğrusunu seçer**. Turların ~%30'unda hiç hata yoktur → “hata yok” doğru cevaptır | üretilir |
+| ⏪ **Tersine Örüntü** | Kural ve **son** terim verilir, **başlangıç** terimi sorulur (geriye çalışma) | üretilir |
+| 🔭 **Uzak Terim** | “Bu dizinin 10. terimi kaçtır?” — tek tek saymanın işe yaramayacağı kadar uzak | üretilir |
+| 🎨 **Kendi Örüntünü Kur** | Çocuk 4-6 öğelik dizisini kurar, motor kuralı tahmin edip sürdürür, çocuk “doğru/yanlış sürdürdü” kararını verir | öğrenci üretir |
+
+İlk üç mod ve `data/patterns.json` içeriği **değişmedi**; yeni dört mod ayrı
+modüllerde üretilir ([lib/mod-uret.js](lib/mod-uret.js), [lib/modlar.js](lib/modlar.js)).
+
+---
+
+## 🎮 Yeni dört mod
+
+### 🐞 Hatayı Bul
+
+İki adımlı: önce kuralı bozan hücreye dokunulur, sonra oraya ne gelmesi
+gerektiği seçilir. İki adım da doğruysa cevap doğru sayılır.
+
+- **Bazı turlarda hiç hata yoktur.** O turda doğru cevap “✅ Bu dizide hata yok”tur.
+- Düzeltme seçenekleri **her hücre için ayrı** üretilir. Yalnız bozuk hücre için
+  üretilseydi boş liste turun temiz olduğunu ele verirdi; ayrıca temiz turda bir
+  hücreye dokunan çocuk çıkmaza girerdi.
+- Baş ve son hücre asla bozulmaz — çocuk kuralı iki yandan görebilsin.
+
+### ⏪ Tersine Örüntü
+
+Kural ve son terim verilir; aradaki terimler **boş kutu** olarak durur, böylece
+tek tek geri sayılamaz.
+
+| Katman | Kural | Örnek |
+|---|---|---|
+| **e** | tek adımlı | `+3`, `×2` |
+| **i** | iki adımlı | `×2 sonra +1` |
+
+Çeldiriciler gerçek hataları temsil eder: bir adım eksik geri gitme, bir adım
+fazla geri gitme, iki adımlı kuralda işlem sırasını karıştırma.
+
+### 🔭 Uzak Terim
+
+İlk dört terim gösterilir, uzak bir terim sorulur.
+
+| Katman | Sorulan terim |
 |---|---|
-| ➡️ **Sürdür** | Dizinin **son** hücresi gizlidir — sıradaki adım nedir? |
-| 🕳️ **Eksiği Bul** | Dizinin **ortasındaki** bir hücre gizlidir — boşluğa ne gelir? |
-| 🔍 **Kuralı Yakala** | Dizi tam gösterilir; öğrenci kuralı metin seçeneklerinden seçer (`+3 ekleniyor`, `renk döngüsü: 🔴🔵🔵` …) |
+| **e** | 8-10. terim |
+| **i** | 15-20. terim |
+
+Şıklarda **“tek tek sayan” çeldirici** bulunur: bir eksik terim (`n-1`) ve bir
+fazla terim (`n+1`). Üçüncü çeldirici `(n-1)·fark` yerine `n·fark` hatasıdır.
+
+### 🎨 Kendi Örüntünü Kur
+
+1. Çocuk 4-6 öğelik dizisini kurar (şekil paletinden seçer ya da sayı yazar).
+2. **🤖 Motor sürdürsün** der; motor kuralı çıkarıp iki öğe ekler (gri kutular).
+3. Çocuk karar verir: **✅ Doğru sürdürdü** / **❌ Yanlış sürdürdü**.
+4. “Yanlış” derse kendi kuralını yazabilir; bu metin tur sonunda gösterilir.
+
+Motorun tanıdığı kurallar: sabit fark, sabit çarpan, 1-3 öğelik blok tekrarı,
+ayna (simetri). Hiçbiri tutmuyorsa dizi **tutarsızdır**; motor en iyi tahminini
+yapar ve kuralın **nerede bozulduğunu** bildirir.
+
+**Puan kural tutarlılığına göre verilir** — ölçülen beceri, tek kurallı bir
+örüntü kurabilmektir:
+
+| Kurduğu dizi | Kararı | Puan | Kayıt |
+|---|---|---|---|
+| tek kurallı | doğru | 100 (+hız bonusu) | `dogru` |
+| tek kurallı | yanlış | 60 | `dogru` |
+| kural bozuluyor | doğru | 40 | `yanlis` |
+| kural bozuluyor | yanlış | 20 | `yanlis` |
+
+Kayıtta kategori `kendi-tutarli` / `kendi-tutarsiz` olarak ayrışır.
+
+Bu mod **bireyseldir**: herkes kendi hızında çalışır, bu yüzden öğretmenin soru
+gezinme denetimleri o turda gizlenir.
+
+> Ekranın altındaki katlanır **🎨 Örüntü Tasarla (galeriye gönder)** kartı bundan
+> ayrı bir özelliktir: çocuk 6 hücrelik desen kurar, öğretmen onu sınıfa soru
+> olarak gönderir.
 
 ### Puanlama
 
@@ -107,7 +234,12 @@ bile kodu — dolayısıyla skoru ve geçmiş kayıtları — değişmez.
 
 ---
 
-## 🎨 Kendi Örüntünü Kur (mini mod)
+## 🎨 Örüntü Tasarla — galeri (mini mod)
+
+> Bu, yukarıdaki **🎨 Kendi Örüntünü Kur** oyun modundan ayrıdır. Burada çocuk
+> 6 hücrelik bir desen kurar ve öğretmen onu sınıfa **soru olarak** gönderir;
+> orada ise motor çocuğun kuralını tahmin eder.
+
 
 Öğrenci ekranının altında katlanır bir panel olarak durur (varsayılan kapalı;
 yeni soru gelince tek odak için otomatik kapanır):
@@ -147,7 +279,7 @@ Panel açılır-kapanır bölümlerden (akordeon) oluşur. Üst kısım hep sade
 
 | Bölüm | Varsayılan | İçerik |
 |---|---|---|
-| 🎛️ **Oturum ve Etkinlik** | **AÇIK** | Grup kartları, Oturumu Aç/Kapat, seviye + mod, akış düğmeleri |
+| 🎛️ **Oturum ve Etkinlik** | **AÇIK** | Grup kartları, Oturumu Aç/Kapat, seviye, **mod seçimi**, **soru gezinme**, akış düğmeleri |
 | 📡 **Canlı Durum** | **AÇIK** | Ekrandaki soru + doğru cevap, sahnedeki öğrenciler, canlı skor |
 | 🎨 Öğrenci Tasarımları | Kapalı | Galeri ve görünürlük anahtarları |
 | 📊 Ölçme ve Raporlar | Kapalı | CSV, karneler, isim↔kod eşlemesi |
@@ -159,6 +291,38 @@ Panel açılır-kapanır bölümlerden (akordeon) oluşur. Üst kısım hep sade
 Her grup kartında **aktif öğrenci sayısı** ve o grup için **kaç soru** olduğu yazar
 (içeriği olmayan grup `⚠️ içerik yok` uyarısı verir). Seçim renkle değil, kalın çerçeve
 ve `✓` işaretiyle belirtilir. Açık oturumun kartında `🚪 oturum açık` rozeti durur.
+
+---
+
+## 🎛️ Mod seçimi ve soru gezinme
+
+### Birden çok mod
+
+Mod seçimi onay kutularıyla yapılır; **birden çok mod** seçilebilir. Seçilenler
+tur boyunca **dönüşümlü** gelir (1. mod, 2. mod, 3. mod, 1. mod …), böylece her
+modun payı korunur. **🎲 Mod karışık** anahtarı açılırsa sıra rastgeleleşir.
+
+- Havuz **en çok 30 soruyla** sınırlanır; yedi mod birden seçilse bile tur ders
+  boyunu aşmaz. Kırpma dönüşümlü harmandan sonra yapılır, yani mod dengesi bozulmaz.
+- O seviyede içeriği olmayan mod atlanır ve panelde uyarı çıkar.
+- En az bir mod seçili kalmalıdır.
+- Kayıtta `set_veya_paket` sütunu **her sorunun kendi modunu** yazar
+  (`e-2-uzak`, `e-2-tersine` …), böylece çoklu mod turları analizde ayrışır.
+
+### Soru gezinme (atlama)
+
+| Denetim | İşlev |
+|---|---|
+| **◀ Önceki soru** | Bir önceki soruya döner (ilk soruda kapalıdır) |
+| **Sonraki soru ▶** | Bir sonraki soruya geçer |
+| **Şu soruya git** | Havuzdaki herhangi bir soruya atlar |
+
+**Atlanan soru kayıtlarda `atlandi` olarak işaretlenir:** o anda bağlı olup henüz
+cevap vermemiş her öğrenci için bir kayıt yazılır. Katılmama da veridir.
+
+Bu denetimler **yalnız senkron modlarda görünür.** Bireysel modda (🎨 Kendi
+Örüntünü Kur) gizlenir ve panelde nedeni yazar; o modda ilerletme, akış
+satırındaki **⏭️ Soruyu Atla** düğmesiyle yapılır.
 
 ---
 
@@ -248,7 +412,7 @@ engellidir). Tur hâlâ oynanıyorsa aktif turun, kapanmışsa son kapanan turun
 ### Öğrenci ismi ve puanını düzenleme
 
 Skor tablosundaki her satırda: **📊** öğrenci raporu · **✏️** isim · **🔢** puan ·
-**🔓** ismi serbest bırak. İsim değişikliği **kalıcı listeye** yazılır (kod değişmez) ve
+**🔓** ismi serbest bırak · **🚪** sahneden çıkar (yıkıcı, onay sorar). İsim değişikliği **kalıcı listeye** yazılır (kod değişmez) ve
 bağlı öğrencinin ekranına anında yansır.
 
 Öğrenci durumları: ✅ Cevapladı · ⏳ Düşünüyor · 🔌 Kopuk
@@ -261,11 +425,17 @@ bağlı öğrencinin ekranına anında yansır.
 server.js              Express + Socket.io, öğretmen kimlik doğrulama, olay yönlendirme
 lib/oyun.js            Oyun durumu, tur akışı, cevap doğrulama, puanlama
 lib/oruntu.js          İçerik yükleme, filtreleme, istemciye güvenli paketleme
+lib/modlar.js          Yedi modun kayıt defteri: havuz, doğrulama, güvenli paket
+lib/mod-uret.js        Hatayı Bul / Tersine Örüntü / Uzak Terim soru üreteci
+lib/kurallar.js        Parametrik kural cebiri (+n, ×n, ×a sonra +b)
+lib/kendi-kural.js     Öğrencinin kurduğu dizide kural çıkarımı ve tutarlılık
+lib/gezinme.js         Soru gezinme (önceki/sonraki/şu soruya git) ve atlandi kaydı
 araclar/i-icerik.js    "i" grubu taban dizileri (42 dizi, kural + doğrulama parametresi)
 araclar/i-uret.js      "i" kayıtlarını üretip patterns.json'a yazar
 araclar/i-dogrula.js   "i" içeriğini matematiksel olarak denetler
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
 lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
+lib/kimlik.js          ADMIN_PASSWORD çözümü + bağımlılıksız .env okuyucu
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
 lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
 lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
@@ -274,6 +444,9 @@ data/ogrenciler.json   Kalıcı isim ↔ kod listesi (TÜM UYCEP oyunlarında ay
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi (lobi, isim kartları, oyun)
 public/ambiyans.js     Lobi ortam animasyonu (canvas partikülleri)
+public/mod-klasik.js   Sürdür / Eksiği Bul / Kuralı Yakala çizimi
+public/mod-ekran.js    Hatayı Bul / Tersine Örüntü / Uzak Terim çizimi
+public/mod-kendi.js    Kendi Örüntünü Kur: kurma, motor sürdürmesi, karar
 public/tasarim.js      "Kendi Örüntünü Kur" mini modu
 public/efekt.js        Konfeti + opsiyonel sesler
 public/rozet.js        Ortak durum göstergeleri (ikon + metin)
@@ -458,11 +631,11 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 |---|---|---|---|
 | 1 | `zaman` | `2026-08-26T08:57:45.982Z` | Kaydın oluşma anı (ISO 8601, UTC) |
 | 2 | `oyun` | `oruntu-motoru` | Oyun kimliği — dosyalar birleştirilince ayırt eder |
-| 3 | `set_veya_paket` | `e-1-surdur` | Bu oyunda soru havuzu: `<grup>-<seviye>-<mod>` |
+| 3 | `set_veya_paket` | `e-1-surdur` | `<grup>-<seviye>-<mod>` — çoklu mod turlarında her soru kendi modunu yazar |
 | 4 | `grup` | `e` | İçerik grubu (`e` / `i` / `c` / `p`) |
 | 5 | `ogrenci_kod` | `E-07` | **Takma ad** — kayıtlarda isim asla geçmez |
 | 6 | `gorev_id` | `e1-010` · `i3-k08` | `patterns.json` içindeki soru kimliği |
-| 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`) |
+| 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`, `tersine`, `uzak`, `kendi-tutarli`, `kendi-tutarsiz`) |
 | 8 | `chc` | `Gq\|Gf` | CHC alanları, `\|` ile ayrılmış |
 | 9 | `zorluk` | `e-1` | Katman kodu: `<grup>-<seviye>` |
 | 10 | `sonuc` | `dogru` | `dogru` / `yanlis` / `atlandi` |
@@ -470,6 +643,7 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 | 12 | `deneme` | `1` | Bu oyunda tek cevap hakkı vardır; cevapsızda `0` |
 | 13 | `ipucu_kullanildi` | `hayir` | Bu oyunda ipucu mekaniği yok; daima `hayir` |
 | + | `misafir` | `hayir` | Standart şemanın **sonuna** eklenir: `evet` olan satırlar araştırma setinden süzülür |
+| + | `ders_etiketi` | `2. Ders · 12 Eylül` | Öğretmenin oturum açarken girdiği serbest etiket — oturumları ayırt eder |
 
 Notlar:
 
@@ -498,8 +672,8 @@ Panelin **📊 Ölçme ve Raporlar** kartından tek tık. Dosya her zaman oturum
 
 | Düğme | İçerik | Kullanım |
 |---|---|---|
-| 🔬 **CSV indir — kodlu** | 13 standart sütun + `misafir` | Araştırma / akademik analiz |
-| 👪 **CSV indir — isimli** | 13 standart sütun + `misafir` + `ogrenci_ad` | Veli raporu, sınıf takibi |
+| 🔬 **CSV indir — kodlu** | 13 standart sütun + `misafir` + `ders_etiketi` | Araştırma / akademik analiz |
+| 👪 **CSV indir — isimli** | yukarıdakiler + `ogrenci_ad` | Veli raporu, sınıf takibi |
 
 - Dosya adı standardı: `<oyun>_<grup>_<tarih>.csv` → `oruntu-motoru_e_2026-08-26.csv`
   (kayıtlar birden çok gruba yayılmışsa grup yerine `karma` yazılır).
@@ -527,6 +701,20 @@ CSV'de `ogrenci_ad`, kodlu CSV'de `ogrenci_kod` üzerinden yapılır.
 | Rapor penceresi → 🖨️ **Yazdırılabilir Karne** | Tek öğrenci, tek A4 sayfa |
 | Ölçme kartı → 🖨️ **Tüm Karneleri İndir** | Sınıfın tamamı, **öğrenci başına bir A4 sayfa**, tek belge |
 
+### İsimli / Kodlu çıktı
+
+Karne düğmelerinin üstünde bir **“Karnede ne yazsın?”** anahtarı vardır:
+
+| Kip | Kimlik satırı | Nerede kullanılır |
+|---|---|---|
+| 👪 **İsimli** (varsayılan) | Öğrencinin adı **ve** kodu | Veliye verilen karne |
+| 🔬 **Kodlu** | Yalnız kod (`E-07`) | Araştırma, arşiv, dışarıyla paylaşım |
+
+Kodlu kipte öğrencinin adı belgenin **hiçbir yerinde** geçmez — belge başlığında
+da, kimlik satırında da yalnız kod yazar; sıralama da koda göre yapılır.
+Anahtar hem tek öğrenci karnesini hem “Tüm Karneleri İndir”i etkiler
+(`?ad=isimli` / `?ad=kodlu`).
+
 Karne veli diline uygundur (eğitim jargonu yok): kimlik satırı, dört özet kutusu,
 örüntü türlerine göre başarı tablosu, öğretmen notu ve “evde birlikte
 yapabilirsiniz” önerileri. Açılan sayfadaki **🖨️ Yazdır** düğmesiyle yazdırılır
@@ -537,8 +725,8 @@ tüm evrak tek tıkla hazırdır.
 
 ```
 GET  /teacher/veri/csv?ad=kodlu|isimli   CSV indir
-GET  /teacher/veri/karne?anahtar=<key>   Tek öğrenci karnesi
-GET  /teacher/veri/karneler              Tüm sınıfın karneleri (tek belge)
+GET  /teacher/veri/karne?anahtar=&ad=    Tek öğrenci karnesi (ad=isimli|kodlu)
+GET  /teacher/veri/karneler?ad=          Tüm sınıfın karneleri (ad=isimli|kodlu)
 POST /teacher/veri/onceki                Önceki oturum CSV'si yükle {csv, dosya}
 POST /teacher/veri/onceki-sil            Karşılaştırmayı kaldır
 GET  /teacher/veri/liste.json            Güncel ogrenciler.json (Listeyi İndir)
