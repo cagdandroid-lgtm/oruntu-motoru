@@ -1026,3 +1026,21 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   font-weight: 500;
 }
 .git-secici select { margin: 0; flex: 1; }
+
+/* ---------- Grup kimliği (data/gruplar.json: ad + emoji + renk) ---------- */
+/* Renk yalnız bilgi taşımaz: kartta ayrıca emoji ve grup adı yazar. */
+.grup-kart {
+  border-top: 6px solid var(--grup-renk, var(--cizgi));
+}
+.grup-kart .grup-emoji { font-size: 1.6rem; line-height: 1; margin-bottom: 4px; }
+.grup-kart b { color: var(--grup-renk, var(--murekkep)); }
+.grup-kart.secili {
+  border-color: var(--grup-renk, var(--cam));
+  border-top-width: 6px;
+  background: var(--grup-sis, var(--cam-sis));
+}
+.grup-rozeti {
+  background: var(--grup-sis, var(--kagit-koyu));
+  color: var(--grup-renk, var(--murekkep));
+  font-weight: 600;
+}

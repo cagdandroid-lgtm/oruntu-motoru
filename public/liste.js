@@ -3,7 +3,38 @@
 
 (() => {
   const $ = (id) => document.getElementById(id);
-  const GRUP_ADI = { p: 'p grubu', e: 'e grubu', i: 'i grubu', c: 'c grubu' };
+  // Grup adları/renkleri sunucudan (data/gruplar.json) gelir; bu yalnız ilk yükleme yedeği.
+  let GRUP = {
+    p: { ad: 'P Grubu', emoji: '🐣' },
+    e: { ad: 'E Grubu', emoji: '🌱' },
+    u: { ad: 'U Grubu', emoji: '🚀' },
+  };
+  const grupAdi = (g) => (GRUP[g] ? `${GRUP[g].emoji} ${GRUP[g].ad}` : g);
+
+  // Filtre ve ekleme listelerini sunucunun grup tanımıyla yeniden kur
+  function grupSecenekleriniKur(gruplar) {
+    GRUP = Object.fromEntries(gruplar.map((g) => [g.grup, g]));
+    for (const [id, hepsiVar] of [['liste-grup', true], ['yeni-grup', false]]) {
+      const secici = $(id);
+      const onceki = secici.value;
+      secici.innerHTML = hepsiVar ? '<option value="hepsi">Hepsi</option>' : '';
+      for (const g of gruplar) {
+        const o = document.createElement('option');
+        o.value = g.grup;
+        o.textContent = `${g.emoji} ${g.ad}`;
+        secici.appendChild(o);
+      }
+      if ([...secici.options].some((o) => o.value === onceki)) secici.value = onceki;
+    }
+  }
+  let sonGrupImzasi = '';
+  soket.on('panel:durum', (veri) => {
+    const imza = JSON.stringify((veri.gruplar || []).map((g) => [g.grup, g.ad, g.emoji]));
+    if (imza && imza !== sonGrupImzasi && veri.gruplar && veri.gruplar.length) {
+      sonGrupImzasi = imza;
+      grupSecenekleriniKur(veri.gruplar);
+    }
+  });
 
   const suzgec = () => ({
     grup: $('liste-grup').value,
@@ -34,7 +65,7 @@
       madde.innerHTML =
         `<span class="kod">${kacan(o.kod)}</span>` +
         `<span class="ad"></span>` +
-        `<span class="grup-rozeti">${kacan(GRUP_ADI[o.grup] || o.grup)}</span>` +
+        `<span class="grup-rozeti" style="--grup-renk:${(GRUP[o.grup] || {}).renk || ''};--grup-sis:${(GRUP[o.grup] || {}).sis || ''}">${kacan(grupAdi(o.grup))}</span>` +
         (o.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '') +
         `<span class="durum ${o.aktif ? 'cevapladi' : 'kopuk'}">${o.aktif ? '✅ aktif' : '⏸️ pasif'}</span>` +
         `<span class="duzen">
@@ -67,7 +98,7 @@
           guncelle(o.kod, { isim: yeni });
         });
         grupDugme.addEventListener('click', () => {
-          const yeni = prompt(`"${o.isim}" hangi gruba taşınsın? (p / e / i / c)\n\nKodu (${o.kod}) DEĞİŞMEZ — geçmiş kayıtların sürekliliği korunur.`, o.grup);
+          const yeni = prompt(`"${o.isim}" hangi gruba taşınsın? (${Object.keys(GRUP).join(' / ')})\n\nKodu (${o.kod}) DEĞİŞMEZ — geçmiş kayıtların sürekliliği korunur.`, o.grup);
           if (yeni === null) return;
           guncelle(o.kod, { grup: String(yeni).trim().toLowerCase() });
         });

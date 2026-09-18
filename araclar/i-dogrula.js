@@ -1,4 +1,4 @@
-// "i" grubu içerik denetimi. Her diziyi KENDİ kuralından bağımsızca yeniden
+// "u" grubu içerik denetimi (u = eski i + c; dosya adı tarihsel olarak i-dogrula.js). Her diziyi KENDİ kuralından bağımsızca yeniden
 // hesaplar ve dosyadakiyle karşılaştırır; ayrıca oyun mekaniğinin gerektirdiği
 // tüm değişmezleri sınar. Çalıştırma: node araclar/i-dogrula.js
 
@@ -57,7 +57,7 @@ if (!hata) tamam(`${dogrulanan} taban dizinin tamamı kuralıyla birebir tutarl�
 
 icerik.yukle();
 const hepsi = icerik.tumu();
-const iKayit = hepsi.filter((o) => o.grup === 'i');
+const iKayit = hepsi.filter((o) => o.grup === 'u');
 
 console.log('\n▶ Kapsam: her mod × seviye en az 12 kayıt');
 for (const s of [1, 2, 3]) {
@@ -130,15 +130,18 @@ for (const o of iKayit.filter((x) => x.mod !== 'kural')) {
 }
 
 console.log('\n▶ Diğer gruplara dokunulmadı mı?');
-const digerleri = hepsi.filter((o) => o.grup !== 'i');
-console.log(`  ℹ i dışı kayıt: ${digerleri.length} (e: ${digerleri.filter((o) => o.grup === 'e').length})`);
+const digerleri = hepsi.filter((o) => o.grup !== 'u');
+console.log(`  ℹ u dışı kayıt: ${digerleri.length} (e: ${digerleri.filter((o) => o.grup === 'e').length})`);
+const eskiKalan = hepsi.filter((o) => o.grup === 'i' || o.grup === 'c').length;
+if (eskiKalan) sorun(`${eskiKalan} kayıt hâlâ eski "i"/"c" grubunda`);
+else tamam('eski "i"/"c" grup değeri kalmadı');
 
 console.log('\n▶ Zorluk ilerlemesi (e ile karşılaştırma)');
 const enBuyuk = (g, s) =>
   Math.max(...hepsi.filter((o) => o.grup === g && o.seviye === s)
     .flatMap((o) => o.dizi.map(Number).filter(Number.isFinite)), 0);
 for (const s of [1, 2, 3]) {
-  console.log(`  ℹ seviye ${s}: e en büyük sayı ${enBuyuk('e', s)} · i en büyük sayı ${enBuyuk('i', s)}`);
+  console.log(`  ℹ seviye ${s}: e en büyük sayı ${enBuyuk('e', s)} · u en büyük sayı ${enBuyuk('u', s)}`);
 }
 
 console.log(hata ? `\n❌ ${hata} sorun` : '\n✅ tüm denetimler geçti');

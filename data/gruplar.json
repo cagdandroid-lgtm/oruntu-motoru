@@ -1,0 +1,8 @@
+{
+  "_aciklama": "Geçerli çalışma grupları. Grup kartları, filtreler ve doğrulama bu dosyadan beslenir. 'eskiKodlar' altındaki değerler geriye dönük uyumluluk için bu gruba eşlenir (i ve c → u).",
+  "gruplar": [
+    { "kod": "p", "ad": "P Grubu", "emoji": "🐣", "renk": "#B04A2F", "sis": "#F8E6E0" },
+    { "kod": "e", "ad": "E Grubu", "emoji": "🌱", "renk": "#256B4D", "sis": "#E2EFE8" },
+    { "kod": "u", "ad": "U Grubu", "emoji": "🚀", "renk": "#4A4AA0", "sis": "#E8E7F6", "eskiKodlar": ["i", "c"] }
+  ]
+}

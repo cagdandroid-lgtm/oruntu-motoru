@@ -167,7 +167,7 @@ tek tek geri sayılamaz.
 | Katman | Kural | Örnek |
 |---|---|---|
 | **e** | tek adımlı | `+3`, `×2` |
-| **i** | iki adımlı | `×2 sonra +1` |
+| **u** | iki adımlı | `×2 sonra +1` |
 
 Çeldiriciler gerçek hataları temsil eder: bir adım eksik geri gitme, bir adım
 fazla geri gitme, iki adımlı kuralda işlem sırasını karıştırma.
@@ -179,7 +179,7 @@ fazla geri gitme, iki adımlı kuralda işlem sırasını karıştırma.
 | Katman | Sorulan terim |
 |---|---|
 | **e** | 8-10. terim |
-| **i** | 15-20. terim |
+| **u** | 15-20. terim |
 
 Şıklarda **“tek tek sayan” çeldirici** bulunur: bir eksik terim (`n-1`) ve bir
 fazla terim (`n+1`). Üçüncü çeldirici `(n-1)·fark` yerine `n·fark` hatasıdır.
@@ -326,11 +326,41 @@ satırındaki **⏭️ Soruyu Atla** düğmesiyle yapılır.
 
 ---
 
+## 🚀 Gruplar ve U Grubu birleşmesi
+
+Geçerli gruplar **p, e, u**'dur ve tek kaynaktan gelir: [data/gruplar.json](data/gruplar.json).
+Grup kartları, öğrenci listesi süzgeci, ekleme listesi ve sunucu doğrulaması bu
+dosyayı okur ([lib/gruplar.js](lib/gruplar.js)).
+
+| Kod | Kart adı | Emoji | Renk |
+|---|---|---|---|
+| `p` | P Grubu | 🐣 | `#B04A2F` |
+| `e` | E Grubu | 🌱 | `#256B4D` |
+| `u` | U Grubu | 🚀 | `#4A4AA0` |
+
+Renk kartın üst şeridinde ve seçili zeminde görünür; bilgi yalnız renkle verilmez,
+kartta emoji ve ad da yazar. Tüm renkler kendi zeminleriyle WCAG AA (≥4.5:1) sağlar.
+
+### i + c → u (2026-09-18)
+
+Eski **i** ve **c** grupları **u** grubunda birleşti. Kod numarasındaki **tek/çift
+cinsiyet göstergesi korundu**: tek kodlular `U-01, U-03 …`, çift kodlular
+`U-02, U-04 …` aldı. Sıra: önce eski i, sonra eski c; her grupta eski numara sırasıyla.
+
+**Geriye dönük uyumluluk:** eski `"i"`/`"c"` değeri nereden gelirse gelsin — eski
+bir `ogrenciler.json`, `patterns.json`, panel isteği ya da CSV — `"u"` olarak kabul
+edilir. Eski öğrenci kodları da [data/kod-gecisi.json](data/kod-gecisi.json) ile
+çevrilir: cihazında `I-04` kalmış bir tablet `U-04` olarak girer, eski kodlu bir
+önceki oturum CSV'si yeni kodlarla eşleşir. Bu tablo isim içermez; araştırma
+verisini birleştirirken de kullanılabilir.
+
+---
+
 ## 👥 Öğrenci Listesi yönetimi
 
 `data/ogrenciler.json` panelin en alt bölümünden yönetilir.
 
-- **Süzgeçler:** grup (p / e / i / c / hepsi), durum (aktif / pasif / hepsi) ve
+- **Süzgeçler:** grup (P / E / U Grubu / hepsi), durum (aktif / pasif / hepsi) ve
   **isim arama kutusu** (isim veya kod içinde arar, tüm gruplarda).
 - **Satır işlemleri:** ✏️ ismi düzenle · 🔀 grubunu değiştir · ⏸️/▶️ pasifleştir/aktifleştir.
   Pasif öğrenci giriş ekranındaki kartlarda **görünmez** ama listeden silinmez.
@@ -359,7 +389,7 @@ oluşturulur, kodlar bir daha değiştirilmez. Depolar **private** tutulur.
 |---|---|---|
 | `kod` | string | Kalıcı takma ad — `<GRUP HARFİ>-<sıra>`. **Asla değiştirilmez.** |
 | `isim` | string | Öğrencinin giriş kartında göreceği ad |
-| `grup` | `"p"` / `"e"` / `"i"` / `"c"` | Çalışma grubu |
+| `grup` | `"p"` / `"e"` / `"u"` | Çalışma grubu (eski `"i"`/`"c"` okunurken `"u"` sayılır) |
 | `aktif` | boolean | `false` ise giriş kartlarında görünmez. Ayrılan öğrenci **silinmez**, pasifleştirilir |
 
 Demografik bilgi (doğum tarihi, iletişim vb.) bu dosyaya **asla** yazılmaz;
@@ -430,17 +460,20 @@ lib/mod-uret.js        Hatayı Bul / Tersine Örüntü / Uzak Terim soru üretec
 lib/kurallar.js        Parametrik kural cebiri (+n, ×n, ×a sonra +b)
 lib/kendi-kural.js     Öğrencinin kurduğu dizide kural çıkarımı ve tutarlılık
 lib/gezinme.js         Soru gezinme (önceki/sonraki/şu soruya git) ve atlandi kaydı
-araclar/i-icerik.js    "i" grubu taban dizileri (42 dizi, kural + doğrulama parametresi)
-araclar/i-uret.js      "i" kayıtlarını üretip patterns.json'a yazar
-araclar/i-dogrula.js   "i" içeriğini matematiksel olarak denetler
+araclar/i-icerik.js    "u" grubu taban dizileri (42 dizi; dosya adı eski i grubundan kaldı)
+araclar/i-uret.js      "u" kayıtlarını üretip patterns.json'a yazar
+araclar/i-dogrula.js   "u" içeriğini matematiksel olarak denetler (set doğrulayıcısı)
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
 lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
+lib/gruplar.js         Geçerli gruplar (p/e/u), eski i/c → u ve eski kod → yeni kod eşlemesi
 lib/kimlik.js          ADMIN_PASSWORD çözümü + bağımlılıksız .env okuyucu
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
 lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
 lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
 data/patterns.json     Tüm örüntü içeriği (240 kayıt: e 114 + i 126)
 data/ogrenciler.json   Kalıcı isim ↔ kod listesi (TÜM UYCEP oyunlarında aynı dosya)
+data/gruplar.json      Grup tanımları: kod, kart adı, emoji, renk
+data/kod-gecisi.json   Birleşme kod eşlemesi (I-/C- → U-), isim içermez
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi (lobi, isim kartları, oyun)
 public/ambiyans.js     Lobi ortam animasyonu (canvas partikülleri)
@@ -504,7 +537,7 @@ JSON yorum desteklemediği için şema burada belgelenmiştir.
   "oruntuler": [
     {
       "id": "e1-001",              // benzersiz kimlik: <grup><seviye>-<sıra>
-      "grup": "e",                 // "e" | "i" | "c" | "p" — öğretmen panelinden seçilir
+      "grup": "e",                 // "p" | "e" | "u" — öğretmen panelinden seçilir
       "tur": "sekil-renk",         // "sekil-renk" | "sayi" | "buyuyen" | "ayna" | "ic-ice" | "harf"
       "seviye": 1,                 // 1 | 2 | 3
       "mod": "surdur",             // "surdur" | "eksik" | "kural"
@@ -532,18 +565,19 @@ JSON yorum desteklemediği için şema burada belgelenmiştir.
 | Grup | Seviye 1 | Seviye 2 | Seviye 3 | Toplam | Ağırlık |
 |---|---|---|---|---|---|
 | **e** | 36 | 39 | 39 | 114 | Görsel — emoji şekil-renk, büyüyen desen, ayna |
-| **i** | 42 | 42 | 42 | 126 | **Sayısal** — katlama, değişen fark, iç içe dizi, kare sayı, harf |
+| **u** | 42 | 42 | 42 | 126 | **Sayısal** — katlama, değişen fark, iç içe dizi, kare sayı, harf |
 
 Toplam **240** soru. Her grup × seviye × mod kombinasyonu en az **12** soru içerir
 (e: 12–13, i: 14).
 
 ---
 
-## 🔢 "i" grubu katmanı (3.–4. sınıf)
+## 🔢 "u" grubu katmanı (eski i + c)
 
-`i`, `e`'nin bittiği yerden başlar ve **belirgin biçimde zordur**: `e` seviye 3'te
-en büyük sayı 64 iken `i` seviye 1'de 243, seviye 3'te 972'dir. Üç mod da (Sürdür,
-Eksiği Bul, Kuralı Yakala) `i` için tam olarak çalışır.
+`u`, `e`'nin bittiği yerden başlar ve **belirgin biçimde zordur**: `e` seviye 3'te
+en büyük sayı 64 iken `u` seviye 1'de 243, seviye 3'te 972'dir. Yedi modun hepsi
+`u` için çalışır. (İçerik, birleşmeden önceki `i` grubunun içeriğidir; soru
+kimlikleri `i1-s01` gibi kaldı ki madde düzeyindeki geçmiş veriyle eşleşebilsin.)
 
 ### Örüntü aileleri
 
@@ -577,7 +611,7 @@ Seviye 3 ayrıca **30 saniye süre sınırlıdır** (seviye 1–2 süresiz).
 
 ### Sembolik kural etiketleri
 
-`i` grubunda "Kuralı Yakala" seçenekleri **sembolik** yazılır — `+7`, `×3`,
+`u` grubunda "Kuralı Yakala" seçenekleri **sembolik** yazılır — `+7`, `×3`,
 `fark artıyor`, `kare sayılar +1`, `iki dizi iç içe` — düzyazı açıklama değil.
 Aynı etiket tur sonu geri bildiriminde de görünür; ayrıntılı cümle `aciklama`
 alanında durur.
@@ -593,7 +627,7 @@ böylece cevap elemeyle bulunamaz. Örnek (seviye 3):
 
 ### İçeriği yeniden üretme
 
-`i` grubu elle değil, üreteçle tutulur:
+`u` grubu elle değil, üreteçle tutulur:
 
 ```
 node araclar/i-uret.js      # araclar/i-icerik.js'ten i kayıtlarını üretir
@@ -632,7 +666,7 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 | 1 | `zaman` | `2026-08-26T08:57:45.982Z` | Kaydın oluşma anı (ISO 8601, UTC) |
 | 2 | `oyun` | `oruntu-motoru` | Oyun kimliği — dosyalar birleştirilince ayırt eder |
 | 3 | `set_veya_paket` | `e-1-surdur` | `<grup>-<seviye>-<mod>` — çoklu mod turlarında her soru kendi modunu yazar |
-| 4 | `grup` | `e` | İçerik grubu (`e` / `i` / `c` / `p`) |
+| 4 | `grup` | `e` | Çalışma grubu (`p` / `e` / `u`) |
 | 5 | `ogrenci_kod` | `E-07` | **Takma ad** — kayıtlarda isim asla geçmez |
 | 6 | `gorev_id` | `e1-010` · `i3-k08` | `patterns.json` içindeki soru kimliği |
 | 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`, `tersine`, `uzak`, `kendi-tutarli`, `kendi-tutarsiz`) |

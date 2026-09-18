@@ -38,7 +38,11 @@ function grupKartlariCiz(gruplar) {
     const aktifMi = secilenGrup === g.grup;
     kart.className = 'grup-kart' + (aktifMi ? ' secili' : '') + (acikOturum.grup === g.grup ? ' acik' : '');
     kart.setAttribute('aria-pressed', String(aktifMi));
+    // Grup rengi kartın üst şeridine ve seçili zemine yansır (data/gruplar.json)
+    if (g.renk) kart.style.setProperty('--grup-renk', g.renk);
+    if (g.sis) kart.style.setProperty('--grup-sis', g.sis);
     kart.innerHTML =
+      `<span class="grup-emoji" aria-hidden="true">${kacan(g.emoji || '')}</span>` +
       `<b>${kacan(g.ad)}</b>` +
       `<span class="ipucu">${g.aktif} aktif öğrenci</span>` +
       `<span class="ipucu">${g.soruSayisi ? g.soruSayisi + ' soru' : '⚠️ içerik yok'}</span>` +
@@ -183,7 +187,9 @@ soket.on('panel:durum', (veri) => {
   grupKartlariCiz(veri.gruplar || []);
 
   const oturumRozeti = $('oturum-rozeti');
-  oturumRozeti.textContent = acikOturum.acik ? `🚪 ${acikOturum.grup} oturumu açık` : '🔒 Oturum kapalı';
+  const acikGrup = (veri.gruplar || []).find((g) => g.grup === acikOturum.grup);
+  const grupAdi = acikGrup ? `${acikGrup.emoji} ${acikGrup.ad}` : acikOturum.grup;
+  oturumRozeti.textContent = acikOturum.acik ? `🚪 ${grupAdi} oturumu açık` : '🔒 Oturum kapalı';
   oturumRozeti.classList.toggle('vurgulu', acikOturum.acik);
   const ders = acikOturum.dersEtiketi || '';
   // Öğretmen yazarken üstüne yazma; yalnız kutu boşken oturumun etiketini göster
@@ -191,10 +197,10 @@ soket.on('panel:durum', (veri) => {
   if (document.activeElement !== dersKutusu && !dersKutusu.value) dersKutusu.value = ders;
 
   $('oturum-ozet').textContent = acikOturum.acik
-    ? `${acikOturum.grup} grubu · seviye ${veri.ayar.seviye}` + (ders ? ` · ${ders}` : '')
+    ? `${grupAdi} · seviye ${veri.ayar.seviye}` + (ders ? ` · ${ders}` : '')
     : 'grup seç ve oturumu aç';
   $('oturum-durumu').textContent = acikOturum.acik
-    ? `✅ Öğrenci ekranlarında ${acikOturum.grup} grubunun isim kartları görünüyor.` +
+    ? `✅ Öğrenci ekranlarında ${grupAdi} isim kartları görünüyor.` +
       (ders ? ` Ders etiketi: “${ders}”.` : ' Ders etiketi girilmedi.')
     : 'Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.';
   $('canli-ozet').textContent = `${veri.bagliSayisi} sahnede · ${veri.oyuncular.length} kayıtlı`;

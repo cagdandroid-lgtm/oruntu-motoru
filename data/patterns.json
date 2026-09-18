@@ -2931,7 +2931,7 @@
     },
     {
       "id": "i1-s01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -2960,7 +2960,7 @@
     },
     {
       "id": "i1-e01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -2989,7 +2989,7 @@
     },
     {
       "id": "i1-k01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3018,7 +3018,7 @@
     },
     {
       "id": "i1-s02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -3047,7 +3047,7 @@
     },
     {
       "id": "i1-e02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -3076,7 +3076,7 @@
     },
     {
       "id": "i1-k02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3105,7 +3105,7 @@
     },
     {
       "id": "i1-s03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -3134,7 +3134,7 @@
     },
     {
       "id": "i1-e03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -3163,7 +3163,7 @@
     },
     {
       "id": "i1-k03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3192,7 +3192,7 @@
     },
     {
       "id": "i1-s04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -3221,7 +3221,7 @@
     },
     {
       "id": "i1-e04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -3250,7 +3250,7 @@
     },
     {
       "id": "i1-k04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3279,7 +3279,7 @@
     },
     {
       "id": "i1-s05",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -3308,7 +3308,7 @@
     },
     {
       "id": "i1-e05",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -3337,7 +3337,7 @@
     },
     {
       "id": "i1-k05",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3366,7 +3366,7 @@
     },
     {
       "id": "i1-s06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
@@ -3395,7 +3395,7 @@
     },
     {
       "id": "i1-e06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
@@ -3424,7 +3424,7 @@
     },
     {
       "id": "i1-k06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
@@ -3453,7 +3453,7 @@
     },
     {
       "id": "i1-s07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
@@ -3482,7 +3482,7 @@
     },
     {
       "id": "i1-e07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
@@ -3511,7 +3511,7 @@
     },
     {
       "id": "i1-k07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
@@ -3540,7 +3540,7 @@
     },
     {
       "id": "i1-s08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
@@ -3569,7 +3569,7 @@
     },
     {
       "id": "i1-e08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
@@ -3598,7 +3598,7 @@
     },
     {
       "id": "i1-k08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
@@ -3627,7 +3627,7 @@
     },
     {
       "id": "i1-s09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
@@ -3655,7 +3655,7 @@
     },
     {
       "id": "i1-e09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
@@ -3683,7 +3683,7 @@
     },
     {
       "id": "i1-k09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
@@ -3711,7 +3711,7 @@
     },
     {
       "id": "i1-s10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "surdur",
@@ -3739,7 +3739,7 @@
     },
     {
       "id": "i1-e10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "eksik",
@@ -3767,7 +3767,7 @@
     },
     {
       "id": "i1-k10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 1,
       "mod": "kural",
@@ -3795,7 +3795,7 @@
     },
     {
       "id": "i1-s11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "surdur",
@@ -3824,7 +3824,7 @@
     },
     {
       "id": "i1-e11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "eksik",
@@ -3853,7 +3853,7 @@
     },
     {
       "id": "i1-k11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 1,
       "mod": "kural",
@@ -3882,7 +3882,7 @@
     },
     {
       "id": "i1-s12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 1,
       "mod": "surdur",
@@ -3912,7 +3912,7 @@
     },
     {
       "id": "i1-e12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 1,
       "mod": "eksik",
@@ -3942,7 +3942,7 @@
     },
     {
       "id": "i1-k12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 1,
       "mod": "kural",
@@ -3972,7 +3972,7 @@
     },
     {
       "id": "i1-s13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 1,
       "mod": "surdur",
@@ -4001,7 +4001,7 @@
     },
     {
       "id": "i1-e13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 1,
       "mod": "eksik",
@@ -4030,7 +4030,7 @@
     },
     {
       "id": "i1-k13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 1,
       "mod": "kural",
@@ -4059,7 +4059,7 @@
     },
     {
       "id": "i1-s14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 1,
       "mod": "surdur",
@@ -4088,7 +4088,7 @@
     },
     {
       "id": "i1-e14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 1,
       "mod": "eksik",
@@ -4117,7 +4117,7 @@
     },
     {
       "id": "i1-k14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 1,
       "mod": "kural",
@@ -4146,7 +4146,7 @@
     },
     {
       "id": "i2-s01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "surdur",
@@ -4175,7 +4175,7 @@
     },
     {
       "id": "i2-e01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "eksik",
@@ -4204,7 +4204,7 @@
     },
     {
       "id": "i2-k01",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "kural",
@@ -4233,7 +4233,7 @@
     },
     {
       "id": "i2-s02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "surdur",
@@ -4262,7 +4262,7 @@
     },
     {
       "id": "i2-e02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "eksik",
@@ -4291,7 +4291,7 @@
     },
     {
       "id": "i2-k02",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "kural",
@@ -4320,7 +4320,7 @@
     },
     {
       "id": "i2-s03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "surdur",
@@ -4349,7 +4349,7 @@
     },
     {
       "id": "i2-e03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "eksik",
@@ -4378,7 +4378,7 @@
     },
     {
       "id": "i2-k03",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "kural",
@@ -4407,7 +4407,7 @@
     },
     {
       "id": "i2-s04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "surdur",
@@ -4436,7 +4436,7 @@
     },
     {
       "id": "i2-e04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "eksik",
@@ -4465,7 +4465,7 @@
     },
     {
       "id": "i2-k04",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "kural",
@@ -4494,7 +4494,7 @@
     },
     {
       "id": "i2-s05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4523,7 +4523,7 @@
     },
     {
       "id": "i2-e05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4552,7 +4552,7 @@
     },
     {
       "id": "i2-k05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -4581,7 +4581,7 @@
     },
     {
       "id": "i2-s06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4611,7 +4611,7 @@
     },
     {
       "id": "i2-e06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4641,7 +4641,7 @@
     },
     {
       "id": "i2-k06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -4671,7 +4671,7 @@
     },
     {
       "id": "i2-s07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4700,7 +4700,7 @@
     },
     {
       "id": "i2-e07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4729,7 +4729,7 @@
     },
     {
       "id": "i2-k07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -4758,7 +4758,7 @@
     },
     {
       "id": "i2-s08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4786,7 +4786,7 @@
     },
     {
       "id": "i2-e08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4814,7 +4814,7 @@
     },
     {
       "id": "i2-k08",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -4842,7 +4842,7 @@
     },
     {
       "id": "i2-s09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4870,7 +4870,7 @@
     },
     {
       "id": "i2-e09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4898,7 +4898,7 @@
     },
     {
       "id": "i2-k09",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -4926,7 +4926,7 @@
     },
     {
       "id": "i2-s10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "surdur",
@@ -4953,7 +4953,7 @@
     },
     {
       "id": "i2-e10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "eksik",
@@ -4980,7 +4980,7 @@
     },
     {
       "id": "i2-k10",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 2,
       "mod": "kural",
@@ -5007,7 +5007,7 @@
     },
     {
       "id": "i2-s11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "surdur",
@@ -5036,7 +5036,7 @@
     },
     {
       "id": "i2-e11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "eksik",
@@ -5065,7 +5065,7 @@
     },
     {
       "id": "i2-k11",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 2,
       "mod": "kural",
@@ -5094,7 +5094,7 @@
     },
     {
       "id": "i2-s12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 2,
       "mod": "surdur",
@@ -5124,7 +5124,7 @@
     },
     {
       "id": "i2-e12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 2,
       "mod": "eksik",
@@ -5154,7 +5154,7 @@
     },
     {
       "id": "i2-k12",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 2,
       "mod": "kural",
@@ -5184,7 +5184,7 @@
     },
     {
       "id": "i2-s13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 2,
       "mod": "surdur",
@@ -5212,7 +5212,7 @@
     },
     {
       "id": "i2-e13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 2,
       "mod": "eksik",
@@ -5240,7 +5240,7 @@
     },
     {
       "id": "i2-k13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 2,
       "mod": "kural",
@@ -5268,7 +5268,7 @@
     },
     {
       "id": "i2-s14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 2,
       "mod": "surdur",
@@ -5297,7 +5297,7 @@
     },
     {
       "id": "i2-e14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 2,
       "mod": "eksik",
@@ -5326,7 +5326,7 @@
     },
     {
       "id": "i2-k14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 2,
       "mod": "kural",
@@ -5355,7 +5355,7 @@
     },
     {
       "id": "i3-s01",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5386,7 +5386,7 @@
     },
     {
       "id": "i3-e01",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5417,7 +5417,7 @@
     },
     {
       "id": "i3-k01",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5448,7 +5448,7 @@
     },
     {
       "id": "i3-s02",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5478,7 +5478,7 @@
     },
     {
       "id": "i3-e02",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5508,7 +5508,7 @@
     },
     {
       "id": "i3-k02",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5538,7 +5538,7 @@
     },
     {
       "id": "i3-s03",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5567,7 +5567,7 @@
     },
     {
       "id": "i3-e03",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5596,7 +5596,7 @@
     },
     {
       "id": "i3-k03",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5625,7 +5625,7 @@
     },
     {
       "id": "i3-s04",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5653,7 +5653,7 @@
     },
     {
       "id": "i3-e04",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5681,7 +5681,7 @@
     },
     {
       "id": "i3-k04",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5709,7 +5709,7 @@
     },
     {
       "id": "i3-s05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5738,7 +5738,7 @@
     },
     {
       "id": "i3-e05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5767,7 +5767,7 @@
     },
     {
       "id": "i3-k05",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5796,7 +5796,7 @@
     },
     {
       "id": "i3-s06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5826,7 +5826,7 @@
     },
     {
       "id": "i3-e06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5856,7 +5856,7 @@
     },
     {
       "id": "i3-k06",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5886,7 +5886,7 @@
     },
     {
       "id": "i3-s07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "surdur",
@@ -5916,7 +5916,7 @@
     },
     {
       "id": "i3-e07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "eksik",
@@ -5946,7 +5946,7 @@
     },
     {
       "id": "i3-k07",
-      "grup": "i",
+      "grup": "u",
       "tur": "buyuyen",
       "seviye": 3,
       "mod": "kural",
@@ -5976,7 +5976,7 @@
     },
     {
       "id": "i3-s08",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "surdur",
@@ -6006,7 +6006,7 @@
     },
     {
       "id": "i3-e08",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "eksik",
@@ -6036,7 +6036,7 @@
     },
     {
       "id": "i3-k08",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "kural",
@@ -6066,7 +6066,7 @@
     },
     {
       "id": "i3-s09",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "surdur",
@@ -6096,7 +6096,7 @@
     },
     {
       "id": "i3-e09",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "eksik",
@@ -6126,7 +6126,7 @@
     },
     {
       "id": "i3-k09",
-      "grup": "i",
+      "grup": "u",
       "tur": "sayi",
       "seviye": 3,
       "mod": "kural",
@@ -6156,7 +6156,7 @@
     },
     {
       "id": "i3-s10",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "surdur",
@@ -6186,7 +6186,7 @@
     },
     {
       "id": "i3-e10",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "eksik",
@@ -6216,7 +6216,7 @@
     },
     {
       "id": "i3-k10",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "kural",
@@ -6246,7 +6246,7 @@
     },
     {
       "id": "i3-s11",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "surdur",
@@ -6276,7 +6276,7 @@
     },
     {
       "id": "i3-e11",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "eksik",
@@ -6306,7 +6306,7 @@
     },
     {
       "id": "i3-k11",
-      "grup": "i",
+      "grup": "u",
       "tur": "ic-ice",
       "seviye": 3,
       "mod": "kural",
@@ -6336,7 +6336,7 @@
     },
     {
       "id": "i3-s12",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "surdur",
@@ -6364,7 +6364,7 @@
     },
     {
       "id": "i3-e12",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "eksik",
@@ -6392,7 +6392,7 @@
     },
     {
       "id": "i3-k12",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "kural",
@@ -6420,7 +6420,7 @@
     },
     {
       "id": "i3-s13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "surdur",
@@ -6450,7 +6450,7 @@
     },
     {
       "id": "i3-e13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "eksik",
@@ -6480,7 +6480,7 @@
     },
     {
       "id": "i3-k13",
-      "grup": "i",
+      "grup": "u",
       "tur": "harf",
       "seviye": 3,
       "mod": "kural",
@@ -6510,7 +6510,7 @@
     },
     {
       "id": "i3-s14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 3,
       "mod": "surdur",
@@ -6539,7 +6539,7 @@
     },
     {
       "id": "i3-e14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 3,
       "mod": "eksik",
@@ -6568,7 +6568,7 @@
     },
     {
       "id": "i3-k14",
-      "grup": "i",
+      "grup": "u",
       "tur": "ayna",
       "seviye": 3,
       "mod": "kural",

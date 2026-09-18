@@ -1,5 +1,6 @@
-// "i" grubu kayıtlarını üretir ve data/patterns.json'a yazar.
-// e / p / c grubu kayıtlarına DOKUNULMAZ (dosyada oldukları gibi kalır).
+// "u" grubu kayıtlarını üretir ve data/patterns.json'a yazar.
+// (u = eski i + c grupları; dosya adı tarihsel olarak i-uret.js kaldı.)
+// e / p grubu kayıtlarına DOKUNULMAZ (dosyada oldukları gibi kalır).
 //
 // Çalıştırma: node araclar/i-uret.js
 //
@@ -133,7 +134,7 @@ function uret() {
 
         kayitlar.push({
           id,
-          grup: 'i',
+          grup: 'u',
           tur: taban.tur,
           seviye,
           mod,
@@ -153,13 +154,15 @@ function uret() {
 // ---------------- Dosyaya yaz ----------------
 
 const ham = JSON.parse(fs.readFileSync(DOSYA, 'utf8'));
-const digerGruplar = ham.oruntuler.filter((o) => o.grup !== 'i');
+// Eski "i"/"c" kayıtları da u'nun parçası sayılır ve yeniden üretilir
+const U_GRUBU = ['u', 'i', 'c'];
+const digerGruplar = ham.oruntuler.filter((o) => !U_GRUBU.includes(o.grup));
 const yeniI = uret();
 
 // e / i / diğerleri sırası korunsun: e ve kalanlar önce, i sonra
 ham.oruntuler = [...digerGruplar, ...yeniI];
 fs.writeFileSync(DOSYA, JSON.stringify(ham, null, 2) + '\n', 'utf8');
 
-console.log(`[üretim] i grubu yenilendi: ${yeniI.length} kayıt`);
+console.log(`[üretim] u grubu yenilendi: ${yeniI.length} kayıt`);
 console.log(`[üretim] dokunulmayan diğer gruplar: ${digerGruplar.length} kayıt`);
 console.log(`[üretim] dosya toplamı: ${ham.oruntuler.length}`);

@@ -1,4 +1,4 @@
-// "i" grubu (3.-4. sınıf) taban dizileri — sayısal ağırlıklı, e'den belirgin zor.
+// "u" grubu (eski i + c; 3.-4. sınıf ve üstü) taban dizileri — sayısal ağırlıklı, e'den belirgin zor.
 //
 // Her taban dizi ÜÇ modda birden yayımlanır (Sürdür / Eksiği Bul / Kuralı Yakala).
 // Kural etiketleri SEMBOLİKTİR ("+7", "×3", "fark artıyor") — hem kural modunun
