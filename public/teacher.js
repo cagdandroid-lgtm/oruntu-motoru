@@ -67,60 +67,6 @@ $('oturum-kapat').addEventListener('click', () => {
   }
 });
 
-// ---- Mod seçimi (birden çok seçilebilir) ----
-let modBilgi = {};
-let secilenModlar = ['surdur'];
-
-function modSecimiCiz() {
-  const alan = $('mod-secim');
-  alan.innerHTML = '';
-  for (const [anahtar, bilgi] of Object.entries(modBilgi)) {
-    const etiket = document.createElement('label');
-    etiket.className = 'mod-kutu' + (secilenModlar.includes(anahtar) ? ' secili' : '');
-    const kutu = document.createElement('input');
-    kutu.type = 'checkbox';
-    kutu.value = anahtar;
-    kutu.checked = secilenModlar.includes(anahtar);
-    // Liste baştan çizilmez; yalnız ilgili kutunun görünümü güncellenir
-    // (yeniden çizim, tıklanan düğümü DOM'dan koparıyordu).
-    kutu.addEventListener('change', () => {
-      if (!kutu.checked && secilenModlar.length === 1) {
-        kutu.checked = true;
-        return bildir('⚠️ En az bir mod seçili kalmalı.');
-      }
-      secilenModlar = kutu.checked
-        ? [...new Set([...secilenModlar, anahtar])]
-        : secilenModlar.filter((m) => m !== anahtar);
-      etiket.classList.toggle('secili', kutu.checked);
-    });
-    const metin = document.createElement('span');
-    metin.textContent = `${bilgi.emoji} ${bilgi.ad}`;
-    etiket.append(kutu, metin);
-    if (!bilgi.senkron) {
-      const rozet = document.createElement('span');
-      rozet.className = 'bireysel-rozeti';
-      rozet.textContent = '👤 bireysel';
-      etiket.appendChild(rozet);
-    }
-    alan.appendChild(etiket);
-  }
-}
-
-$('baslat').addEventListener('click', () =>
-  gonder('ogretmen:baslat', {
-    seviye: Number($('seviye').value),
-    modlar: secilenModlar,
-    karisik: $('mod-karisik').checked,
-  })
-);
-
-// ---- Soru gezinme (yalnız senkron modda) ----
-$('onceki-soru').addEventListener('click', () => gonder('ogretmen:oncekiSoru'));
-$('sonraki-soru').addEventListener('click', () => gonder('ogretmen:atla'));
-$('soruya-git').addEventListener('change', (e) => {
-  const sira = Number(e.target.value);
-  if (sira) gonder('ogretmen:soruyaGit', { sira });
-});
 $('duraklat').addEventListener('click', () => gonder('ogretmen:duraklat'));
 $('devam').addEventListener('click', () => gonder('ogretmen:devam'));
 $('atla').addEventListener('click', () => gonder('ogretmen:atla'));
@@ -168,6 +114,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 let durumSonu = 'bekliyor';
+let sonSunucuEtiketi = null; // ders etiketi kutusunun son eşitlendiği değer
 
 // ---------------- Sunucu olayları ----------------
 
@@ -192,16 +139,22 @@ soket.on('panel:durum', (veri) => {
   oturumRozeti.textContent = acikOturum.acik ? `🚪 ${grupAdi} oturumu açık` : '🔒 Oturum kapalı';
   oturumRozeti.classList.toggle('vurgulu', acikOturum.acik);
   const ders = acikOturum.dersEtiketi || '';
-  // Öğretmen yazarken üstüne yazma; yalnız kutu boşken oturumun etiketini göster
+  // Kutu yalnız sunucudaki etiket DEĞİŞTİĞİNDE eşitlenir: böylece oturum
+  // açılınca temizlenmiş hâli (dış tırnaksız) görünür, ama öğretmenin henüz
+  // göndermediği yeni bir etiket her panel güncellemesinde silinmez.
   const dersKutusu = $('ders-etiketi');
-  if (document.activeElement !== dersKutusu && !dersKutusu.value) dersKutusu.value = ders;
+  if (ders !== sonSunucuEtiketi) {
+    sonSunucuEtiketi = ders;
+    if (document.activeElement !== dersKutusu) dersKutusu.value = ders;
+  }
 
   $('oturum-ozet').textContent = acikOturum.acik
     ? `${grupAdi} · seviye ${veri.ayar.seviye}` + (ders ? ` · ${ders}` : '')
     : 'grup seç ve oturumu aç';
   $('oturum-durumu').textContent = acikOturum.acik
     ? `✅ Öğrenci ekranlarında ${grupAdi} isim kartları görünüyor.` +
-      (ders ? ` Ders etiketi: “${ders}”.` : ' Ders etiketi girilmedi.')
+      // Etiket tırnağa alınmaz: etiket kendi tırnağını içerse iç içe görünüyordu
+      (ders ? ` 🏷️ Ders etiketi: ${ders}` : ' Ders etiketi girilmedi.')
     : 'Oturum kapalıyken öğrenci ekranlarında “Öğretmenini bekle” yazar.';
   $('canli-ozet').textContent = `${veri.bagliSayisi} sahnede · ${veri.oyuncular.length} kayıtlı`;
   $('galeri-ozet').textContent = `${(veri.galeri || []).length} tasarım`;
@@ -216,22 +169,8 @@ soket.on('panel:durum', (veri) => {
   tdugme.textContent = tasarimAcik ? '✏️ Tasarım bölümü açık' : '🚫 Tasarım bölümü kapalı';
   tdugme.setAttribute('aria-pressed', String(tasarimAcik));
 
-  // Mod listesi ilk gelişte kurulur
-  if (veri.modBilgi && Object.keys(modBilgi).length === 0) {
-    modBilgi = veri.modBilgi;
-    if (veri.ayar && veri.ayar.modlar) secilenModlar = veri.ayar.modlar.slice();
-    modSecimiCiz();
-  }
-  if (veri.ayar && typeof veri.ayar.karisik === 'boolean') {
-    $('mod-karisik').checked = veri.ayar.karisik;
-  }
-
-  // Soru gezinme YALNIZ senkron modda görünür; bireysel modda gizlenir
-  const gezinmeAcik = veri.senkronMu !== false && veri.toplam > 0;
-  $('soru-gezinme').classList.toggle('gizli', !gezinmeAcik);
-  $('gezinme-notu').classList.toggle('gizli', veri.senkronMu !== false || !veri.toplam);
-  if (gezinmeAcik) soruSeciciyiTazele(veri.sira, veri.toplam);
-  $('onceki-soru').disabled = veri.sira <= 1;
+  // Mod seçimi ve soru gezinme (public/panel-modlar.js)
+  PanelModlar.guncelle(veri);
 
   sayaciCiz(veri.kalanSure);
   skorlariCiz(veri.oyuncular);
@@ -241,23 +180,6 @@ soket.on('panel:durum', (veri) => {
 });
 
 soket.on('sayac', sayaciCiz);
-
-// "Şu soruya git" seçicisi — havuz değiştikçe yeniden kurulur
-let sonSeciciToplam = 0;
-function soruSeciciyiTazele(sira, toplam) {
-  const secici = $('soruya-git');
-  if (toplam !== sonSeciciToplam) {
-    sonSeciciToplam = toplam;
-    secici.innerHTML = '';
-    for (let i = 1; i <= toplam; i++) {
-      const o = document.createElement('option');
-      o.value = String(i);
-      o.textContent = `${i}. soru`;
-      secici.appendChild(o);
-    }
-  }
-  secici.value = String(sira);
-}
 
 function sayaciCiz(kalan) {
   const kutu = $('sayac');

@@ -119,6 +119,7 @@ soket.on('giris', (paket) => {
 // Çocuk hiçbir koşulda eski oyun ekranında takılı kalmaz.
 const CIKIS_MESAJI = {
   cikarildi: 'Öğretmenin seni oyundan çıkardı. Birazdan yeniden girebilirsin. 👋',
+  pasif: 'Öğretmenin listeyi güncelledi. Adın listede yoksa öğretmenine söyle. 🙂',
   grup: 'Öğretmen başka bir gruba geçti. 👋',
   serbest: 'Öğretmen seni listeye geri aldı. İstersen adına yeniden dokun. 🙂',
 };

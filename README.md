@@ -19,6 +19,18 @@ npm start
 
 Port `process.env.PORT || 3000` (Render uyumlu). Oda kodu yoktur; herkes tek sınıf odasına bağlanır.
 
+### Sürüm denetimi
+
+`GET /saglik` canlıda hangi commit'in çalıştığını panel şifresi olmadan gösterir
+(öğrenci verisi içermez):
+
+```json
+{ "durum": "ok", "surum": "a1b2c3d", "gruplar": ["p", "e", "u"] }
+```
+
+Render, dağıtılan commit'i `RENDER_GIT_COMMIT` değişkeninde verir; yerelde `"yerel"` yazar.
+**Render `main` dalını yayınlar** — başka dalda duran commit canlıya çıkmaz.
+
 ### Öğretmen şifresi
 
 Şifre **koda asla gömülmez**; `process.env.ADMIN_PASSWORD`'tan okunur
@@ -113,6 +125,10 @@ En çok 60 karakterdir, biçim dayatılmaz. Etiket şuralarda görünür:
   Birden çok dersin CSV'si birleştirildiğinde oturumlar böyle ayrışır.
 - **Karne başlığında** — belgenin üst şeridinde ve kimlik satırında “Ders” kutusu olarak.
 - **Panel özetinde** — bölüm başlığında ve oturum durumu satırında.
+
+Etiket tırnak içinde yazılırsa (`"2. Ders"`, `“2. Ders”`) dış tırnaklar atılır, içteki
+tırnaklar korunur; fazla boşluk ve kontrol karakterleri temizlenir. Panel etiketi
+tırnağa almadan gösterir, böylece iç içe tırnak oluşmaz.
 
 Etiket boş bırakılırsa panel onay sorar; boş geçilirse kayıtlarda sütun boş kalır.
 Oturum yeniden açılarak sonradan da girilebilir.
@@ -349,10 +365,17 @@ cinsiyet göstergesi korundu**: tek kodlular `U-01, U-03 …`, çift kodlular
 
 **Geriye dönük uyumluluk:** eski `"i"`/`"c"` değeri nereden gelirse gelsin — eski
 bir `ogrenciler.json`, `patterns.json`, panel isteği ya da CSV — `"u"` olarak kabul
-edilir. Eski öğrenci kodları da [data/kod-gecisi.json](data/kod-gecisi.json) ile
-çevrilir: cihazında `I-04` kalmış bir tablet `U-04` olarak girer, eski kodlu bir
-önceki oturum CSV'si yeni kodlarla eşleşir. Bu tablo isim içermez; araştırma
-verisini birleştirirken de kullanılabilir.
+edilir. Kodda sabit bir i/c listesi **yoktur**; eşleme tümüyle veriden gelir:
+
+- [data/gruplar.json](data/gruplar.json) → her grubun `eskiKodlar` alanı
+- [data/kod_esleme.json](data/kod_esleme.json) → eski öğrenci kodu → yeni kod
+  (**kanonik, asla silinmez**). Eski kodun harfi yeni grubu da gösterdiğinden,
+  `eskiKodlar` silinse bile grup eşlemesi bu tablodan türetilir.
+- `ogrenciler.json` kayıtlarındaki `eski_kod` alanı da eşlemeye katılır ve
+  “Listeyi İndir” ile indirilen dosyada **korunur**.
+
+Böylece cihazında `I-04` kalmış bir tablet `U-04` olarak girer, eski kodlu bir
+önceki oturum CSV'si yeni kodlarla eşleşir.
 
 ---
 
@@ -363,7 +386,10 @@ verisini birleştirirken de kullanılabilir.
 - **Süzgeçler:** grup (P / E / U Grubu / hepsi), durum (aktif / pasif / hepsi) ve
   **isim arama kutusu** (isim veya kod içinde arar, tüm gruplarda).
 - **Satır işlemleri:** ✏️ ismi düzenle · 🔀 grubunu değiştir · ⏸️/▶️ pasifleştir/aktifleştir.
-  Pasif öğrenci giriş ekranındaki kartlarda **görünmez** ama listeden silinmez.
+  Pasif öğrenci giriş ekranındaki kartlarda ve oturum listesinde **görünmez**, grup
+  kartındaki “aktif öğrenci” sayısına katılmaz; listeden silinmez. Sahnedeki bir
+  öğrenci pasifleştirilirse (ya da başka gruba taşınırsa) oturum listesinden iner
+  ve cihazı isim seçme ekranına döner.
 - **Kod hiçbir işlemde değişmez** — grup değişse bile. Araştırma verisinin sürekliliği buna bağlıdır.
 - **➕ Yeni öğrenci:** gruptaki ilk boş kodu otomatik alır (`E-11` gibi).
 - **⬇️ Listeyi İndir:** güncel `ogrenciler.json`'u indirir. Değişiklikler o oturumda
@@ -390,7 +416,8 @@ oluşturulur, kodlar bir daha değiştirilmez. Depolar **private** tutulur.
 | `kod` | string | Kalıcı takma ad — `<GRUP HARFİ>-<sıra>`. **Asla değiştirilmez.** |
 | `isim` | string | Öğrencinin giriş kartında göreceği ad |
 | `grup` | `"p"` / `"e"` / `"u"` | Çalışma grubu (eski `"i"`/`"c"` okunurken `"u"` sayılır) |
-| `aktif` | boolean | `false` ise giriş kartlarında görünmez. Ayrılan öğrenci **silinmez**, pasifleştirilir |
+| `aktif` | boolean | `false` ise giriş ekranında ve oturum listesinde **görünmez**, yalnız panelin Öğrenci Listesi bölümünde yönetim için listelenir. Ayrılan öğrenci **silinmez**, pasifleştirilir |
+| `eski_kod` | string (isteğe bağlı) | Birleşme öncesi kodu (`C-02`). Eski verilerle eşleşme için korunur |
 
 Demografik bilgi (doğum tarihi, iletişim vb.) bu dosyaya **asla** yazılmaz;
 öğretmenin çevrimdışı dosyasında kodla eşlenir.
@@ -465,7 +492,7 @@ araclar/i-uret.js      "u" kayıtlarını üretip patterns.json'a yazar
 araclar/i-dogrula.js   "u" içeriğini matematiksel olarak denetler (set doğrulayıcısı)
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
 lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
-lib/gruplar.js         Geçerli gruplar (p/e/u), eski i/c → u ve eski kod → yeni kod eşlemesi
+lib/gruplar.js         Geçerli gruplar (p/e/u) ve birleşme eşlemesi — yalnız veriden okur
 lib/kimlik.js          ADMIN_PASSWORD çözümü + bağımlılıksız .env okuyucu
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
 lib/karne.js           A4 yazdırılabilir veli karnesi (tek öğrenci + tüm sınıf)
@@ -473,7 +500,7 @@ lib/rapor-rotalari.js  /teacher/veri/* rotaları (CSV, karne, önceki oturum)
 data/patterns.json     Tüm örüntü içeriği (240 kayıt: e 114 + i 126)
 data/ogrenciler.json   Kalıcı isim ↔ kod listesi (TÜM UYCEP oyunlarında aynı dosya)
 data/gruplar.json      Grup tanımları: kod, kart adı, emoji, renk
-data/kod-gecisi.json   Birleşme kod eşlemesi (I-/C- → U-), isim içermez
+data/kod_esleme.json   Birleşme kod eşlemesi (I-/C- → U-), kanonik — asla silinmez
 public/index.html      Öğrenci ekranı
 public/app.js          Öğrenci istemcisi (lobi, isim kartları, oyun)
 public/ambiyans.js     Lobi ortam animasyonu (canvas partikülleri)
@@ -487,6 +514,7 @@ public/style.css       Palet, göz konforu kuralları, mobil/tablet uyumu
 public/teacher.html    Öğretmen paneli (doğrudan erişim engellidir)
 public/teacher.js      Öğretmen istemcisi
 public/rapor.js        Ölçme kartı, öğrenci raporu penceresi, karne indirmeleri
+public/panel-modlar.js Mod seçimi (çoklu / karışık) ve soru gezinme denetimleri
 public/liste.js        Öğrenci Listesi yönetim ekranı (süzgeç, arama, misafir)
 ```
 ---

@@ -154,9 +154,9 @@ function uret() {
 // ---------------- Dosyaya yaz ----------------
 
 const ham = JSON.parse(fs.readFileSync(DOSYA, 'utf8'));
-// Eski "i"/"c" kayıtları da u'nun parçası sayılır ve yeniden üretilir
-const U_GRUBU = ['u', 'i', 'c'];
-const digerGruplar = ham.oruntuler.filter((o) => !U_GRUBU.includes(o.grup));
+// Eski grup değerleri (birleşme öncesi) de u'nun parçası sayılır ve yeniden üretilir
+const gruplar = require('../lib/gruplar');
+const digerGruplar = ham.oruntuler.filter((o) => gruplar.normalize(o.grup) !== 'u');
 const yeniI = uret();
 
 // e / i / diğerleri sırası korunsun: e ve kalanlar önce, i sonra

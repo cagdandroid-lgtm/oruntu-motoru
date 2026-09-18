@@ -132,9 +132,12 @@ for (const o of iKayit.filter((x) => x.mod !== 'kural')) {
 console.log('\n▶ Diğer gruplara dokunulmadı mı?');
 const digerleri = hepsi.filter((o) => o.grup !== 'u');
 console.log(`  ℹ u dışı kayıt: ${digerleri.length} (e: ${digerleri.filter((o) => o.grup === 'e').length})`);
-const eskiKalan = hepsi.filter((o) => o.grup === 'i' || o.grup === 'c').length;
-if (eskiKalan) sorun(`${eskiKalan} kayıt hâlâ eski "i"/"c" grubunda`);
-else tamam('eski "i"/"c" grup değeri kalmadı');
+// Ham dosyayı oku: icerik.tumu() grupları zaten normalize eder, oradan bakılamaz
+const gruplarModulu = require('../lib/gruplar');
+const hamKayitlar = JSON.parse(require('fs').readFileSync(path.join(__dirname, '..', 'data', 'patterns.json'), 'utf8')).oruntuler;
+const tanimsiz = hamKayitlar.filter((o) => !gruplarModulu.GRUPLAR.includes(o.grup));
+if (tanimsiz.length) sorun(`${tanimsiz.length} kayıt geçerli olmayan grupta: ${[...new Set(tanimsiz.map((o) => o.grup))].join(', ')}`);
+else tamam(`tüm kayıtlar geçerli gruplarda (${gruplarModulu.GRUPLAR.join(', ')})`);
 
 console.log('\n▶ Zorluk ilerlemesi (e ile karşılaştırma)');
 const enBuyuk = (g, s) =>

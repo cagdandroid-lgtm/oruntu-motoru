@@ -63,6 +63,17 @@ app.use((istek, yanit, sonraki) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Sağlık/sürüm denetimi: canlıda hangi commit'in çalıştığını panel şifresi
+// olmadan doğrulamak için. Öğrenci verisi İÇERMEZ (yalnız grup kodları).
+// Render, dağıtılan commit'i RENDER_GIT_COMMIT değişkeninde verir.
+app.get('/saglik', (istek, yanit) => {
+  yanit.json({
+    durum: 'ok',
+    surum: (process.env.RENDER_GIT_COMMIT || 'yerel').slice(0, 7),
+    gruplar: require('./lib/gruplar').GRUPLAR,
+  });
+});
+
 const GIRIS_SAYFASI = (hataVarMi) => `<!DOCTYPE html>
 <html lang="tr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
