@@ -83,6 +83,12 @@ $('geri-al').addEventListener('click', () => {
     });
   }
 });
+// ⏹ Etkinliği Bitir — grup/etkinlik değiştirmenin tek yolu (onaylı)
+$('etkinligi-bitir').addEventListener('click', () => {
+  if (!confirm('Etkinlik bitirilsin mi?\n\nOturum kapanır, öğrenci cihazları bekleme ekranına döner ve kayıtlı isimleri silinir. Ölçüm kayıtları korunur (CSV\'yi indirmeyi unutma).')) return;
+  gonder('ogretmen:etkinligiBitir');
+});
+
 $('sifirla').addEventListener('click', () => {
   if (confirm('Tüm skorlar sıfırlanacak (ölçüm kayıtları silinmez). Emin misin?'))
     gonder('ogretmen:sifirla');
@@ -114,12 +120,14 @@ document.addEventListener('keydown', (e) => {
 });
 
 let durumSonu = 'bekliyor';
+let sonAsama = {}; // panel:durum'dan gelen aşama/ilerleme özeti
 let sonSunucuEtiketi = null; // ders etiketi kutusunun son eşitlendiği değer
 
 // ---------------- Sunucu olayları ----------------
 
 soket.on('panel:durum', (veri) => {
   durumSonu = veri.durum;
+  sonAsama = veri;
   $('durum-rozeti').textContent = DURUM_METNI[veri.durum] || veri.durum;
   $('ilerleme-rozeti').textContent = veri.toplam ? `Soru ${veri.sira}/${veri.toplam}` : '—';
   $('ogrenci-sayisi').textContent = veri.oyuncular.length;
@@ -172,6 +180,13 @@ soket.on('panel:durum', (veri) => {
   // Mod seçimi ve soru gezinme (public/panel-modlar.js)
   PanelModlar.guncelle(veri);
 
+  // BOŞTA/LOBİ'de önceki turun sorusu ve cevabı panelde asılı kalmasın
+  if (veri.asama === 'bosta' || veri.asama === 'lobi') {
+    $('onizleme-dizi').innerHTML = '<span class="ipucu">Henüz tur başlamadı.</span>';
+    $('onizleme-cevap').textContent = '';
+    sonSoru = null;
+  }
+
   sayaciCiz(veri.kalanSure);
   skorlariCiz(veri.oyuncular);
   galeriyiCiz(veri.galeri);
@@ -192,6 +207,12 @@ soket.on('tur:basladi', ({ soru }) => {
   const alan = $('onizleme-dizi');
   alan.innerHTML = '';
 
+  if (sonAsama.ilerlemeModu === 'bireysel') {
+    alan.innerHTML =
+      '<span class="ipucu">👤 Bireysel ilerleme — her öğrenci farklı soruda. Kimin kaçıncı soruda olduğu sağdaki listede görünür.</span>';
+    $('onizleme-cevap').textContent = '';
+    return;
+  }
   if (soru.mod === 'kendi') {
     alan.innerHTML = '<span class="ipucu">🎨 Öğrenciler kendi örüntülerini kuruyor — hazır dizi yok.</span>';
   } else {
@@ -268,6 +289,12 @@ function skorlariCiz(oyuncular) {
       `<span class="sira">${madalya}</span>` +
       `<span class="isim"></span>` +
       `<span class="kod-rozeti" title="Kayıtlarda kullanılan takma ad">${o.kod || '—'}</span>` +
+      // Bireysel modda herkes farklı sorudadır
+      (o.soruToplam
+        ? `<span class="soru-ilerleme${o.bitirdi ? ' bitti' : ''}">${
+            o.bitirdi ? '🏁 bitirdi' : `soru ${o.soruSira}/${o.soruToplam}`
+          }</span>`
+        : '') +
       (o.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '') +
       durumRozeti(o) +
       `<span class="puan">${o.skor} <span class="sr-only">puan</span></span>` +

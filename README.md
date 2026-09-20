@@ -135,6 +135,39 @@ Oturum yeniden açılarak sonradan da girilebilir.
 
 ---
 
+## 🔄 Oturum yaşam döngüsü
+
+Oturum beş aşamalı bir durum makinesidir. Aşama, panelin üst şeridinde rozetle görünür.
+
+```
+BOŞTA ──(grup seç + Oturumu Aç)──▶ LOBİ ──(Turu Başlat)──▶ OYUN ⇄ ARA ──▶ SONUÇ
+  ▲                                                                        │
+  └──────────────── ⏹ Etkinliği Bitir (her aşamadan) ─────────────────────┘
+```
+
+| Aşama | Ne oluyor | Grup/etkinlik seçimi |
+|---|---|---|
+| ⚪ **Boşta** | Grup seçilmedi; öğrenci ekranlarında “Öğretmenini bekle” | **Açık** |
+| 🚪 **Lobi** | Grup açık; öğrenciler isim kartlarına dokunuyor | **Açık** |
+| 🎮 **Oyun** | Etkinlik sürüyor (duraklatma bu aşamadadır) | Kilitli |
+| 🎉 **Ara** | Cevap açıklandı; sıradaki soru bekleniyor | Kilitli |
+| 🏁 **Sonuç** | Etkinlik bitti; kapanış ekranı | Kilitli |
+
+Oyun başlayınca grup kartları, ders etiketi, seviye, mod seçimi ve “Turu Başlat”
+**pasifleşir**; panelde `🔒 Grup ve etkinlik kilitli` uyarısı çıkar. Sunucu da aynı
+kuralı uygular: kilitliyken gelen `oturumAc` / `baslat` isteği reddedilir.
+
+### ⏹ Etkinliği Bitir
+
+Panelin üst şeridinde **her aşamada** görünen kırmızı, onay soran düğme.
+**Grup ya da etkinlik değiştirmenin tek yoludur.** Basılınca:
+
+1. Oturum **BOŞTA**'ya döner ve sahne boşalır.
+2. Öğrenci cihazları bekleme ekranına düşer ve **kayıtlı isimleri silinir**.
+3. **Ölçüm kayıtları korunur** — ders sonunda CSV olarak indirilecek.
+
+---
+
 ## Oyun akışı
 
 1. Öğretmen panelden **grubu** seçip **ders etiketini** yazar, oturumu açar; sonra
@@ -307,6 +340,41 @@ Panel açılır-kapanır bölümlerden (akordeon) oluşur. Üst kısım hep sade
 Her grup kartında **aktif öğrenci sayısı** ve o grup için **kaç soru** olduğu yazar
 (içeriği olmayan grup `⚠️ içerik yok` uyarısı verir). Seçim renkle değil, kalın çerçeve
 ve `✓` işaretiyle belirtilir. Açık oturumun kartında `🚪 oturum açık` rozeti durur.
+
+---
+
+## ⏩ İlerleme ve geçiş
+
+Etkinlik başlatılırken iki ayar daha seçilir (yalnız BOŞTA/LOBİ'de):
+
+| İlerleme | Nasıl çalışır |
+|---|---|
+| 👥 **Senkron** | Herkes aynı sorudadır; tur öğretmenin ritmiyle ilerler |
+| 👤 **Bireysel** | Herkes kendi hızında ilerler. Bitiren beklemez, sıradaki sorusuna geçer; kimse bekleme ekranında kalmaz |
+
+| Sıradaki soru (yalnız senkronda) | Nasıl çalışır |
+|---|---|
+| ⏩ **Otomatik** | Cevap açıklandıktan 6 sn sonra sıradaki soru kendiliğinden gelir |
+| ✋ **Öğretmen onaylı** | ARA aşamasında beklenir; öğretmen “Sonraki soru ▶” diyene kadar geçilmez |
+
+**Soru gezinme** (◀ Önceki / Sonraki ▶ / Şu soruya git) yalnız **senkron ilerlemede
+ve senkron modda** görünür; bireysel ilerlemede ve bireysel modda (🎨 Kendi Örüntünü
+Kur) gizlenir — panelde nedeni yazar.
+
+### Bireysel modda puanlama
+
+| Bileşen | Puan |
+|---|---|
+| Doğru cevap | **500** |
+| Hız bonusu | Hedef süreye göre azalır, en çok **500** (seviye 1: 20 sn · 2: 25 sn · 3: 30 sn) |
+| İlk denemede doğru | **+100** |
+
+Örnek: seviye 2'de 5 saniyede doğru → 500 + 400 + 100 = **1000 puan**.
+Kendi Örüntünü Kur'un kademeli puanı (100/60/40/20) bu ölçeğe beşle çarpılarak girer.
+
+Sıralama bu puana göredir; listede her öğrencinin **kaçıncı soruda** olduğu da görünür
+(`soru 4/12`, bitirene `🏁`). Kapanışta iki onur rozeti dağıtılır:
+**🏆 En Yüksek Puan** ve **🎯 En İsabetli**.
 
 ---
 
@@ -487,6 +555,10 @@ lib/mod-uret.js        Hatayı Bul / Tersine Örüntü / Uzak Terim soru üretec
 lib/kurallar.js        Parametrik kural cebiri (+n, ×n, ×a sonra +b)
 lib/kendi-kural.js     Öğrencinin kurduğu dizide kural çıkarımı ve tutarlılık
 lib/gezinme.js         Soru gezinme (önceki/sonraki/şu soruya git) ve atlandi kaydı
+lib/asama.js           Oturum durum makinesi (BOŞTA→LOBİ→OYUN⇄ARA→SONUÇ), Etkinliği Bitir
+lib/bireysel.js        Bireysel ilerleme ve puanlama (500 + hız + ilk deneme)
+lib/cevap.js           Senkron turda cevap doğrulama, puanlama, tur kapanışı
+lib/tablolar.js        Skor tabloları (öğrenci / panel görünümü ayrı)
 araclar/i-icerik.js    "u" grubu taban dizileri (42 dizi; dosya adı eski i grubundan kaldı)
 araclar/i-uret.js      "u" kayıtlarını üretip patterns.json'a yazar
 araclar/i-dogrula.js   "u" içeriğini matematiksel olarak denetler (set doğrulayıcısı)
@@ -514,7 +586,8 @@ public/style.css       Palet, göz konforu kuralları, mobil/tablet uyumu
 public/teacher.html    Öğretmen paneli (doğrudan erişim engellidir)
 public/teacher.js      Öğretmen istemcisi
 public/rapor.js        Ölçme kartı, öğrenci raporu penceresi, karne indirmeleri
-public/panel-modlar.js Mod seçimi (çoklu / karışık) ve soru gezinme denetimleri
+public/panel-modlar.js Mod seçimi, ilerleme/geçiş, seçim kilidi ve soru gezinme
+public/skor.js         Öğrenci skor tablosu ve kapanış sahnesi (rozetler)
 public/liste.js        Öğrenci Listesi yönetim ekranı (süzgeç, arama, misafir)
 ```
 ---
@@ -795,6 +868,27 @@ GET  /teacher/veri/liste.json            Güncel ogrenciler.json (Listeyi İndir
 ```
 
 **Öğrenci ekranında bu verilerin hiçbiri görünmez**; zorluk gizliliği aynen sürer.
+
+---
+
+## 🧪 Oyun mekaniği denetimi
+
+Her mekanik üç soruyu geçmelidir: (1) tahminle geçilebiliyor mu, (2) rastgele
+oynanınca ilerliyor mu, (3) oyuncuyu kilitleyen ya da cevabı sızdıran bir durum var mı.
+Son denetimde bulunan ve düzeltilenler:
+
+| Bulgu | Ölçüt | Düzeltme |
+|---|---|---|
+| Kendi Örüntünü Kur'da `🔺🔺🔺🔺` gibi tek öğe tekrarı “tutarlı” sayılıyor, düşünmeden tam puan alınabiliyordu | tahminle geçilebilir | En az iki farklı öğe zorunlu kılındı |
+| Duraklatılmışken “Turu Bitir” çalışmıyordu; öğretmen önce devam etmek zorundaydı | kilitlenme | Duraklatılmışken de kapatılabiliyor |
+| Bireysel ilerlemede araya öğrenci tasarımı sokmak sırayı kaydırıyordu | kilitlenme | Bireysel modda engellendi, gerekçesi bildiriliyor |
+| Bireysel ilerlemede soru gezinme soketten çağrılabiliyordu (panelde gizliydi ama sunucu kabul ediyordu) | kilitlenme | Sunucu da reddediyor |
+| Bireysel ilerlemede duraklatma sırasında sıradaki soru yine gönderiliyordu | kilitlenme | Duraklatmada bekletilir, devam edince gönderilir |
+| Bireysel ilerlemede `kendi:surdur` ortak soruya bakıyordu, mod hiç açılmıyordu | kilitlenme | Öğrencinin kendi sorusuna bakıyor |
+
+Değişmeyen güvenceler: cevap doğrulaması **yalnız sunucuda**; her soruda **tek gönderim
+hakkı**; bireysel ilerlemede açıklama paketi **yalnız ilgili öğrenciye** gider;
+yanlış cevap da turu ilerletir, kimse takılıp kalmaz.
 
 ---
 

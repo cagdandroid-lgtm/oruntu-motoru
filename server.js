@@ -138,6 +138,9 @@ const ogretmenMi = (soket) => cerezOku(soket.request).admin_auth === 'true';
 function durumOzeti() {
   return {
     durum: oyun.durum,
+    ...oyun.asamaOzeti(), // asama, secimAcik, kilitNotu
+    ilerlemeModu: oyun.ayar.ilerleme,
+    gecisKontrolu: oyun.ayar.gecis,
     oturumAcik: oyun.oturum.acik,
     sira: oyun.soruIndeksi + 1,
     toplam: oyun.havuz.length,
@@ -217,11 +220,42 @@ oyun.on('turBitti', ({ sonuc, kisisel, skorlar, sonSoruMu }) => {
   herkeseDurum();
 });
 
+// ---- Bireysel ilerleme: her paket YALNIZ ilgili öğrenciye gider ----
+oyun.on('bireyselSoru', ({ oyuncu, soru }) => {
+  if (oyuncu.socketId) io.to(oyuncu.socketId).emit('tur:basladi', { soru, kalanSure: null });
+  panelYayinla();
+});
+
+oyun.on('bireyselSonuc', ({ oyuncu, sonuc, benim, sonSoruMu }) => {
+  if (oyuncu.socketId) {
+    io.to(oyuncu.socketId).emit('tur:bitti', {
+      sonuc,
+      benim,
+      skorlar: oyun.skorTablosu(),
+      sonSoruMu,
+    });
+  }
+  panelYayinla();
+});
+
+oyun.on('bireyselTamam', ({ oyuncu, ozet }) => {
+  if (oyuncu.socketId) {
+    io.to(oyuncu.socketId).emit('oyun:bitti', {
+      skorlar: oyun.skorTablosu(),
+      kisisel: ozet,
+      rozetler: oyun.bireyselRozetler(),
+      bireysel: true,
+    });
+  }
+  panelYayinla();
+});
+
 oyun.on('sayac', (kalan) => io.emit('sayac', kalan));
 oyun.on('cevapGeldi', () => herkeseDurum());
 oyun.on('degisti', () => herkeseDurum());
 oyun.on('oyunBitti', (skorlar) => {
-  io.emit('oyun:bitti', { skorlar });
+  const rozetler = oyun.bireyselMi ? oyun.bireyselRozetler() : [];
+  io.emit('oyun:bitti', { skorlar, rozetler, bireysel: oyun.bireyselMi });
   herkeseDurum();
 });
 
@@ -254,6 +288,13 @@ io.on('connection', (soket) => {
         durum: durumOzeti(),
       });
 
+    // Bireysel modda herkes kendi sorusundan devam eder
+    if (oyun.bireyselMi) {
+      oyun.bireyselDevamEt(oyuncu);
+      herkeseDurum();
+      return;
+    }
+
     // Tur devam ediyorsa geç katılan/dönen öğrenciye mevcut soruyu gönder
     if (oyun.durum === 'oynaniyor' && oyun.soru) {
       soket.emit('tur:basladi', {
@@ -271,7 +312,9 @@ io.on('connection', (soket) => {
   soket.on('kendi:surdur', (veri, geriCagir) => {
     const oyuncu = oyun.oyuncuBul(soket.id);
     if (!oyuncu) return geriCagir && geriCagir({ hata: 'Önce oyuna katılmalısın.' });
-    if (!oyun.soru || oyun.soru.mod !== 'kendi') {
+    // Bireysel ilerlemede ortak soru yoktur; öğrencinin kendi sorusuna bakılır
+    const aktifSoru = oyun.bireyselMi ? oyun.oyuncununSorusu(oyuncu) : oyun.soru;
+    if (!aktifSoru || aktifSoru.mod !== 'kendi') {
       return geriCagir && geriCagir({ hata: 'Şu an bu mod açık değil.' });
     }
     const sonuc = modlar.kendiSurdur(veri && veri.dizi);

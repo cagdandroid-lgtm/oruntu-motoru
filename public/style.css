@@ -1044,3 +1044,44 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   color: var(--grup-renk, var(--murekkep));
   font-weight: 600;
 }
+
+/* ---------- Oturum durum makinesi: üst şerit ve kilitler ---------- */
+
+/* "Etkinliği Bitir" yıkıcıdır: kırmızı, ikonlu, diğer şerit düğmelerinden ayrı */
+.serit .serit-bitir {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: 0.98rem;
+  margin-left: auto;
+}
+.serit .rozet.asama-oyun { background: var(--dogru-sis); color: var(--dogru); font-weight: 700; }
+.serit .rozet.asama-ara { background: var(--kehribar-sis); color: var(--kehribar); font-weight: 700; }
+.serit .rozet.asama-sonuc { background: var(--cam-sis); color: var(--cam); font-weight: 700; }
+
+/* Kilitli seçim alanı: renkten bağımsız olarak imleç ve 🔒 notu da değişir */
+.kilitli-alan { opacity: 0.55; pointer-events: none; }
+.kilitli-alan * { cursor: not-allowed !important; }
+
+/* Bireysel modda "kaçıncı soruda" göstergesi */
+.soru-ilerleme {
+  background: var(--cam-sis);
+  color: var(--cam);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.soru-ilerleme.bitti { background: var(--dogru-sis); color: var(--dogru); }
+
+/* Kapanış rozetleri */
+.rozet-listesi { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; padding: 0; list-style: none; }
+.rozet-listesi li {
+  flex: 1;
+  min-width: 190px;
+  background: var(--kehribar-sis);
+  border: 1px solid var(--kehribar);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.rozet-listesi b { display: block; color: var(--kehribar); }

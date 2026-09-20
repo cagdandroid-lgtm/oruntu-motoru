@@ -13,10 +13,12 @@
   <div class="sarmal">
     <div class="serit">
       <span class="rozet">🧩 Örüntü Motoru — Öğretmen</span>
+      <span class="rozet" id="asama-rozeti">⚪ Boşta</span>
       <span class="rozet" id="oturum-rozeti">Oturum kapalı</span>
       <span class="rozet" id="durum-rozeti">Bekliyor</span>
       <span class="rozet" id="ilerleme-rozeti">—</span>
       <span class="sayac-kutu" id="sayac">⏱ —</span>
+      <button class="tehlike serit-bitir" id="etkinligi-bitir">⏹ Etkinliği Bitir</button>
       <form method="POST" action="/teacher/cikis" style="margin:0">
         <button class="sade" type="submit">Çıkış</button>
       </form>
@@ -51,6 +53,17 @@
           </select>
         </label>
 
+        <div class="kip-secim" role="radiogroup" aria-label="İlerleme modu">
+          <span class="kip-etiket">İlerleme</span>
+          <label><input type="radio" name="ilerleme" value="senkron" checked> 👥 Senkron <span class="ipucu-satir">(herkes aynı soruda)</span></label>
+          <label><input type="radio" name="ilerleme" value="bireysel"> 👤 Bireysel <span class="ipucu-satir">(herkes kendi hızında)</span></label>
+        </div>
+        <div class="kip-secim" id="gecis-secim" role="radiogroup" aria-label="Geçiş kontrolü">
+          <span class="kip-etiket">Sıradaki soru</span>
+          <label><input type="radio" name="gecis" value="otomatik" checked> ⏩ Otomatik</label>
+          <label><input type="radio" name="gecis" value="onayli"> ✋ Öğretmen onaylı</label>
+        </div>
+
         <p class="ipucu">Birden çok mod seçebilirsin; seçilenler tur boyunca dönüşümlü gelir.</p>
         <div class="mod-secim" id="mod-secim"></div>
         <div class="kip-secim">
@@ -81,6 +94,12 @@
         <div class="dugme-satiri">
           <button class="uyari" id="geri-al">↩️ Soruyu İptal Et (puanı geri al)</button>
         </div>
+        <p class="hatirlatma gizli" id="secim-kilidi">
+          🔒 <b>Grup ve etkinlik kilitli.</b> Değiştirmek için üstteki “⏹ Etkinliği Bitir” düğmesini kullan.
+        </p>
+        <p class="ipucu gizli" id="onay-bekliyor">
+          ✋ Sıradaki soruyu sen başlatacaksın — “Sonraki soru ▶” düğmesine bas.
+        </p>
         <p class="kisayol-notu">Kısayollar: <kbd>B</kbd> başlat · <kbd>Boşluk</kbd> duraklat/devam ·
           <kbd>A</kbd> atla · <kbd>K</kbd> turu bitir</p>
       </div>

@@ -121,6 +121,7 @@ const CIKIS_MESAJI = {
   cikarildi: 'Öğretmenin seni oyundan çıkardı. Birazdan yeniden girebilirsin. 👋',
   pasif: 'Öğretmenin listeyi güncelledi. Adın listede yoksa öğretmenine söyle. 🙂',
   grup: 'Öğretmen başka bir gruba geçti. 👋',
+  etkinlikBitti: 'Etkinlik bitti. Öğretmenin yenisini başlatınca ekranın kendiliğinden açılacak. 👋',
   serbest: 'Öğretmen seni listeye geri aldı. İstersen adına yeniden dokun. 🙂',
 };
 
@@ -300,24 +301,7 @@ soket.on('tur:bitti', ({ sonuc, benim }) => {
   cevapVerdim = true;
 });
 
-soket.on('skorlar', skorlariCiz);
-
-function skorlariCiz(skorlar) {
-  const liste = $('skor-liste');
-  liste.innerHTML = '';
-  skorlar.forEach((o, i) => {
-    if (o.isim === benimIsim) $('puanim').textContent = o.skor + ' puan';
-    const madde = document.createElement('li');
-    if (o.isim === benimIsim) madde.classList.add('ben');
-    const madalya = ['🥇', '🥈', '🥉'][i] || i + 1;
-    madde.innerHTML =
-      `<span class="sira">${madalya}</span>` +
-      `<span class="isim">${kacan(o.isim)}${o.isim === benimIsim ? ' (sen)' : ''}</span>` +
-      durumRozeti(o) +
-      `<span class="puan">${o.skor} <span class="sr-only">puan</span></span>`;
-    liste.appendChild(madde);
-  });
-}
+soket.on('skorlar', (skorlar) => Skor.tabloyuCiz(skorlar, benimIsim));
 
 soket.on('durum', (durum) => {
   // Öğretmen oturumu kapattıysa öğrenci bekleme ekranına döner
@@ -364,11 +348,10 @@ soket.on('senin:isim', ({ isim }) => {
   $('oyuncu-adi').textContent = '👤 ' + isim;
 });
 
-soket.on('oyun:bitti', () => {
+soket.on('oyun:bitti', (veri = {}) => {
   gorunur($('soru-karti'), false);
   gorunur($('bekleme-karti'), true);
-  $('bekleme-karti').innerHTML =
-    '<h2>🏁 Tur bitti!</h2><p class="ipucu">Skor tablosuna göz at. Öğretmen yeni bir tur başlatabilir. 🎉</p>';
+  $('bekleme-karti').innerHTML = Skor.kapanis(veri);
   Efekt.konfeti(90);
 });
 
