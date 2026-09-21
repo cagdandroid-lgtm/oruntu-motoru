@@ -135,6 +135,39 @@ Oturum yeniden açılarak sonradan da girilebilir.
 
 ---
 
+## ℹ️ Etkinlik Bilgisi
+
+Panelin sağ üstündeki göze batmayan **ℹ️ Etkinlik Bilgisi** düğmesi üç sekmeli bir
+modal açar; günlük akışta hiçbir sekme kendiliğinden görünmez, öğrenci ekranında hiç yoktur.
+
+| Sekme | İçerik |
+|---|---|
+| 📚 Kazanımlar | 4 maddelik sade kazanım listesi |
+| 🧠 CHC | Birincil ve ikincil alanlar, **dar yetenek kodları** ve gerekçeleri |
+| 👪 Veli Özeti | Jargonsuz 3 cümle + **📋 Kopyala** (WhatsApp veli grubu için) |
+
+Üstte etkinliğin **amacı** yazar. Kaynak proje kökündeki
+[ETKINLIK_BILGI.json](ETKINLIK_BILGI.json); aynı içerik uygulama çalıştırılmadan
+okunabilsin diye [ETKINLIK_BILGI.md](ETKINLIK_BILGI.md)'de de durur.
+
+```jsonc
+{
+  "amac": "…",                              // ek alan: modalın üstünde
+  "kazanimlar": ["…", "…"],
+  "chc": {
+    "birincil": { "alan": "Gf", "ad": "…", "dar": ["Gf-I", "Gf-RQ"], "gerekce": "…" },
+    "ikincil": [ { "alan": "Gv", "dar": ["Gv-Vz"], … }, { "alan": "Gsm", "dar": ["Gsm-WM"], … } ],
+    "gerekce": "…"
+  },
+  "veli_ozeti": "…"
+}
+```
+
+Birincil **Gf** (Gf-I tümevarım, Gf-RQ nicel akıl yürütme); ikincil **Gv** (Gv-Vz) ve
+**Gsm** (Gsm-WM). Dosya her istekte okunur; güncellemek için sunucuyu yeniden başlatmak gerekmez.
+
+---
+
 ## 🔄 Oturum yaşam döngüsü
 
 Oturum beş aşamalı bir durum makinesidir. Aşama, panelin üst şeridinde rozetle görünür.
@@ -350,7 +383,7 @@ Etkinlik başlatılırken iki ayar daha seçilir (yalnız BOŞTA/LOBİ'de):
 | İlerleme | Nasıl çalışır |
 |---|---|
 | 👥 **Senkron** | Herkes aynı sorudadır; tur öğretmenin ritmiyle ilerler |
-| 👤 **Bireysel** | Herkes kendi hızında ilerler. Bitiren beklemez, sıradaki sorusuna geçer; kimse bekleme ekranında kalmaz |
+| 👤 **Bireysel** | Herkes kendi hızında ilerler; öğrenci kendi “Sonraki soru ▶” düğmesiyle geçer, kimse bekleme ekranında kalmaz |
 
 | Sıradaki soru (yalnız senkronda) | Nasıl çalışır |
 |---|---|
@@ -360,6 +393,39 @@ Etkinlik başlatılırken iki ayar daha seçilir (yalnız BOŞTA/LOBİ'de):
 **Soru gezinme** (◀ Önceki / Sonraki ▶ / Şu soruya git) yalnız **senkron ilerlemede
 ve senkron modda** görünür; bireysel ilerlemede ve bireysel modda (🎨 Kendi Örüntünü
 Kur) gizlenir — panelde nedeni yazar.
+
+### Öğrenci kontrollü ilerleme (yalnız bireysel)
+
+- Cevaptan sonra geri bildirim ekranı öğrenci **“Sonraki soru ▶”** diyene kadar kalır;
+  **otomatik geçiş yoktur.** Cevap vermeden “Sonraki” denemez (soru atlanamaz).
+- Bir soruda **60 saniye** boyunca cevap veremeyen öğrenciye onaylı **“⏭ Pas geç”**
+  açılır: **0 puan**, kayda `sonuc="atlandi"` düşer, doğru cevap gösterilir.
+  Süre **sunucuda** ölçülür; istemci düğmeyi erken açsa bile istek reddedilir.
+  Pas geçilen soru sonradan cevaplanamaz.
+  (CLAUDE.md 90 sn yazar; öğretmen isteğiyle 60 sn — `lib/bireysel.js` → `PAS_SANIYE`.)
+- Oyunumuzda her soruda **tek gönderim hakkı** vardır (4 şıkta tahmin uzayı küçük);
+  bu yüzden “doğruya ulaşamama” = o süre boyunca cevap verememek demektir.
+- **Senkron modda bu düğmeler görünmez**; sunucu da senkron modda öğrenciden gelen
+  `bireysel:sonraki` / `bireysel:pasGec` isteğini reddeder.
+
+### Tavansız yol (yalnız bireysel)
+
+Kuyruğunu bitiren öğrenci bekleme ekranında kalmaz; **mevcut havuz ve üreteçten**
+(yeni içerik yazılmadan) yeni bir blok alır:
+
+| Bitirdiği bloktaki doğruluk | Sonraki blok |
+|---|---|
+| **%60 ve üstü** | bir **üst seviye** (1 → 2 → 3) |
+| %60'ın altı | aynı seviyede yeni blok |
+| seviye 3'te | etkinliğin modlarından **karışık sonsuz tur** |
+
+%60 eşiği rastgele tıklamanın (≈%25) seviye atlatmasını engeller; pas geçilen soru
+doğru sayılmaz. Öğrencinin ekranında sıra toplamsız görünür (`Soru 14`); **seviye
+hiçbir öğrenci ekranında ve pakette yer almaz**, skor tablosunda yalnız `14. soru`
+yazar. Panel ise her öğrencinin seviyesini ve `⬆ tavansız` olup olmadığını gösterir.
+
+Kuyruk hiç bitmediği için bireysel etkinliği **öğretmen** bitirir: **✅ Turu Bitir**
+→ SONUÇ, herkese kişisel özet ve iki rozet.
 
 ### Bireysel modda puanlama
 
@@ -556,7 +622,7 @@ lib/kurallar.js        Parametrik kural cebiri (+n, ×n, ×a sonra +b)
 lib/kendi-kural.js     Öğrencinin kurduğu dizide kural çıkarımı ve tutarlılık
 lib/gezinme.js         Soru gezinme (önceki/sonraki/şu soruya git) ve atlandi kaydı
 lib/asama.js           Oturum durum makinesi (BOŞTA→LOBİ→OYUN⇄ARA→SONUÇ), Etkinliği Bitir
-lib/bireysel.js        Bireysel ilerleme ve puanlama (500 + hız + ilk deneme)
+lib/bireysel.js        Bireysel ilerleme: öğrenci kontrollü geçiş, pas geç, tavansız yol, puanlama
 lib/cevap.js           Senkron turda cevap doğrulama, puanlama, tur kapanışı
 lib/tablolar.js        Skor tabloları (öğrenci / panel görünümü ayrı)
 araclar/i-icerik.js    "u" grubu taban dizileri (42 dizi; dosya adı eski i grubundan kaldı)
@@ -588,6 +654,10 @@ public/teacher.js      Öğretmen istemcisi
 public/rapor.js        Ölçme kartı, öğrenci raporu penceresi, karne indirmeleri
 public/panel-modlar.js Mod seçimi, ilerleme/geçiş, seçim kilidi ve soru gezinme
 public/skor.js         Öğrenci skor tablosu ve kapanış sahnesi (rozetler)
+public/bireysel-akis.js Bireysel mod: “Sonraki soru ▶” ve onaylı “Pas geç”
+public/etkinlik-bilgi.js ℹ️ Etkinlik Bilgisi modalı (3 sekme + Kopyala)
+ETKINLIK_BILGI.json    Kazanımlar · CHC · veli özeti (modalın kaynağı)
+ETKINLIK_BILGI.md      Aynı içerik, uygulama çalıştırılmadan okunur
 public/liste.js        Öğrenci Listesi yönetim ekranı (süzgeç, arama, misafir)
 ```
 ---
@@ -885,6 +955,9 @@ Son denetimde bulunan ve düzeltilenler:
 | Bireysel ilerlemede soru gezinme soketten çağrılabiliyordu (panelde gizliydi ama sunucu kabul ediyordu) | kilitlenme | Sunucu da reddediyor |
 | Bireysel ilerlemede duraklatma sırasında sıradaki soru yine gönderiliyordu | kilitlenme | Duraklatmada bekletilir, devam edince gönderilir |
 | Bireysel ilerlemede `kendi:surdur` ortak soruya bakıyordu, mod hiç açılmıyordu | kilitlenme | Öğrencinin kendi sorusuna bakıyor |
+| Öğrenci paketinde `seviye` ve seviyeyi kodlayan soru kimliği gidiyordu | cevap/zorluk sızıntısı | Paketten çıkarıldı |
+| “Pas geç” ile puan ya da seviye kazanılabilir mi? | tahminle geçilebilir | Hayır: 0 puan, doğru sayılmaz, süre sunucuda, soru sonradan cevaplanamaz |
+| Tavansız yolda rastgele tıklayarak seviye atlanabilir mi? | tahminle geçilebilir | Hayır: üst seviye için blokta %60 doğruluk gerekir (400 rastgele tıklamada seviye 1'de kaldı) |
 
 Değişmeyen güvenceler: cevap doğrulaması **yalnız sunucuda**; her soruda **tek gönderim
 hakkı**; bireysel ilerlemede açıklama paketi **yalnız ilgili öğrenciye** gider;
@@ -902,6 +975,8 @@ yanlış cevap da turu ilerletir, kimse takılıp kalmaz.
 - `/teacher/veri/*` rotaları (CSV, karne, önceki oturum) çerezsiz istekte 403 döner.
 - Öğrenci kodu, ölçüm kayıtları ve raporlar yalnız `panel:durum` ile öğretmen odasına gider;
   öğrencilere yayınlanan `giris`, `skorlar` ve `tur:basladi` paketlerinde bulunmaz.
+- Öğrenciye giden soru paketinde **seviye ve soru kimliği yoktur** (kimlik `i3-s04` gibi
+  seviyeyi kodluyordu); tarayıcı konsolundan bile zorluk okunamaz.
 - `giris` paketi **yalnız aktif grubun** kartlarını taşır; başka grupların isimleri ya da
   sayısı öğrenci istemcisine hiç ulaşmaz (gizleme istemcide değil, **sunucuda** yapılır).
 - Katılım sunucuda üç kez doğrulanır: kod listede var mı, aktif mi, **oturumun grubuna ait mi**.

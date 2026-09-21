@@ -206,7 +206,8 @@ soket.on('tur:basladi', ({ soru, kalanSure }) => {
   gorunur($('soru-karti'), true);
   tasarimPaneli(false); // soru gelince tek odak: tasarım paneli kapanır
   $('geri-bildirim').innerHTML = '';
-  $('soru-sirasi').textContent = `Soru ${soru.sira}/${soru.toplam}`;
+  // Tavansız yolda toplam gönderilmez: "Soru 14"
+  $('soru-sirasi').textContent = soru.toplam ? `Soru ${soru.sira}/${soru.toplam}` : `Soru ${soru.sira}`;
 
   if (ModEkran.yeniMi(soru.mod)) {
     // Hatayı Bul / Tersine Örüntü / Uzak Terim / Kendi Örüntünü Kur

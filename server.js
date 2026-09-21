@@ -226,36 +226,37 @@ oyun.on('bireyselSoru', ({ oyuncu, soru }) => {
   panelYayinla();
 });
 
-oyun.on('bireyselSonuc', ({ oyuncu, sonuc, benim, sonSoruMu }) => {
+oyun.on('bireyselSonuc', ({ oyuncu, sonuc, benim }) => {
   if (oyuncu.socketId) {
+    // bireysel:true → istemci "Sonraki soru ▶" düğmesini gösterir, kendiliğinden geçmez
     io.to(oyuncu.socketId).emit('tur:bitti', {
       sonuc,
       benim,
       skorlar: oyun.skorTablosu(),
-      sonSoruMu,
-    });
-  }
-  panelYayinla();
-});
-
-oyun.on('bireyselTamam', ({ oyuncu, ozet }) => {
-  if (oyuncu.socketId) {
-    io.to(oyuncu.socketId).emit('oyun:bitti', {
-      skorlar: oyun.skorTablosu(),
-      kisisel: ozet,
-      rozetler: oyun.bireyselRozetler(),
       bireysel: true,
     });
   }
   panelYayinla();
 });
 
+oyun.on('bireyselTamam', ({ oyuncu, ozet, rozetler }) => {
+  if (oyuncu.socketId) {
+    io.to(oyuncu.socketId).emit('oyun:bitti', {
+      skorlar: oyun.skorTablosu(),
+      kisisel: ozet,
+      rozetler: rozetler || oyun.bireyselRozetler(),
+      bireysel: true,
+    });
+  }
+});
+
 oyun.on('sayac', (kalan) => io.emit('sayac', kalan));
 oyun.on('cevapGeldi', () => herkeseDurum());
 oyun.on('degisti', () => herkeseDurum());
 oyun.on('oyunBitti', (skorlar) => {
-  const rozetler = oyun.bireyselMi ? oyun.bireyselRozetler() : [];
-  io.emit('oyun:bitti', { skorlar, rozetler, bireysel: oyun.bireyselMi });
+  // Bireysel kapanışta her öğrenci kendi özetini (bireyselTamam) aldı;
+  // genel yayın onların kişisel özetinin üstüne yazmasın.
+  if (!oyun.bireyselMi) io.emit('oyun:bitti', { skorlar, rozetler: [] });
   herkeseDurum();
 });
 
@@ -319,6 +320,18 @@ io.on('connection', (soket) => {
     }
     const sonuc = modlar.kendiSurdur(veri && veri.dizi);
     console.log(`[kendi] ${oyuncu.isim} diziyi kurdu (${(veri && veri.dizi || []).length} öğe)`);
+    geriCagir && geriCagir(sonuc);
+  });
+
+  // Öğrenci kontrollü ilerleme — YALNIZ bireysel modda (sunucu senkronda reddeder)
+  soket.on('bireysel:sonraki', (veri, geriCagir) => {
+    const sonuc = oyun.ogrenciSonraki(soket.id);
+    geriCagir && geriCagir(sonuc);
+  });
+
+  // Onaylı "Pas geç" — süre sunucuda ölçülür; 0 puan, kayıt "atlandi"
+  soket.on('bireysel:pasGec', (veri, geriCagir) => {
+    const sonuc = oyun.pasGec(soket.id);
     geriCagir && geriCagir(sonuc);
   });
 

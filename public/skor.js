@@ -17,12 +17,9 @@ const Skor = (() => {
       madde.innerHTML =
         `<span class="sira">${madalya}</span>` +
         `<span class="isim">${kacan(o.isim)}${benMi ? ' (sen)' : ''}</span>` +
-        // Bireysel ilerlemede herkes farklı sorudadır
-        (o.soruToplam
-          ? `<span class="soru-ilerleme${o.bitirdi ? ' bitti' : ''}">${
-              o.bitirdi ? '🏁' : `${o.soruSira}/${o.soruToplam}`
-            }</span>`
-          : '') +
+        // Bireysel ilerlemede herkes farklı sorudadır; yalnız sıra gösterilir
+        // (tavansız yolda kimin üst seviyeye çıktığı buradan anlaşılmaz)
+        (o.soruSira ? `<span class="soru-ilerleme">${o.soruSira}. soru</span>` : '') +
         durumRozeti(o) +
         `<span class="puan">${o.skor} <span class="sr-only">puan</span></span>`;
       liste.appendChild(madde);

@@ -1085,3 +1085,35 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
   padding: 10px 14px;
 }
 .rozet-listesi b { display: block; color: var(--kehribar); }
+
+/* ---------- Bireysel mod: öğrenci kontrollü ilerleme ---------- */
+#bireysel-kontrol { margin-top: 14px; }
+.bireysel-satir { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.bireysel-satir .ipucu { margin: 0; flex: 1; min-width: 200px; }
+.bireysel-satir .sonraki-soru { min-width: 220px; font-size: 1.1rem; }
+.bireysel-satir .pas-gec { min-width: 160px; }
+
+/* ---------- ℹ️ Etkinlik Bilgisi modalı ---------- */
+.serit .bilgi-dugmesi { min-height: 44px; padding: 8px 12px; font-size: 0.92rem; }
+.bilgi-amac { background: var(--cam-sis); border-radius: 10px; padding: 10px 14px; margin: 10px 0 14px; }
+.sekmeler { display: flex; gap: 6px; border-bottom: 2px solid var(--cizgi); margin-bottom: 14px; flex-wrap: wrap; }
+.sekme {
+  background: transparent;
+  color: var(--murekkep-soluk);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 10px 14px;
+  min-height: 44px;
+  font-weight: 600;
+}
+.sekme:hover:not(:disabled) { background: var(--cam-sis); box-shadow: none; }
+/* Seçili sekme yalnız renkle değil, alt çizgiyle de belirtilir */
+.sekme.secili { color: var(--cam); border-bottom-color: var(--cam); }
+.sekme-govde ul { margin: 0; padding-left: 20px; }
+.sekme-govde li { margin-bottom: 6px; }
+.chc-kart { border: 1px solid var(--cizgi); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
+.chc-kart p { margin: 6px 0 0; }
+.chc-dar { display: block; color: var(--murekkep-soluk); font-size: 0.92rem; margin-top: 2px; }
+.chc-kart code { background: var(--cam-sis); color: var(--cam); border-radius: 6px; padding: 1px 6px; font-weight: 700; }
+.veli-metni { background: var(--kagit); border-left: 4px solid var(--kehribar); border-radius: 8px; padding: 12px 14px; }

@@ -290,9 +290,10 @@ function skorlariCiz(oyuncular) {
       `<span class="isim"></span>` +
       `<span class="kod-rozeti" title="Kayıtlarda kullanılan takma ad">${o.kod || '—'}</span>` +
       // Bireysel modda herkes farklı sorudadır
-      (o.soruToplam
-        ? `<span class="soru-ilerleme${o.bitirdi ? ' bitti' : ''}">${
-            o.bitirdi ? '🏁 bitirdi' : `soru ${o.soruSira}/${o.soruToplam}`
+      // Panelde seviye ve tavansız yol da görünür (yalnız öğretmen görür)
+      (o.soruSira
+        ? `<span class="soru-ilerleme${o.tavansiz ? ' bitti' : ''}">${o.soruSira}. soru · sv ${o.seviye}${
+            o.tavansiz ? ' ⬆ tavansız' : ''
           }</span>`
         : '') +
       (o.misafir ? '<span class="misafir-rozeti">✨ misafir</span>' : '') +

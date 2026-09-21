@@ -19,6 +19,7 @@
       <span class="rozet" id="ilerleme-rozeti">—</span>
       <span class="sayac-kutu" id="sayac">⏱ —</span>
       <button class="tehlike serit-bitir" id="etkinligi-bitir">⏹ Etkinliği Bitir</button>
+      <button class="sade bilgi-dugmesi" id="etkinlik-bilgi-ac" title="Etkinlik Bilgisi">ℹ️ Etkinlik Bilgisi</button>
       <form method="POST" action="/teacher/cikis" style="margin:0">
         <button class="sade" type="submit">Çıkış</button>
       </form>
@@ -251,6 +252,27 @@
     </details>
   </div>
 
+  <!-- ℹ️ Etkinlik Bilgisi — yalnız istenince açılır (ETKINLIK_BILGI.json) -->
+  <dialog id="etkinlik-bilgi" class="rapor-pencere bilgi-pencere">
+    <div class="rapor-ust">
+      <h2>ℹ️ Etkinlik Bilgisi</h2>
+      <button class="sade" id="etkinlik-bilgi-kapat" aria-label="Kapat">✖️ Kapat</button>
+    </div>
+    <p class="bilgi-amac" id="bilgi-amac"></p>
+    <div class="sekmeler" role="tablist">
+      <button class="sekme secili" role="tab" aria-selected="true" data-sekme="kazanim">📚 Kazanımlar</button>
+      <button class="sekme" role="tab" aria-selected="false" data-sekme="chc">🧠 CHC</button>
+      <button class="sekme" role="tab" aria-selected="false" data-sekme="veli">👪 Veli Özeti</button>
+    </div>
+    <div class="sekme-govde" data-govde="kazanim"><ul id="bilgi-kazanimlar"></ul></div>
+    <div class="sekme-govde gizli" data-govde="chc" id="bilgi-chc"></div>
+    <div class="sekme-govde gizli" data-govde="veli">
+      <p id="bilgi-veli" class="veli-metni"></p>
+      <button class="notr" id="veli-kopyala">📋 Kopyala</button>
+      <span class="ipucu" id="veli-kopyala-durum"></span>
+    </div>
+  </dialog>
+
   <!-- Öğrenci Raporu ekranı -->
   <dialog id="rapor-pencere" class="rapor-pencere">
     <div class="rapor-ust">
@@ -269,5 +291,6 @@
   <script src="/panel-modlar.js"></script>
   <script src="/rapor.js"></script>
   <script src="/liste.js"></script>
+  <script src="/etkinlik-bilgi.js"></script>
 </body>
 </html>
