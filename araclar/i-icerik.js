@@ -108,13 +108,6 @@ const SEVIYELER = {
   ],
 };
 
-// CHC etiketleri (öğrenciye ASLA gösterilmez; panelde ve kayıtta yaşar)
-const CHC = {
-  sayi: ['Gq', 'Gf'],
-  buyuyen: ['Gf', 'Gq'],
-  'ic-ice': ['Gf', 'Gsm'],
-  harf: ['Gf', 'Gc'],
-  ayna: ['Gv', 'Gf'],
-};
+// CHC etiketi artık moda göre verilir: lib/chc.js (dar yetenek kodu).
 
-module.exports = { SEVIYELER, CHC, ALFABE };
+module.exports = { SEVIYELER, ALFABE };

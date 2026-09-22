@@ -587,16 +587,6 @@ button.mini:hover:not(:disabled) { background: var(--cam-sis); }
 }
 .cubuk .dolu { display: block; height: 100%; background: var(--cam-acik); }
 
-.chc-satir { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px; }
-.chc-etiket {
-  background: var(--cam-sis);
-  color: var(--cam);
-  border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
 @media (max-width: 720px) {
   .rapor-kutular { grid-template-columns: repeat(2, 1fr); }
 }

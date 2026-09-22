@@ -102,6 +102,9 @@ for (const o of iKayit) {
     if (o.mod === 'eksik' && o.gizliIndeks === o.dizi.length - 1) sorun(`${o.id}: eksik modunda son hücre gizlenemez`);
   }
   if (!Array.isArray(o.chc) || !o.chc.length) sorun(`${o.id}: chc etiketi yok`);
+  else if (JSON.stringify(o.chc) !== JSON.stringify(require('../lib/chc').chcKodu(o.mod))) {
+    sorun(`${o.id}: chc ${JSON.stringify(o.chc)} — moda göre dar kod olmalı`);
+  }
 }
 if (!hata) tamam(`${iKayit.length} kaydın tamamı geçerli (doğru cevap seçenekte, 4 benzersiz seçenek, gizliIndeks tutarlı)`);
 

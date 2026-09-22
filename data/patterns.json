@@ -25,7 +25,10 @@
         "🌸"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Üçgen ve kare sırayla geliyor."
+      "aciklama": "Üçgen ve kare sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-002",
@@ -51,7 +54,10 @@
         "🌸"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Kırmızı ve sarı sırayla geliyor."
+      "aciklama": "Kırmızı ve sarı sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-003",
@@ -77,7 +83,10 @@
         "🟢"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "İki renk dönüşümlü."
+      "aciklama": "İki renk dönüşümlü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-004",
@@ -103,7 +112,10 @@
         "🌸"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Yıldız ve çiçek sırayla."
+      "aciklama": "Yıldız ve çiçek sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-005",
@@ -129,7 +141,10 @@
         "⭐"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Elma ve balık sırayla."
+      "aciklama": "Elma ve balık sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-006",
@@ -156,7 +171,10 @@
         "🔴"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki mavi bir kırmızı tekrar ediyor."
+      "aciklama": "İki mavi bir kırmızı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-007",
@@ -183,7 +201,10 @@
         "🌸"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki sarı bir yeşil."
+      "aciklama": "İki sarı bir yeşil.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-008",
@@ -206,7 +227,10 @@
         "🔴"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-009",
@@ -229,7 +253,10 @@
         "🟦🟦🟦"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟦 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-010",
@@ -254,7 +281,10 @@
         "9"
       ],
       "kural": "+1 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 1 fazla."
+      "aciklama": "Her sayı bir öncekinden 1 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-011",
@@ -279,7 +309,10 @@
         "12"
       ],
       "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
+      "aciklama": "Her sayı bir öncekinden 2 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-012",
@@ -304,7 +337,10 @@
         "12"
       ],
       "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Çift sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-013",
@@ -330,7 +366,10 @@
         "🌸"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Üçgen ve kare sırayla geliyor."
+      "aciklama": "Üçgen ve kare sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-014",
@@ -356,7 +395,10 @@
         "🟡"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Kırmızı ve sarı sırayla geliyor."
+      "aciklama": "Kırmızı ve sarı sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-015",
@@ -382,7 +424,10 @@
         "🟢"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "İki renk dönüşümlü."
+      "aciklama": "İki renk dönüşümlü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-016",
@@ -408,7 +453,10 @@
         "⭐"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Yıldız ve çiçek sırayla."
+      "aciklama": "Yıldız ve çiçek sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-017",
@@ -434,7 +482,10 @@
         "🌸"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Elma ve balık sırayla."
+      "aciklama": "Elma ve balık sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-018",
@@ -461,7 +512,10 @@
         "🔵"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki mavi bir kırmızı tekrar ediyor."
+      "aciklama": "İki mavi bir kırmızı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-019",
@@ -488,7 +542,10 @@
         "🟢"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki sarı bir yeşil."
+      "aciklama": "İki sarı bir yeşil.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-020",
@@ -511,7 +568,10 @@
         "⭐"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-021",
@@ -534,7 +594,10 @@
         "🟦🟦🟦🟦🟦🟦"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟦 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-022",
@@ -559,7 +622,10 @@
         "3"
       ],
       "kural": "+1 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 1 fazla."
+      "aciklama": "Her sayı bir öncekinden 1 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-023",
@@ -584,7 +650,10 @@
         "6"
       ],
       "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
+      "aciklama": "Her sayı bir öncekinden 2 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-024",
@@ -609,7 +678,10 @@
         "8"
       ],
       "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Çift sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-025",
@@ -635,7 +707,10 @@
         "artış her adımda 2 büyüyor"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Üçgen ve kare sırayla geliyor."
+      "aciklama": "Üçgen ve kare sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-026",
@@ -661,7 +736,10 @@
         "son iki sayının toplamı"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Kırmızı ve sarı sırayla geliyor."
+      "aciklama": "Kırmızı ve sarı sırayla geliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-027",
@@ -687,7 +765,10 @@
         "+10 ekleniyor"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "İki renk dönüşümlü."
+      "aciklama": "İki renk dönüşümlü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-028",
@@ -713,7 +794,10 @@
         "iki şekil sırayla tekrar ediyor"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Yıldız ve çiçek sırayla."
+      "aciklama": "Yıldız ve çiçek sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-029",
@@ -739,7 +823,10 @@
         "iki şekil sırayla tekrar ediyor"
       ],
       "kural": "iki şekil sırayla tekrar ediyor",
-      "aciklama": "Elma ve balık sırayla."
+      "aciklama": "Elma ve balık sırayla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-030",
@@ -766,7 +853,10 @@
         "üç şekil sırayla tekrar ediyor"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki mavi bir kırmızı tekrar ediyor."
+      "aciklama": "İki mavi bir kırmızı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-031",
@@ -793,7 +883,10 @@
         "dizi ortadan simetrik (ayna)"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki sarı bir yeşil."
+      "aciklama": "İki sarı bir yeşil.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-032",
@@ -816,7 +909,10 @@
         "+4 ekleniyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-033",
@@ -839,7 +935,10 @@
         "artış her adımda 2 büyüyor"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟦 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟦 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-034",
@@ -864,7 +963,10 @@
         "bir büyük bir küçük"
       ],
       "kural": "+1 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 1 fazla."
+      "aciklama": "Her sayı bir öncekinden 1 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-035",
@@ -889,7 +991,10 @@
         "+10 ekleniyor"
       ],
       "kural": "+2 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 2 fazla."
+      "aciklama": "Her sayı bir öncekinden 2 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e1-036",
@@ -914,7 +1019,10 @@
         "bir büyük bir küçük"
       ],
       "kural": "çift sayılar sırayla",
-      "aciklama": "Çift sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Çift sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-037",
@@ -941,7 +1049,10 @@
         "🔺"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üç şekil sırayla tekrar ediyor."
+      "aciklama": "Üç şekil sırayla tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-038",
@@ -968,7 +1079,10 @@
         "🌸"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi."
+      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-039",
@@ -995,7 +1109,10 @@
         "🍎"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üçlü döngü."
+      "aciklama": "Üçlü döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-040",
@@ -1025,7 +1142,10 @@
         "🟡"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İkişerli renk grupları."
+      "aciklama": "İkişerli renk grupları.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-041",
@@ -1052,7 +1172,10 @@
         "🐟"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki balık bir yıldız."
+      "aciklama": "İki balık bir yıldız.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-042",
@@ -1077,7 +1200,10 @@
         "🔺"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-043",
@@ -1100,7 +1226,10 @@
         "⭐"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-044",
@@ -1124,7 +1253,10 @@
         "🔴🔴🔴🔴🔴🔴🔴🔴"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🔴 sayısı bir artıyor."
+      "aciklama": "Her adımda 🔴 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-045",
@@ -1147,7 +1279,10 @@
         "⭐⭐⭐⭐⭐⭐⭐"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda ⭐ sayısı bir artıyor."
+      "aciklama": "Her adımda ⭐ sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-046",
@@ -1172,7 +1307,10 @@
         "23"
       ],
       "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
+      "aciklama": "Her sayı bir öncekinden 3 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-047",
@@ -1197,7 +1335,10 @@
         "10"
       ],
       "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
+      "aciklama": "Her sayı bir öncekinden 2 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-048",
@@ -1222,7 +1363,10 @@
         "17"
       ],
       "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Tek sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-049",
@@ -1245,7 +1389,10 @@
         "3"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-050",
@@ -1272,7 +1419,10 @@
         "🟦"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üç şekil sırayla tekrar ediyor."
+      "aciklama": "Üç şekil sırayla tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-051",
@@ -1299,7 +1449,10 @@
         "⭐"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi."
+      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-052",
@@ -1326,7 +1479,10 @@
         "⭐"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üçlü döngü."
+      "aciklama": "Üçlü döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-053",
@@ -1356,7 +1512,10 @@
         "🌸"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İkişerli renk grupları."
+      "aciklama": "İkişerli renk grupları.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-054",
@@ -1383,7 +1542,10 @@
         "🍎"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki balık bir yıldız."
+      "aciklama": "İki balık bir yıldız.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-055",
@@ -1408,7 +1570,10 @@
         "🟦"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-056",
@@ -1431,7 +1596,10 @@
         "🌸"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-057",
@@ -1455,7 +1623,10 @@
         "🔴🔴🔴🔴🔴🔴🔴🔴"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🔴 sayısı bir artıyor."
+      "aciklama": "Her adımda 🔴 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-058",
@@ -1478,7 +1649,10 @@
         "⭐⭐⭐"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda ⭐ sayısı bir artıyor."
+      "aciklama": "Her adımda ⭐ sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-059",
@@ -1503,7 +1677,10 @@
         "14"
       ],
       "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
+      "aciklama": "Her sayı bir öncekinden 3 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-060",
@@ -1528,7 +1705,10 @@
         "11"
       ],
       "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
+      "aciklama": "Her sayı bir öncekinden 2 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-061",
@@ -1553,7 +1733,10 @@
         "6"
       ],
       "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Tek sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-062",
@@ -1576,7 +1759,10 @@
         "7"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-063",
@@ -1603,7 +1789,10 @@
         "artış her adımda 1 büyüyor"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üç şekil sırayla tekrar ediyor."
+      "aciklama": "Üç şekil sırayla tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-064",
@@ -1630,7 +1819,10 @@
         "iki şekil sırayla tekrar ediyor"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi."
+      "aciklama": "Renk döngüsü: kırmızı, mavi, mavi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-065",
@@ -1657,7 +1849,10 @@
         "renk döngüsü: 🔺🟦"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "Üçlü döngü."
+      "aciklama": "Üçlü döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-066",
@@ -1687,7 +1882,10 @@
         "-2 çıkarılıyor"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İkişerli renk grupları."
+      "aciklama": "İkişerli renk grupları.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-067",
@@ -1714,7 +1912,10 @@
         "üç şekil sırayla tekrar ediyor"
       ],
       "kural": "üç şekil sırayla tekrar ediyor",
-      "aciklama": "İki balık bir yıldız."
+      "aciklama": "İki balık bir yıldız.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-068",
@@ -1739,7 +1940,10 @@
         "+3 ekleniyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-069",
@@ -1762,7 +1966,10 @@
         "+2 ekleniyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-070",
@@ -1786,7 +1993,10 @@
         "+2 ekleniyor"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🔴 sayısı bir artıyor."
+      "aciklama": "Her adımda 🔴 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-071",
@@ -1809,7 +2019,10 @@
         "-3 çıkarılıyor"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda ⭐ sayısı bir artıyor."
+      "aciklama": "Her adımda ⭐ sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-072",
@@ -1834,7 +2047,10 @@
         "-2 çıkarılıyor"
       ],
       "kural": "+3 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 3 fazla."
+      "aciklama": "Her sayı bir öncekinden 3 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-073",
@@ -1859,7 +2075,10 @@
         "son iki sayının toplamı"
       ],
       "kural": "-2 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 2 az."
+      "aciklama": "Her sayı bir öncekinden 2 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-074",
@@ -1884,7 +2103,10 @@
         "artış her adımda 1 büyüyor"
       ],
       "kural": "tek sayılar sırayla",
-      "aciklama": "Tek sayılar ikişer ikişer ilerliyor."
+      "aciklama": "Tek sayılar ikişer ikişer ilerliyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e2-075",
@@ -1907,7 +2129,10 @@
         "dizi ortadan simetrik (ayna)"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-076",
@@ -1937,7 +2162,10 @@
         "🔺"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Dörtlü karmaşık döngü."
+      "aciklama": "Dörtlü karmaşık döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-077",
@@ -1967,7 +2195,10 @@
         "⭐"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Aralarda sarı tekrar ediyor."
+      "aciklama": "Aralarda sarı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-078",
@@ -1997,7 +2228,10 @@
         "🐟"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İki yıldız, çiçek, elma."
+      "aciklama": "İki yıldız, çiçek, elma.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-079",
@@ -2024,7 +2258,10 @@
         "🟦"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-080",
@@ -2049,7 +2286,10 @@
         "🌸"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-081",
@@ -2074,7 +2314,10 @@
         "🟢🟢🟢🟢🟢🟢🟢🟢🟢"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟢 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟢 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-082",
@@ -2098,7 +2341,10 @@
         "27"
       ],
       "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-083",
@@ -2122,7 +2368,10 @@
         "36"
       ],
       "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-084",
@@ -2147,7 +2396,10 @@
         "35"
       ],
       "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
+      "aciklama": "Her sayı bir öncekinden 5 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-085",
@@ -2172,7 +2424,10 @@
         "14"
       ],
       "kural": "-3 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 3 az."
+      "aciklama": "Her sayı bir öncekinden 3 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-086",
@@ -2197,7 +2452,10 @@
         "13"
       ],
       "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-087",
@@ -2222,7 +2480,10 @@
         "1"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-088",
@@ -2247,7 +2508,10 @@
         "72"
       ],
       "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-089",
@@ -2277,7 +2541,10 @@
         "⭐"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Dörtlü karmaşık döngü."
+      "aciklama": "Dörtlü karmaşık döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-090",
@@ -2307,7 +2574,10 @@
         "🔴"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Aralarda sarı tekrar ediyor."
+      "aciklama": "Aralarda sarı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-091",
@@ -2337,7 +2607,10 @@
         "⭐"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İki yıldız, çiçek, elma."
+      "aciklama": "İki yıldız, çiçek, elma.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-092",
@@ -2364,7 +2637,10 @@
         "🟢"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-093",
@@ -2389,7 +2665,10 @@
         "🌸"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-094",
@@ -2414,7 +2693,10 @@
         "🟢🟢🟢🟢🟢"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟢 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟢 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-095",
@@ -2438,7 +2720,10 @@
         "13"
       ],
       "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-096",
@@ -2462,7 +2747,10 @@
         "8"
       ],
       "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-097",
@@ -2487,7 +2775,10 @@
         "25"
       ],
       "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
+      "aciklama": "Her sayı bir öncekinden 5 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-098",
@@ -2512,7 +2803,10 @@
         "26"
       ],
       "kural": "-3 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 3 az."
+      "aciklama": "Her sayı bir öncekinden 3 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-099",
@@ -2537,7 +2831,10 @@
         "3"
       ],
       "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-100",
@@ -2562,7 +2859,10 @@
         "11"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-101",
@@ -2587,7 +2887,10 @@
         "24"
       ],
       "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-102",
@@ -2617,7 +2920,10 @@
         "aynı şekil ikişerli tekrar ediyor"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Dörtlü karmaşık döngü."
+      "aciklama": "Dörtlü karmaşık döngü.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-103",
@@ -2647,7 +2953,10 @@
         "çift sayılar sırayla"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "Aralarda sarı tekrar ediyor."
+      "aciklama": "Aralarda sarı tekrar ediyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-104",
@@ -2677,7 +2986,10 @@
         "aynı şekil ikişerli tekrar ediyor"
       ],
       "kural": "aynı şekil ikişerli tekrar ediyor",
-      "aciklama": "İki yıldız, çiçek, elma."
+      "aciklama": "İki yıldız, çiçek, elma.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-105",
@@ -2704,7 +3016,10 @@
         "aynı şekil ikişerli tekrar ediyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-106",
@@ -2729,7 +3044,10 @@
         "+10 ekleniyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi."
+      "aciklama": "Dizi ortadaki şekle göre aynalanıyor; sağ taraf solun tersi.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-107",
@@ -2754,7 +3072,10 @@
         "-5 çıkarılıyor"
       ],
       "kural": "her adımda bir tane daha ekleniyor",
-      "aciklama": "Her adımda 🟢 sayısı bir artıyor."
+      "aciklama": "Her adımda 🟢 sayısı bir artıyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-108",
@@ -2778,7 +3099,10 @@
         "renk döngüsü: 🔺🟦"
       ],
       "kural": "artış her adımda 1 büyüyor",
-      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 2, 3, 4… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-109",
@@ -2802,7 +3126,10 @@
         "iki şekil sırayla tekrar ediyor"
       ],
       "kural": "artış her adımda 2 büyüyor",
-      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor."
+      "aciklama": "Aradaki fark sırayla 3, 5, 7… şeklinde büyüyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-110",
@@ -2827,7 +3154,10 @@
         "+1 ekleniyor"
       ],
       "kural": "+5 ekleniyor",
-      "aciklama": "Her sayı bir öncekinden 5 fazla."
+      "aciklama": "Her sayı bir öncekinden 5 fazla.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-111",
@@ -2852,7 +3182,10 @@
         "renk döngüsü: 🔴🔵🔵"
       ],
       "kural": "-3 çıkarılıyor",
-      "aciklama": "Her sayı bir öncekinden 3 az."
+      "aciklama": "Her sayı bir öncekinden 3 az.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-112",
@@ -2877,7 +3210,10 @@
         "son iki sayının toplamı"
       ],
       "kural": "son iki sayının toplamı",
-      "aciklama": "Her sayı kendinden önceki iki sayının toplamı."
+      "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-113",
@@ -2902,7 +3238,10 @@
         "aynı şekil ikişerli tekrar ediyor"
       ],
       "kural": "dizi ortadan simetrik (ayna)",
-      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor."
+      "aciklama": "Sayılar ortadaki sayıya göre simetrik yerleşiyor.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "e3-114",
@@ -2927,7 +3266,10 @@
         "-2 çıkarılıyor"
       ],
       "kural": "2 ile çarpılıyor",
-      "aciklama": "Her sayı bir öncekinin iki katı."
+      "aciklama": "Her sayı bir öncekinin iki katı.",
+      "chc": [
+        "Gf-I"
+      ]
     },
     {
       "id": "i1-s01",
@@ -2954,8 +3296,7 @@
       "kural": "+4",
       "aciklama": "Her adımda 4 ekleniyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -2983,8 +3324,7 @@
       "kural": "+4",
       "aciklama": "Her adımda 4 ekleniyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3012,8 +3352,7 @@
       "kural": "+4",
       "aciklama": "Her adımda 4 ekleniyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3041,8 +3380,7 @@
       "kural": "+7",
       "aciklama": "Yedişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3070,8 +3408,7 @@
       "kural": "+7",
       "aciklama": "Yedişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3099,8 +3436,7 @@
       "kural": "+7",
       "aciklama": "Yedişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3128,8 +3464,7 @@
       "kural": "+9",
       "aciklama": "Dokuzar sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3157,8 +3492,7 @@
       "kural": "+9",
       "aciklama": "Dokuzar sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3186,8 +3520,7 @@
       "kural": "+9",
       "aciklama": "Dokuzar sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3215,8 +3548,7 @@
       "kural": "-6",
       "aciklama": "Her adımda 6 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3244,8 +3576,7 @@
       "kural": "-6",
       "aciklama": "Her adımda 6 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3273,8 +3604,7 @@
       "kural": "-6",
       "aciklama": "Her adımda 6 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3302,8 +3632,7 @@
       "kural": "-8",
       "aciklama": "Her adımda 8 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3331,8 +3660,7 @@
       "kural": "-8",
       "aciklama": "Her adımda 8 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3360,8 +3688,7 @@
       "kural": "-8",
       "aciklama": "Her adımda 8 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3389,8 +3716,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3418,8 +3744,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3447,8 +3772,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar büyüyor: +1, +2, +3, +4 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3476,8 +3800,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer birer büyüyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3505,8 +3828,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer birer büyüyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3534,8 +3856,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer birer büyüyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3563,8 +3884,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3592,8 +3912,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3621,8 +3940,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3649,8 +3967,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3677,8 +3994,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3705,8 +4021,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3733,8 +4048,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3761,8 +4075,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3789,8 +4102,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -3818,8 +4130,7 @@
       "kural": "kare sayılar",
       "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3847,8 +4158,7 @@
       "kural": "kare sayılar",
       "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3876,8 +4186,7 @@
       "kural": "kare sayılar",
       "aciklama": "1×1, 2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -3906,8 +4215,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -3936,8 +4244,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -3966,8 +4273,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri geriye (10, 9, 8 …), diğeri ileriye (1, 2, 3 …) gidiyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -3995,8 +4301,7 @@
       "kural": "harfler ikişer",
       "aciklama": "Alfabede birer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -4024,8 +4329,7 @@
       "kural": "harfler ikişer",
       "aciklama": "Alfabede birer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -4053,8 +4357,7 @@
       "kural": "harfler ikişer",
       "aciklama": "Alfabede birer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -4082,8 +4385,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4111,8 +4413,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4140,8 +4441,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Dizi ortadan katlanınca üst üste geliyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4169,8 +4469,7 @@
       "kural": "+12",
       "aciklama": "Onikişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4198,8 +4497,7 @@
       "kural": "+12",
       "aciklama": "Onikişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4227,8 +4525,7 @@
       "kural": "+12",
       "aciklama": "Onikişer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4256,8 +4553,7 @@
       "kural": "+15",
       "aciklama": "Onbeşer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4285,8 +4581,7 @@
       "kural": "+15",
       "aciklama": "Onbeşer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4314,8 +4609,7 @@
       "kural": "+15",
       "aciklama": "Onbeşer sayıyoruz.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4343,8 +4637,7 @@
       "kural": "-13",
       "aciklama": "Her adımda 13 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4372,8 +4665,7 @@
       "kural": "-13",
       "aciklama": "Her adımda 13 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4401,8 +4693,7 @@
       "kural": "-13",
       "aciklama": "Her adımda 13 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4430,8 +4721,7 @@
       "kural": "-14",
       "aciklama": "Her adımda 14 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4459,8 +4749,7 @@
       "kural": "-14",
       "aciklama": "Her adımda 14 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4488,8 +4777,7 @@
       "kural": "-14",
       "aciklama": "Her adımda 14 azalıyor.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -4517,8 +4805,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4546,8 +4833,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4575,8 +4861,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar ikişer büyüyor: +2, +4, +6, +8 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4605,8 +4890,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4635,8 +4919,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4665,8 +4948,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar birer büyüyor: +2, +3, +4, +5 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4694,8 +4976,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4723,8 +5004,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4752,8 +5032,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4780,8 +5059,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4808,8 +5086,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4836,8 +5113,7 @@
       "kural": "×2",
       "aciklama": "Her sayı bir öncekinin iki katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4864,8 +5140,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4892,8 +5167,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4920,8 +5194,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4947,8 +5220,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -4974,8 +5246,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5001,8 +5272,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5030,8 +5300,7 @@
       "kural": "kare sayılar",
       "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5059,8 +5328,7 @@
       "kural": "kare sayılar",
       "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5088,8 +5356,7 @@
       "kural": "kare sayılar",
       "aciklama": "2×2, 3×3, 4×4 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5118,8 +5385,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -5148,8 +5414,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -5178,8 +5443,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Bir dizi ikişer artıyor, diğeri birer azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -5206,8 +5470,7 @@
       "kural": "harfler üçer",
       "aciklama": "Alfabede ikişer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -5234,8 +5497,7 @@
       "kural": "harfler üçer",
       "aciklama": "Alfabede ikişer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -5262,8 +5524,7 @@
       "kural": "harfler üçer",
       "aciklama": "Alfabede ikişer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -5291,8 +5552,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5320,8 +5580,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5349,8 +5608,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Ortadaki 24’ten sonra dizi geri sarıyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -5380,8 +5638,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5411,8 +5668,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5442,8 +5698,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "Her sayı kendinden önceki iki sayının toplamı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5472,8 +5727,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5502,8 +5756,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5532,8 +5785,7 @@
       "kural": "son iki sayının toplamı",
       "aciklama": "2+3=5, 3+5=8, 5+8=13 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5561,8 +5813,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5590,8 +5841,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5619,8 +5869,7 @@
       "kural": "×3",
       "aciklama": "Her adımda üçe katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5647,8 +5896,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5675,8 +5923,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5703,8 +5950,7 @@
       "kural": "×3",
       "aciklama": "Her sayı bir öncekinin üç katı.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5732,8 +5978,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5761,8 +6006,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5790,8 +6034,7 @@
       "kural": "×2",
       "aciklama": "Her adımda ikiye katlanıyor.",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5820,8 +6063,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5850,8 +6092,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5880,8 +6121,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar üçer büyüyor: +1, +4, +7, +10 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5910,8 +6150,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5940,8 +6179,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -5970,8 +6208,7 @@
       "kural": "fark artıyor",
       "aciklama": "Aralar beşer büyüyor: +5, +10, +15, +20 …",
       "chc": [
-        "Gf",
-        "Gq"
+        "Gf-I"
       ]
     },
     {
@@ -6000,8 +6237,7 @@
       "kural": "kare sayılar +1",
       "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6030,8 +6266,7 @@
       "kural": "kare sayılar +1",
       "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6060,8 +6295,7 @@
       "kural": "kare sayılar +1",
       "aciklama": "Kare sayıların bir fazlası: 1+1, 4+1, 9+1 …",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6090,8 +6324,7 @@
       "kural": "kare sayılar",
       "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6120,8 +6353,7 @@
       "kural": "kare sayılar",
       "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6150,8 +6382,7 @@
       "kural": "kare sayılar",
       "aciklama": "3×3, 4×4, 5×5 … kare sayılar.",
       "chc": [
-        "Gq",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6180,8 +6411,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6210,8 +6440,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6240,8 +6469,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "Biri ikiye katlanıyor, diğeri onar azalıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6270,8 +6498,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6300,8 +6527,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6330,8 +6556,7 @@
       "kural": "iki dizi iç içe",
       "aciklama": "İki dizi de ikiye katlanıyor ama farklı yerden başlıyor.",
       "chc": [
-        "Gf",
-        "Gsm"
+        "Gf-I"
       ]
     },
     {
@@ -6358,8 +6583,7 @@
       "kural": "harfler dörder",
       "aciklama": "Alfabede üçer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6386,8 +6610,7 @@
       "kural": "harfler dörder",
       "aciklama": "Alfabede üçer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6414,8 +6637,7 @@
       "kural": "harfler dörder",
       "aciklama": "Alfabede üçer harf atlanıyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6444,8 +6666,7 @@
       "kural": "iki harf dizisi iç içe",
       "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6474,8 +6695,7 @@
       "kural": "iki harf dizisi iç içe",
       "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6504,8 +6724,7 @@
       "kural": "iki harf dizisi iç içe",
       "aciklama": "Biri baştan (A, C, E …), diğeri sondan (Z, X, V …) geliyor.",
       "chc": [
-        "Gf",
-        "Gc"
+        "Gf-I"
       ]
     },
     {
@@ -6533,8 +6752,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6562,8 +6780,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     },
     {
@@ -6591,8 +6808,7 @@
       "kural": "ayna (simetrik)",
       "aciklama": "Üçe katlanarak çıkıyor, sonra aynı yoldan iniyor.",
       "chc": [
-        "Gv",
-        "Gf"
+        "Gf-I"
       ]
     }
   ]

@@ -172,9 +172,24 @@
           .join('')
       : '<tr><td colspan="3" class="ipucu">Bu oturumda kayıtlı görev yok.</td></tr>';
 
-    const chc = r.chcDokumu.length
-      ? r.chcDokumu.map((c) => `<span class="chc-etiket">${kacir(c.alan)} · %${c.yuzde}</span>`).join(' ')
-      : '<span class="ipucu">—</span>';
+    // Mod bazlı doğruluk ve süre. CHC bilgisi burada YER ALMAZ — yalnız
+    // "ℹ️ Etkinlik Bilgisi" modalının CHC sekmesinde durur (CLAUDE.md).
+    const MOD_ADI = {
+      surdur: '➡️ Sürdür', eksik: '🕳️ Eksiği Bul', kural: '🔍 Kuralı Yakala', hata: '🐞 Hatayı Bul',
+      tersine: '⏪ Tersine Örüntü', uzak: '🔭 Uzak Terim', kendi: '🎨 Kendi Örüntünü Kur',
+    };
+    const modSatirlari = (r.modlar || []).length
+      ? r.modlar
+          .map(
+            (m) => `<tr>
+              <td>${kacir(MOD_ADI[m.mod] || m.mod)}</td>
+              <td class="say">${m.dogru}/${m.toplam}</td>
+              <td class="oran"><span class="cubuk"><span class="dolu" style="width:${m.yuzde}%"></span></span> <b>%${m.yuzde}</b></td>
+              <td class="say">${sureMetni(m.ortalamaSureSn)}</td>
+            </tr>`
+          )
+          .join('')
+      : '<tr><td colspan="4" class="ipucu">Bu oturumda kayıtlı görev yok.</td></tr>';
 
     const degisim = r.degisim
       ? `<p class="degisim-satiri">${
@@ -204,8 +219,11 @@
         <thead><tr><th>Örüntü türü</th><th class="say">Doğru</th><th>Başarı</th></tr></thead>
         <tbody>${kategoriler}</tbody>
       </table>
-      <h3 class="alt-baslik">CHC dağılımı <span class="ipucu-satir">— yalnız öğretmene görünür</span></h3>
-      <p class="chc-satir">${chc}</p>
+      <h3 class="alt-baslik">Mod bazlı doğruluk ve süre</h3>
+      <table class="rapor-dokum">
+        <thead><tr><th>Mod</th><th class="say">Doğru</th><th>Başarı</th><th class="say">Ort. süre</th></tr></thead>
+        <tbody>${modSatirlari}</tbody>
+      </table>
       <p class="ipucu">Yanlış: ${r.yanlis} · Cevapsız: ${r.atlandi}</p>`;
   }
 

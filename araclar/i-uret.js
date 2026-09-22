@@ -11,7 +11,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const { SEVIYELER, CHC, ALFABE } = require('./i-icerik');
+const { SEVIYELER, ALFABE } = require('./i-icerik');
+const { chcKodu } = require('../lib/chc');
 
 const DOSYA = path.join(__dirname, '..', 'data', 'patterns.json');
 const MODLAR = ['surdur', 'eksik', 'kural'];
@@ -143,7 +144,7 @@ function uret() {
           secenekler,
           kural: taban.kural,
           aciklama: taban.aciklama,
-          chc: CHC[taban.tur] || ['Gf'],
+          chc: chcKodu(mod), // dar yetenek kodu (lib/chc.js)
         });
       }
     });

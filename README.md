@@ -630,6 +630,7 @@ araclar/i-uret.js      "u" kayıtlarını üretip patterns.json'a yazar
 araclar/i-dogrula.js   "u" içeriğini matematiksel olarak denetler (set doğrulayıcısı)
 lib/duzenleme.js       Soru iptali (puan geri alma), isim ve puan düzeltme
 lib/liste.js           Kalıcı öğrenci listesi, misafirler, süzgeçler, JSON dışa aktarım
+lib/chc.js             CHC dar yetenek etiketleri — moda göre tek kaynak
 lib/gruplar.js         Geçerli gruplar (p/e/u) ve birleşme eşlemesi — yalnız veriden okur
 lib/kimlik.js          ADMIN_PASSWORD çözümü + bağımlılıksız .env okuyucu
 lib/olcme.js           Standart olay kaydı, takma ad, CSV dışa/içe aktarım, rapor
@@ -717,7 +718,7 @@ JSON yorum desteklemediği için şema burada belgelenmiştir.
       "secenekler": ["🔺","🟦","⭐","🌸"],  // 4 seçenek; "kural" modunda kural metinleri
       "kural": "iki şekil sırayla tekrar ediyor",
       "aciklama": "Üçgen ve kare sırayla geliyor.",
-      "chc": ["Gf","Gv"]           // isteğe bağlı; yoksa türden türetilir (lib/olcme.js)
+      "chc": ["Gf-I"]              // DAR yetenek kodu; moda göre (lib/chc.js)
     }
   ]
 }
@@ -841,7 +842,7 @@ birleştirilebilirlik (ve akademik analiz) buna bağlıdır.
 | 5 | `ogrenci_kod` | `E-07` | **Takma ad** — kayıtlarda isim asla geçmez |
 | 6 | `gorev_id` | `e1-010` · `i3-k08` | `patterns.json` içindeki soru kimliği |
 | 7 | `kategori` | `sayi` | Örüntü türü (`sekil-renk`, `ayna`, `buyuyen`, `sayi`, `ic-ice`, `harf`, `tersine`, `uzak`, `kendi-tutarli`, `kendi-tutarsiz`) |
-| 8 | `chc` | `Gq\|Gf` | CHC alanları, `\|` ile ayrılmış |
+| 8 | `chc` | `Gf-I` | CHC **dar yetenek** kodu (moda göre; birden çoksa `\|` ile ayrılır) |
 | 9 | `zorluk` | `e-1` | Katman kodu: `<grup>-<seviye>` |
 | 10 | `sonuc` | `dogru` | `dogru` / `yanlis` / `atlandi` |
 | 11 | `sure_sn` | `6.42` | Sorunun açılışından cevaba kadar (duraklatılan süre düşülür) |
@@ -854,8 +855,18 @@ Notlar:
 
 - **`atlandi`**: tur kapanırken bağlı olduğu hâlde cevap vermemiş her öğrenci için
   bir kayıt yazılır — katılmama da veridir.
-- **`chc`**: soru JSON'unda `chc` alanı varsa o kullanılır, yoksa örüntü türünden
-  türetilir (`lib/olcme.js` → `CHC_ESLEME`). Seviye 3 süreli olduğu için `Gs` eklenir.
+- **`chc`**: her zaman **dar yetenek kodu** yazılır; tek kaynak [lib/chc.js](lib/chc.js):
+
+  | Mod | `chc` |
+  |---|---|
+  | Sürdür · Eksiği Bul · Kuralı Yakala · Hatayı Bul | `Gf-I` (tümevarım) |
+  | Tersine Örüntü · Uzak Terim | `Gf-RQ` (nicel akıl yürütme) |
+  | Kendi Örüntünü Kur | `Glr` (bellekten geri getirme) |
+
+  `patterns.json`'daki her kayıt bu etiketi taşır; üreteçler de aynısını yazar.
+  Sorunun etiketi dar kod değilse (eski/geniş bir etiket ya da etiketsiz öğrenci
+  tasarımı) kayda modun kodu düşer — kayda **asla** `Gf`, `Gq` gibi geniş kod yazılmaz.
+  Eylül 2026 öncesi CSV'lerde geniş kodlar durur; o kayıtlara dokunulmaz.
 - **Soru iptali**: öğretmen “Son Turun Puanını Geri Al” dediğinde o turun kayıtları
   silinmez, *geçersiz* işaretlenir ve CSV/rapor/karnelerin dışında bırakılır.
 
@@ -892,8 +903,11 @@ Panelin **📊 Ölçme ve Raporlar** kartından tek tık. Dosya her zaman oturum
 ### Öğrenci Raporu
 
 Öğrenci listesindeki **📊** düğmesi tek ekranlık raporu açar: genel doğruluk
-yüzdesi, kategori bazlı doğruluk dökümü, ortalama süre, en uzun seri, ulaşılan
-kademe ve CHC dağılımı.
+yüzdesi, ortalama süre, en uzun seri, ulaşılan kademe, **kategori (örüntü türü)
+bazlı doğruluk** ve **mod bazlı doğruluk + ortalama süre** tablosu.
+
+Raporda **CHC bilgisi yer almaz**; CHC yalnız “ℹ️ Etkinlik Bilgisi” modalının
+CHC sekmesinde durur (CLAUDE.md).
 
 **Geçen oturuma göre değişim:** “📂 Önceki oturum CSV'si yükle” ile eski bir CSV
 yüklenirse rapor ve karnede karşılaştırma satırı belirir. Eşleştirme, isimli
